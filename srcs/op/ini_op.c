@@ -6,15 +6,10 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 18:12:11 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/07 18:40:52 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/07 18:45:32 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static 
 
-t_bool	ini_op(void)
-{
-	sgt_corewar()->op[0]
-}

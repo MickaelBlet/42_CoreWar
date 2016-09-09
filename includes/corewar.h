@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/07 17:40:26 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/08 15:46:17 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <libft.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# define USAGE		"./corewar [-dump nbr_cycles] [[-n number] file.cor]"
 
 # define IND_SIZE				2
 # define REG_SIZE				4
@@ -50,7 +52,7 @@
 # define MAX_CHECKS				10
 
 /*
-**
+** ...
 */
 
 typedef char		t_arg_type;
@@ -61,7 +63,7 @@ typedef char		t_arg_type;
 # define T_LAB					8
 
 /*
-**
+** ...
 */
 
 # define PROG_NAME_LENGTH		(128)
@@ -92,6 +94,7 @@ typedef struct		s_corewar
 {
 	t_listd			*players;
 	t_op			op[17];
+	size_t			nb_cycles;
 	int				ram[MEM_SIZE];
 }					t_corewar;
 
@@ -109,7 +112,5 @@ t_corewar			*sgt_corewar(void);
 /*
 ** OP
 */
-void				cor_live(int player_id);
-void				cor_ld(int *p, int *r);
 
 #endif

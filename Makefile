@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/07 09:22:24 by mblet             #+#    #+#              #
-#    Updated: 2016/09/07 18:40:53 by mblet            ###   ########.fr        #
+#    Updated: 2016/09/08 15:52:26 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,7 @@ SRCBASE		=	\
 				op/ld.c														\
 				op/live.c													\
 				player/creat.c												\
-				sgt/sgt_corewar.c											\
-				sgt/sgt_op_table.c
+				sgt/sgt_corewar.c
 
 SRCS		=	$(addprefix $(SRCDIR), $(SRCBASE))
 INCS		=	$(addprefix $(INCDIR), $(INCBASE))

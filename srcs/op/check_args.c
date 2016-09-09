@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 14:52:05 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/07 18:05:29 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/07 18:46:59 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ t_bool	check_args(t_arg_type op, char *ptr)
 	int		i;
 
 	i = 0;
+	(void)op;
+	(void)ptr;
 	while (i < 16)
 	{
-		if (op == t->op[i].op_code)
-			t->op_func[i](ptr);
+		//if (op == t->op[i].op_code)
+			//t->op_func[i](ptr);
 		++i;
 	}
+	return (true);
 }
