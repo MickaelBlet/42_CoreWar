@@ -1,24 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   common_corewar.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/08 15:46:17 by mblet            ###   ########.fr       */
+/*   Created: 2016/09/12 12:20:28 by mblet             #+#    #+#             */
+/*   Updated: 2016/09/12 12:40:54 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
-
-# include <fcntl.h>
-# include <libft.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-# define USAGE		"./corewar [-dump nbr_cycles] [[-n number] file.cor]"
+#ifndef COMMON_COREWAR_H
+# define COMMON_COREWAR_H
 
 # define IND_SIZE				2
 # define REG_SIZE				4
@@ -90,27 +83,6 @@ typedef struct		s_op
 	int				has_idx;
 }					t_op;
 
-typedef struct		s_corewar
-{
-	t_listd			*players;
-	t_op			op[17];
-	size_t			nb_cycles;
-	int				ram[MEM_SIZE];
-}					t_corewar;
-
-/*
-** MAIN
-*/
-void				corewar(void);
-
-/*
-** SGT
-*/
-t_corewar			**sgt_addr_corewar(void);
-t_corewar			*sgt_corewar(void);
-
-/*
-** OP
-*/
+t_op				g_op_tab[17];
 
 #endif
