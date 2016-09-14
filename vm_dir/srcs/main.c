@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:20 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/12 12:29:03 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/12 16:50:59 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int				main(int argc, char **argv)
 {
 	if (s_check_args(argc, argv) == false)
 		ft_printf("Usage: %s\n", USAGE);
+	DG("%s", op_tab(1).name);
 	return (0);
 }

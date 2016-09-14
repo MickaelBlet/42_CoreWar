@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/12 12:28:39 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/12 15:01:57 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void			corewar(void);
 */
 t_corewar		**sgt_addr_corewar(void);
 t_corewar		*sgt_corewar(void);
+t_op			op_tab(int index);
 
 /*
 ** OP
