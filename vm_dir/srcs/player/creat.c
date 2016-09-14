@@ -6,17 +6,102 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:23:37 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/07 18:47:27 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/14 16:09:06 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-//t_player	*player_creat(int fd)
-//{
-	//t_player	*p;
-//
-	//if ((p = (t_player *)malloc(sizeof(t_player))) == NULL)
-		//return (NULL);
-	//p->fd = fd;
-//}
+static void		s_id_free(int id, t_listd *player_list)
+{
+	t_player	*player;
+
+	while (player_list)
+	{
+		player = player_list->data;
+		if (player->id == id)
+		{
+			ft_dprintf(STDERR_FILENO, ERR_SAME_ID);
+			exit(EXIT_FAILURE);
+		}
+		player_list = player_list->next;
+	}
+}
+
+static int		s_find_id(t_listd *player_list)
+{
+	int			id;
+	int			index;
+	t_listd		*tmp_list;
+	t_player	*player;
+
+	id = -1;
+	index = 0;
+	while (index < MAX_PLAYERS)
+	{
+		tmp_list = player_list;
+		while (player_list)
+		{
+			player = tmp_list->data;
+			if (player->id == index)
+				tmp_list = tmp_list->next;
+			else
+				return (index);
+		}
+		++index;
+	}
+	ft_dprintf(STDERR_FILENO, ERR_TOO_MANY_PLAYERS);
+	exit(EXIT_FAILURE);
+	return (-1);
+}
+
+static void		s_player_read_file(t_player *player, char *file_name, int fd)
+{
+	char		buff[BUFF_SIZE + 1];
+	int			ret_read;
+	int			index;
+	t_header	*header;
+
+	index = 0;
+	while ((ret_read = read(fd, &buff, BUFF_SIZE)) > 0)
+	{
+		if ((index + ret_read) > (CHAMP_MAX_SIZE + sizeof(t_header)))
+		{
+			ft_dprintf(STDERR_FILENO, ERR_FILE_TOO_LARGE, file_name);
+			exit(EXIT_FAILURE);
+		}
+		ft_memcpy(player->data + index, buff, ret_read);
+		index += ret_read;
+	}
+	header = (t_header *)player->data;
+	if (header->magic != COREWAR_EXEC_MAGIC)
+	{
+		ft_dprintf(STDERR_FILENO, ERR_FILE_NOT_VALID, file_name);
+		exit(EXIT_FAILURE);
+	}
+	ft_memcpy(player->name, header->name, PROG_NAME_LENGTH + 1);
+	ft_memcpy(player->comment, header->comment, COMMENT_LENGTH + 1);
+}
+
+t_player		*player_creat(int id, char *file_name)
+{
+	int			fd;
+	t_player	*player;
+
+	if ((player = (t_player *)malloc(sizeof(t_player))) == NULL)
+		return (NULL);
+	if ((fd = open(file_name, O_RDONLY)) == -1)
+	{
+		ft_dprintf(STDERR_FILENO, ERR_OPEN_FILE, file_name);
+		exit(EXIT_FAILURE);
+	}
+	if (id == -1)
+		id = s_find_id(sgt_corewar()->players);
+	else
+		s_id_free(id);
+	player->id = id;
+	ft_bzero(player->data, CHAMP_MAX_SIZE + 1);
+	s_player_read_file(player, file_name, fd);
+	ft_bzero(player->reg, REG_NUMBER * sizeof(int));
+	player->reg[0] = id;
+}

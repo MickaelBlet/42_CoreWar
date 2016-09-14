@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:20 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/12 16:50:59 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/14 16:15:38 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static t_bool	s_check_args(int argc, char **argv)
 		if (ft_strequ(argv[i], "-dump") && (++i) && ft_aisi(argv[i]))
 			sgt_corewar()->nb_cycles = ft_atoi(argv[i]);
 		else if (ft_strequ(argv[i], "-n") && (++i) && ft_aisi(argv[i]))
-			sgt_corewar()->nb_cycles = ft_atoi(argv[i]);
+			ft_lstd_push_front(&sgt_corewar()->players,
+					player_creat(ft_atoi(argv[i]), argv[i + 1]));
 	}
 	return (true);
 }
@@ -34,7 +35,6 @@ static t_bool	s_check_args(int argc, char **argv)
 int				main(int argc, char **argv)
 {
 	if (s_check_args(argc, argv) == false)
-		ft_printf("Usage: %s\n", USAGE);
-	DG("%s", op_tab(1).name);
+		ft_printf("Usage: %s\n", MSG_USAGE);
 	return (0);
 }
