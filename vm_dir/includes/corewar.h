@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/14 16:55:31 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/15 17:23:44 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 # include <fcntl.h>
 # include <libft.h>
+# include <libxft.h>
+# include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -33,13 +35,13 @@ typedef struct	s_player
 	char		name[PROG_NAME_LENGTH];
 	char		comment[COMMENT_LENGTH];
 	t_arg_type	*pc;
-	t_arg_type	data[CHAMP_MAX_SIZE + 1];
+	t_arg_type	data[CHAMP_MAX_SIZE + sizeof(t_header)];
 	int			reg[REG_NUMBER];
 }				t_player;
 
 typedef struct	s_corewar
 {
-	size_t		nb_cycles;
+	size_t		nbr_cycles;
 	t_listd		*players;
 	t_arg_type	ram[MEM_SIZE];
 }				t_corewar;
@@ -59,5 +61,41 @@ t_corewar		*sgt_corewar(void);
 ** OP
 */
 t_op			op_tab(int index);
+
+/*
+** PLAYER
+*/
+t_player		*player_creat(int id, char *file_name);
+
+/*
+** MLX
+*/
+# define VM_WIN_WIDTH		2000
+# define VM_WIN_HEIGHT		1380
+# define VM_FONT_PATH		"./resources/font/11.xpm"
+
+typedef struct	s_vm_mlx
+{
+	void		*mlx;
+	void		*win;
+	t_libx_img	*main;
+	t_libx_img	*font;
+	t_libx_img	*ram;
+}				t_vm_mlx;
+
+/*
+**
+*/
+t_bool			vm_mlx_init(void);
+int				vm_hook_key(int key, t_vm_mlx *mlx);
+void			vm_press_key_esc(void *mlx);
+void			vm_mlx_print(void);
+int				vm_mlx_loop_hook(void *mlx);
+
+/*
+** SGT
+*/
+t_vm_mlx		**sgt_addr_mlx(void);
+t_vm_mlx		*sgt_mlx(void);
 
 #endif

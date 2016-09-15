@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/07 09:22:24 by mblet             #+#    #+#              #
-#    Updated: 2016/09/14 16:55:32 by mblet            ###   ########.fr        #
+#    Updated: 2016/09/15 17:35:40 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,28 +16,29 @@ LENGTHNAME	=	`printf "%s" $(NAMEBASE) | wc -c`
 MAX_COLS	=	$$(echo "$$(tput cols)-24-$(LENGTHNAME)"|bc)
 
 CC			=	gcc
-FLAGS		=	-Wall -Wextra -Werror -O3
+FLAGS		=	-Wall -Wextra -Werror -Ofast -ggdb
 
 SRCDIR		=	srcs/
 OBJDIR		=	objs/
 INCDIR		=	includes/
+MLX_DIR		=	../minilibx_macos/
+MLX_FLAGS_O	=	-L ./$(MLX_DIR) -framework OPENGL -framework AppKit -lmlx
 LIBFT_DIR	=	../libft/
 LIBFT_LIB	=	$(LIBFT_DIR)libft.a
 LIBXFT_DIR	=	libxft/
 LIBXFT_LIB	=	$(LIBXFT_DIR)libxft.a
-MLX_DIR		=	.minilibx_macos/
-MLX_FLAGS_O	=	-L ./$(MLX_DIR) -framework OPENGL -framework AppKit -lmlx
 
 SRCBASE		=	\
 				corewar.c													\
 				main.c														\
-				op/check_args.c												\
-				op/ini_op.c													\
-				op/ld.c														\
-				op/live.c													\
+				mlx/hook.c													\
+				mlx/loop_hook.c												\
+				mlx/mlx_ini.c												\
+				mlx/print.c													\
 				op_tab.c													\
 				player/creat.c												\
-				sgt/sgt_corewar.c
+				sgt/sgt_corewar.c											\
+				sgt/sgt_mlx.c
 
 SRCS		=	$(addprefix $(SRCDIR), $(SRCBASE))
 INCS		=	$(addprefix $(INCDIR), $(INCBASE))
@@ -45,14 +46,13 @@ OBJS		=	$(addprefix $(OBJDIR), $(SRCBASE:.c=.o))
 
 .SILENT:
 
-all:
-	$(MAKE) -j $(NAME)
+all:		$(NAME)
 	echo "\033[38;5;44m☑️  ALL    $(NAMEBASE) is done\033[0m\033[K"
 
 $(NAME):	$(OBJDIR) $(OBJS)
-	make -C $(MLX_DIR)
-	make -C $(LIBFT_DIR)
-	make -C $(LIBXFT_DIR)
+	make -j -C $(MLX_DIR)
+	make -j -C $(LIBFT_DIR)
+	make -j -C $(LIBXFT_DIR)
 	$(CC) $(FLAGS) $(MLX_FLAGS_O) -o $(NAME) $(OBJS)						\
 		$(LIBFT_LIB)														\
 		$(LIBXFT_LIB)

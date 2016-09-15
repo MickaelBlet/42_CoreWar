@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/12 12:20:28 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/12 12:40:54 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/15 16:56:24 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,5 @@ typedef struct		s_op
 	int				has_pcode;
 	int				has_idx;
 }					t_op;
-
-t_op				g_op_tab[17];
 
 #endif

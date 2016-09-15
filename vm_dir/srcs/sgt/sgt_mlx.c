@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sgt_corewar.c                                      :+:      :+:    :+:   */
+/*   sgt_mlx.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/07 10:16:20 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/15 16:20:52 by mblet            ###   ########.fr       */
+/*   Created: 2016/09/15 11:05:53 by mblet             #+#    #+#             */
+/*   Updated: 2016/09/15 16:23:09 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void			s_ini_singleton(t_corewar *t)
+static void			s_ini_singleton(t_vm_mlx *t)
 {
-	t->nbr_cycles = 0;
-	t->players = NULL;
-	ft_bzero(t->ram, MEM_SIZE);
+	t->mlx = NULL;
+	t->win = NULL;
+	t->font = NULL;
+	t->main = NULL;
+	t->ram = NULL;
 }
 
-static t_corewar	**s_singleton(void)
+static t_vm_mlx		**s_singleton(void)
 {
-	static t_corewar	*t = NULL;
+	static t_vm_mlx		*t = NULL;
 
 	if (t == NULL)
 	{
-		if ((t = (t_corewar *)malloc(sizeof(t_corewar))) == NULL)
+		if ((t = (t_vm_mlx *)malloc(sizeof(t_vm_mlx))) == NULL)
 		{
 			ft_dprintf(STDERR_FILENO, "Error malloc.\n");
 			exit(EXIT_FAILURE);
@@ -35,15 +37,15 @@ static t_corewar	**s_singleton(void)
 	return (&t);
 }
 
-t_corewar			**sgt_addr_corewar(void)
+t_vm_mlx			**sgt_addr_mlx(void)
 {
 	return (s_singleton());
 }
 
-t_corewar			*sgt_corewar(void)
+t_vm_mlx			*sgt_mlx(void)
 {
-	t_corewar	**t;
+	t_vm_mlx	**t;
 
-	t = sgt_addr_corewar();
+	t = sgt_addr_mlx();
 	return (*t);
 }

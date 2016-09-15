@@ -6,13 +6,21 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:23:37 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/14 16:09:06 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/15 17:26:58 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void		s_id_free(int id, t_listd *player_list)
+static unsigned int		s_swap_int(unsigned int a)
+{
+	return ((a << 24) |
+			((a << 8) & 0x00ff0000) |
+			((a >> 8) & 0x0000ff00) |
+			((unsigned int)(a >> 24)));
+}
+
+static void				s_id_free(int id, t_listd *player_list)
 {
 	t_player	*player;
 
@@ -28,7 +36,7 @@ static void		s_id_free(int id, t_listd *player_list)
 	}
 }
 
-static int		s_find_id(t_listd *player_list)
+static int				s_find_id(t_listd *player_list)
 {
 	int			id;
 	int			index;
@@ -55,7 +63,8 @@ static int		s_find_id(t_listd *player_list)
 	return (-1);
 }
 
-static void		s_player_read_file(t_player *player, char *file_name, int fd)
+static void				s_player_read_file(t_player *player, char *file_name,
+		int fd)
 {
 	char		buff[BUFF_SIZE + 1];
 	int			ret_read;
@@ -65,7 +74,7 @@ static void		s_player_read_file(t_player *player, char *file_name, int fd)
 	index = 0;
 	while ((ret_read = read(fd, &buff, BUFF_SIZE)) > 0)
 	{
-		if ((index + ret_read) > (CHAMP_MAX_SIZE + sizeof(t_header)))
+		if ((index + ret_read) > (int)(CHAMP_MAX_SIZE + sizeof(t_header)))
 		{
 			ft_dprintf(STDERR_FILENO, ERR_FILE_TOO_LARGE, file_name);
 			exit(EXIT_FAILURE);
@@ -74,16 +83,16 @@ static void		s_player_read_file(t_player *player, char *file_name, int fd)
 		index += ret_read;
 	}
 	header = (t_header *)player->data;
-	if (header->magic != COREWAR_EXEC_MAGIC)
+	if (s_swap_int(header->magic) != COREWAR_EXEC_MAGIC)
 	{
 		ft_dprintf(STDERR_FILENO, ERR_FILE_NOT_VALID, file_name);
 		exit(EXIT_FAILURE);
 	}
-	ft_memcpy(player->name, header->name, PROG_NAME_LENGTH + 1);
+	ft_memcpy(player->name, header->prog_name, PROG_NAME_LENGTH + 1);
 	ft_memcpy(player->comment, header->comment, COMMENT_LENGTH + 1);
 }
 
-t_player		*player_creat(int id, char *file_name)
+t_player				*player_creat(int id, char *file_name)
 {
 	int			fd;
 	t_player	*player;
@@ -98,10 +107,11 @@ t_player		*player_creat(int id, char *file_name)
 	if (id == -1)
 		id = s_find_id(sgt_corewar()->players);
 	else
-		s_id_free(id);
+		s_id_free(id, sgt_corewar()->players);
 	player->id = id;
-	ft_bzero(player->data, CHAMP_MAX_SIZE + 1);
+	ft_bzero(player->data, CHAMP_MAX_SIZE + sizeof(t_header));
 	s_player_read_file(player, file_name, fd);
 	ft_bzero(player->reg, REG_NUMBER * sizeof(int));
 	player->reg[0] = id;
+	return (player);
 }

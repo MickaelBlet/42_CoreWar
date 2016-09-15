@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 05:52:47 by mblet             #+#    #+#             */
-/*   Updated: 2016/07/05 20:28:15 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/15 16:58:13 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,13 +284,13 @@ char				*ft_strerr(int errno);
 #  define ERROR(f, ...) ft_dprintf(___N0 f "\n", ___N1, ##__VA_ARGS__), -1
 # endif
 
-# ifndef DEBUG
+# ifndef DG
 #  define ___N2		"{bold}{yellow}DEBUG {cyan}\'%s\' {white}%s:%i{reset}\t"
 #  define ___N3		__func__, __FILE__, __LINE__
 #  define DG(f, ...) ft_printf(___N2 f "\n", ___N3, ##__VA_ARGS__)
 # endif
 
-# ifndef DEBUGLINE
+# ifndef DGL
 #  define ___N4		"{bold}{yellow}DEBUG {cyan}\'%s\' {white}%s:%i{reset}"
 #  define ___N5		__func__, __FILE__, __LINE__
 #  define DGL ft_printf(___N4 "\n", ___N5)
