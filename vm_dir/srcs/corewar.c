@@ -6,11 +6,23 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:04:28 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/15 16:24:46 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/15 18:09:11 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+
+static void		s_fill_ram(t_player *player)
+{
+	size_t		index;
+
+	index = player->pc;
+	while ()
+	{
+		sgt_corewar()->ram[index] = 
+		++index;
+	}
+}
 
 static t_bool	s_ini_process(void)
 {
@@ -23,7 +35,8 @@ static t_bool	s_ini_process(void)
 	while (player_list)
 	{
 		player = player_list->data;
-		//player->pc = MEM_SIZE / nb_players * player->id;
+		player->pc = sgt_corewar()->ram + MEM_SIZE / nb_players * player->id;
+		s_fill_ram(player);
 		player_list = player_list->next;
 	}
 	return (true);
