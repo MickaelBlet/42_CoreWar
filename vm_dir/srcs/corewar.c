@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:04:28 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/15 18:09:11 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/15 20:01:20 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 static void		s_fill_ram(t_player *player)
 {
-	size_t		index;
+	size_t			i;
+	t_arg_type		*index;
 
 	index = player->pc;
-	while ()
+	i = sizeof(t_header);
+	while (index < player->pc + CHAMP_MAX_SIZE)
 	{
-		sgt_corewar()->ram[index] = 
+		DG("%02x", (unsigned char)player->data[i]);
+		*index = (unsigned char)player->data[i];
 		++index;
+		++i;
 	}
 }
 
@@ -35,7 +39,7 @@ static t_bool	s_ini_process(void)
 	while (player_list)
 	{
 		player = player_list->data;
-		player->pc = sgt_corewar()->ram + MEM_SIZE / nb_players * player->id;
+		player->pc = sgt_corewar()->ram + (MEM_SIZE / nb_players) * player->id;
 		s_fill_ram(player);
 		player_list = player_list->next;
 	}
@@ -58,7 +62,8 @@ void			corewar(void)
 		ft_dprintf(STDERR_FILENO, "init mlx.\n");
 		exit(EXIT_FAILURE);
 	}
-	mlx_loop(sgt_mlx()->mlx);
 	s_ini_ram();
 	s_ini_process();
+	vm_mlx_print();
+	mlx_loop(sgt_mlx()->mlx);
 }

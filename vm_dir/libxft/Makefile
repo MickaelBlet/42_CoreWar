@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/04/15 16:40:45 by mblet             #+#    #+#              #
-#    Updated: 2016/06/14 21:48:03 by mblet            ###   ########.fr        #
+#    Updated: 2016/09/15 19:06:50 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ OBJDIR		=	objs/
 
 INCDIR		=	includes/
 
-MLX_DIR		=	../minilibx_macos/
+MLX_DIR		=	../../minilibx_macos/
 
 SRCBASE		=	\
 				color_to_int.c												\
