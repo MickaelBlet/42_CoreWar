@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 05:52:47 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/15 16:58:13 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/16 09:57:36 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,22 +278,22 @@ int					ft_dprintf(int fd, const char *format, ...);
 char				*ft_strerror(void);
 char				*ft_strerr(int errno);
 
-# ifndef ERROR
-#  define ___N0		STDERR_FILENO, "{bold}{red}ERROR {white}%s:%i{reset}\t"
-#  define ___N1		__FILE__, __LINE__
-#  define ERROR(f, ...) ft_dprintf(___N0 f "\n", ___N1, ##__VA_ARGS__), -1
+# ifndef ERR
+#  define __FT0		STDERR_FILENO, "{bold}{red}ERROR {white}%s:%i{reset}\t"
+#  define __FT1		__FILE__, __LINE__
+#  define ERR(f, ...) ft_dprintf(__FT0 f "\n", __FT1, ##__VA_ARGS__), -1
 # endif
 
 # ifndef DG
-#  define ___N2		"{bold}{yellow}DEBUG {cyan}\'%s\' {white}%s:%i{reset}\t"
-#  define ___N3		__func__, __FILE__, __LINE__
-#  define DG(f, ...) ft_printf(___N2 f "\n", ___N3, ##__VA_ARGS__)
+#  define __FT2		"{bold}{yellow}DEBUG {cyan}\'%s\' {white}%s:%i{reset}\t"
+#  define __FT3		__func__, __FILE__, __LINE__
+#  define DG(f, ...) ft_printf(__FT2 f "\n", __FT3, ##__VA_ARGS__)
 # endif
 
 # ifndef DGL
-#  define ___N4		"{bold}{yellow}DEBUG {cyan}\'%s\' {white}%s:%i{reset}"
-#  define ___N5		__func__, __FILE__, __LINE__
-#  define DGL ft_printf(___N4 "\n", ___N5)
+#  define __FT4		"{bold}{yellow}DEBUG {cyan}\'%s\' {white}%s:%i{reset}"
+#  define __FT5		__func__, __FILE__, __LINE__
+#  define DGL ft_printf(__FT4 "\n", __FT5)
 # endif
 
 #endif

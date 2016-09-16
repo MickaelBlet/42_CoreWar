@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:04:28 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/15 20:01:20 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/16 15:47:00 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static void		s_fill_ram(t_player *player)
 {
-	size_t			i;
-	t_arg_type		*index;
+	size_t	i;
+	t_byte	*index;
 
 	index = player->pc;
 	i = sizeof(t_header);
-	while (index < player->pc + CHAMP_MAX_SIZE)
+	while (index < player->pc + player->prog_size)
 	{
-		DG("%02x", (unsigned char)player->data[i]);
-		*index = (unsigned char)player->data[i];
+		index->data = (unsigned char)player->data[i];
+		index->id = player->id;
 		++index;
 		++i;
 	}
@@ -36,10 +36,12 @@ static t_bool	s_ini_process(void)
 
 	player_list = sgt_corewar()->players;
 	nb_players = ft_lstd_size(player_list);
+	DG("%i", nb_players);
 	while (player_list)
 	{
 		player = player_list->data;
-		player->pc = sgt_corewar()->ram + (MEM_SIZE / nb_players) * player->id;
+		player->pc = sgt_corewar()->ram +
+			(MEM_SIZE / nb_players) * (player->id - 1);
 		s_fill_ram(player);
 		player_list = player_list->next;
 	}
@@ -54,9 +56,6 @@ static t_bool	s_ini_ram(void)
 
 void			corewar(void)
 {
-	DGL;
-	sgt_mlx()->mlx = mlx_init();
-	DGL;
 	if (vm_mlx_init() == false)
 	{
 		ft_dprintf(STDERR_FILENO, "init mlx.\n");

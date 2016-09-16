@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:23:37 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/15 20:12:30 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/16 16:10:23 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static unsigned int		s_swap_int(unsigned int a)
 {
-	return ((a << 24) |
-			((a << 8) & 0x00ff0000) |
-			((a >> 8) & 0x0000ff00) |
+	return ((a << 24) | \
+			((a << 8) & 0x00ff0000) | \
+			((a >> 8) & 0x0000ff00) | \
 			((unsigned int)(a >> 24)));
 }
 
@@ -44,18 +44,20 @@ static int				s_find_id(t_listd *player_list)
 	t_player	*player;
 
 	id = -1;
-	index = 0;
-	while (index < MAX_PLAYERS)
+	index = 1;
+	while (index <= MAX_PLAYERS)
 	{
 		tmp_list = player_list;
-		while (player_list)
+		while (tmp_list)
 		{
 			player = tmp_list->data;
 			if (player->id == index)
-				tmp_list = tmp_list->next;
+				break ;
 			else
-				return (index);
+				tmp_list = tmp_list->next;
 		}
+		if (tmp_list == NULL)
+			return (index);
 		++index;
 	}
 	ft_dprintf(STDERR_FILENO, ERR_TOO_MANY_PLAYERS);
@@ -90,6 +92,7 @@ static void				s_player_read_file(t_player *player, char *file_name,
 	}
 	ft_memcpy(player->name, header->prog_name, PROG_NAME_LENGTH + 1);
 	ft_memcpy(player->comment, header->comment, COMMENT_LENGTH + 1);
+	player->prog_size = s_swap_int(header->prog_size);
 }
 
 t_player				*player_creat(int id, char *file_name)

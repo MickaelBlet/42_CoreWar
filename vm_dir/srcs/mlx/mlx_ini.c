@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/15 11:17:57 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/15 16:40:12 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/16 12:02:46 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ static t_bool	s_hook_init(void)
 
 t_bool			vm_mlx_init(void)
 {
-	DGL;
 	sgt_mlx()->mlx = mlx_init();
-	DGL;
 	if (sgt_mlx()->mlx == NULL)
 		return (false);
 	sgt_mlx()->win = ft_mlx_new_window(sgt_mlx()->mlx, 0, 0,
@@ -37,7 +35,7 @@ t_bool			vm_mlx_init(void)
 			VM_WIN_WIDTH, VM_WIN_HEIGHT);
 	sgt_mlx()->font = libx_xpm_file_to_image(sgt_mlx()->mlx, VM_FONT_PATH);
 	sgt_mlx()->ram = libx_new_image(sgt_mlx()->mlx, VM_WIN_WIDTH - 200,
-			MEM_SIZE / 64 * 15);
+			MEM_SIZE / 64 * 18);
 	if (sgt_mlx()->win == NULL
 		|| sgt_mlx()->main == NULL
 		|| sgt_mlx()->font == NULL

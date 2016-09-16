@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:20 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/15 17:19:26 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/16 16:05:55 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_bool	s_check_args(int argc, char **argv)
 
 	if (argc <= 2)
 		return (false);
-	i = 0;
+	i = 1;
 	while (i < argc)
 	{
 		if (ft_strequ(argv[i], "-dump"))
@@ -33,8 +33,16 @@ static t_bool	s_check_args(int argc, char **argv)
 		{
 			++i;
 			if (ft_aisi(argv[i]))
+			{
 				ft_lstd_push_front(&sgt_corewar()->players,
 						player_creat(ft_atoi(argv[i]), argv[i + 1]));
+				++i;
+			}
+		}
+		else
+		{
+			ft_lstd_push_front(&sgt_corewar()->players,
+					player_creat(-1, argv[i]));
 		}
 		++i;
 	}

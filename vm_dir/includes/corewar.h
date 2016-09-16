@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/15 20:01:20 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/16 15:49:29 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,73 +29,89 @@
 # define ERR_FILE_NOT_VALID		"corewar: File \"%s\" not valid.\n"
 # define ERR_TOO_MANY_PLAYERS	"corewar: Too many players.\n"
 
-typedef struct	s_player
+typedef struct		s_byte
 {
-	int			id;
-	char		name[PROG_NAME_LENGTH];
-	char		comment[COMMENT_LENGTH];
-	t_arg_type	*pc;
-	t_arg_type	data[CHAMP_MAX_SIZE + sizeof(t_header)];
-	int			reg[REG_NUMBER];
-}				t_player;
+	unsigned char	data;
+	int				id;
+}					t_byte;
 
-typedef struct	s_corewar
+typedef struct		s_player
 {
-	size_t		nbr_cycles;
-	t_listd		*players;
-	t_arg_type	ram[MEM_SIZE];
-}				t_corewar;
+	int				id;
+	unsigned int	prog_size;
+	char			name[PROG_NAME_LENGTH];
+	char			comment[COMMENT_LENGTH];
+	t_byte			*pc;
+	t_arg_type		data[CHAMP_MAX_SIZE + sizeof(t_header)];
+	int				reg[REG_NUMBER];
+}					t_player;
+
+typedef struct		s_corewar
+{
+	size_t			nbr_cycles;
+	t_listd			*players;
+	t_byte			ram[MEM_SIZE];
+}					t_corewar;
 
 /*
 ** MAIN
 */
-void			corewar(void);
+void				corewar(void);
 
 /*
 ** SGT
 */
-t_corewar		**sgt_addr_corewar(void);
-t_corewar		*sgt_corewar(void);
+t_corewar			**sgt_addr_corewar(void);
+t_corewar			*sgt_corewar(void);
 
 /*
 ** OP
 */
-t_op			op_tab(int index);
+t_op				op_tab(int index);
 
 /*
 ** PLAYER
 */
-t_player		*player_creat(int id, char *file_name);
+t_player			*player_creat(int id, char *file_name);
 
 /*
-** MLX
+** #############################################################################
+**                                     MLX
+** #############################################################################
 */
 # define VM_WIN_WIDTH		2000
-# define VM_WIN_HEIGHT		1380
+# define VM_WIN_HEIGHT		1190
 # define VM_FONT_PATH		"./resources/font/11.xpm"
 
-typedef struct	s_vm_mlx
+# define VM_COLOR_PLAYER1	0xA00000
+# define VM_COLOR_PLAYER2	0x00A000
+# define VM_COLOR_PLAYER3	0xA0A000
+# define VM_COLOR_PLAYER4	0x0000A0
+# define VM_COLOR_PLAYER5	0xA000A0
+# define VM_COLOR_PLAYER6	0x00A0A0
+
+typedef struct		s_vm_mlx
 {
-	void		*mlx;
-	void		*win;
-	t_libx_img	*main;
-	t_libx_img	*font;
-	t_libx_img	*ram;
-}				t_vm_mlx;
+	void			*mlx;
+	void			*win;
+	t_libx_img		*main;
+	t_libx_img		*font;
+	t_libx_img		*ram;
+}					t_vm_mlx;
 
 /*
-**
+** ...
 */
-t_bool			vm_mlx_init(void);
-int				vm_hook_key(int key, t_vm_mlx *mlx);
-void			vm_press_key_esc(void *mlx);
-void			vm_mlx_print(void);
-int				vm_mlx_loop_hook(void *mlx);
+t_bool				vm_mlx_init(void);
+int					vm_hook_key(int key, t_vm_mlx *mlx);
+void				vm_press_key_esc(void *mlx);
+void				vm_mlx_print(void);
+int					vm_mlx_loop_hook(void *mlx);
 
 /*
 ** SGT
 */
-t_vm_mlx		**sgt_addr_mlx(void);
-t_vm_mlx		*sgt_mlx(void);
+t_vm_mlx			**sgt_addr_mlx(void);
+t_vm_mlx			*sgt_mlx(void);
 
 #endif
