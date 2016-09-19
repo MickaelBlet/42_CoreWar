@@ -6,12 +6,13 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:04:28 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/16 15:47:00 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/19 00:50:00 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
+/*
 static void		s_fill_ram(t_player *player)
 {
 	size_t	i;
@@ -26,8 +27,8 @@ static void		s_fill_ram(t_player *player)
 		++index;
 		++i;
 	}
-}
-
+}*/
+/*
 static t_bool	s_ini_process(void)
 {
 	t_listd		*player_list;
@@ -46,23 +47,33 @@ static t_bool	s_ini_process(void)
 		player_list = player_list->next;
 	}
 	return (true);
-}
+}*/
 
 static t_bool	s_ini_ram(void)
 {
-	ft_bzero(sgt_corewar()->ram, MEM_SIZE);
+	size_t		i;
+
+	i = 0;
+	while (i < MEM_SIZE)
+	{
+		sgt_corewar()->ram[i].data = 0;
+		sgt_corewar()->ram[i].id = 0;
+		sgt_corewar()->ram[i].last_id = 0;
+		++i;
+	}
 	return (true);
 }
 
-void			corewar(void)
+void			corewar(int argc, char **argv)
 {
+	s_ini_ram();
+	(void)argc;
+	(void)argv;
 	if (vm_mlx_init() == false)
 	{
 		ft_dprintf(STDERR_FILENO, "init mlx.\n");
 		exit(EXIT_FAILURE);
 	}
-	s_ini_ram();
-	s_ini_process();
 	vm_mlx_print();
 	mlx_loop(sgt_mlx()->mlx);
 }

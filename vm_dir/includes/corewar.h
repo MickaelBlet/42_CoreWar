@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/16 15:49:29 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/19 01:07:00 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,36 +33,48 @@ typedef struct		s_byte
 {
 	unsigned char	data;
 	int				id;
+	int				last_id;
 }					t_byte;
 
 typedef struct		s_player
 {
 	int				id;
-	unsigned int	prog_size;
-	char			name[PROG_NAME_LENGTH];
-	char			comment[COMMENT_LENGTH];
 	t_byte			*pc;
-	t_arg_type		data[CHAMP_MAX_SIZE + sizeof(t_header)];
 	int				reg[REG_NUMBER];
+	int				live;
+	int				carry;
 }					t_player;
+
+typedef struct		s_vm_file
+{
+	int				id;
+	t_header		*header;
+	char			data[CHAMP_MAX_SIZE + sizeof(t_header)];
+}					t_vm_file;
 
 typedef struct		s_corewar
 {
 	size_t			nbr_cycles;
-	t_listd			*players;
 	t_byte			ram[MEM_SIZE];
+	t_listd			*players;
 }					t_corewar;
 
 /*
 ** MAIN
 */
-void				corewar(void);
+void				corewar(int argc, char **argv);
 
 /*
 ** SGT
 */
 t_corewar			**sgt_addr_corewar(void);
 t_corewar			*sgt_corewar(void);
+
+/*
+** FILE
+*/
+t_vm_file			*file_read(char *file_name);
+t_header			*file_get_header(void *ptr);
 
 /*
 ** OP
@@ -73,6 +85,7 @@ t_op				op_tab(int index);
 ** PLAYER
 */
 t_player			*player_creat(int id, char *file_name);
+t_header			*player_get_header(void *ptr);
 
 /*
 ** #############################################################################
@@ -94,9 +107,9 @@ typedef struct		s_vm_mlx
 {
 	void			*mlx;
 	void			*win;
-	t_libx_img		*main;
-	t_libx_img		*font;
-	t_libx_img		*ram;
+	t_libx_img		*img_main;
+	t_libx_img		*img_font;
+	t_libx_img		*img_ram;
 }					t_vm_mlx;
 
 /*
@@ -104,7 +117,7 @@ typedef struct		s_vm_mlx
 */
 t_bool				vm_mlx_init(void);
 int					vm_hook_key(int key, t_vm_mlx *mlx);
-void				vm_press_key_esc(void *mlx);
+void				vm_press_key_esc(t_vm_mlx *mlx);
 void				vm_mlx_print(void);
 int					vm_mlx_loop_hook(void *mlx);
 

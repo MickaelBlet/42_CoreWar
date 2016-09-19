@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/07 09:22:24 by mblet             #+#    #+#              #
-#    Updated: 2016/09/16 16:10:23 by mblet            ###   ########.fr        #
+#    Updated: 2016/09/19 01:09:08 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,14 @@ LIBXFT_LIB	=	$(LIBXFT_DIR)libxft.a
 
 SRCBASE		=	\
 				corewar.c													\
+				file/get_header.c											\
+				file/read.c													\
 				main.c														\
 				mlx/hook.c													\
 				mlx/loop_hook.c												\
 				mlx/mlx_ini.c												\
 				mlx/print.c													\
+				option.c													\
 				op_tab.c													\
 				player/creat.c												\
 				sgt/sgt_corewar.c											\

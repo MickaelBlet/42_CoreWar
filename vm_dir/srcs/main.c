@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:20 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/16 16:05:55 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/19 00:22:12 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 
 static t_bool	s_check_args(int argc, char **argv)
 {
-	int		i;
+	(void)argc;
+	(void)argv;
+	/*int		i;
 
 	if (argc <= 2)
 		return (false);
@@ -45,14 +47,14 @@ static t_bool	s_check_args(int argc, char **argv)
 					player_creat(-1, argv[i]));
 		}
 		++i;
-	}
+	}*/
 	return (true);
 }
 
 int				main(int argc, char **argv)
 {
+	corewar(argc, argv);
 	if (s_check_args(argc, argv) == false)
 		ft_printf("Usage: %s\n", MSG_USAGE);
-	corewar();
 	return (0);
 }

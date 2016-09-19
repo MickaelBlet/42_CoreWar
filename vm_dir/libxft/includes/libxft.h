@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/15 16:41:31 by mblet             #+#    #+#             */
-/*   Updated: 2016/06/14 21:47:36 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/19 00:16:06 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,9 @@
 # define LIBX_MOUSE_SCROLL_UP		4
 # define LIBX_MOUSE_SCROLL_DOWN		5
 
+# define LIBX_KEY_PRESS				0
+# define LIBX_KEY_RELEASE			1
+
 typedef struct	s_libx_color
 {
 	double		r;
@@ -163,13 +166,20 @@ typedef struct	s_libx_img
 	int			endian;
 }				t_libx_img;
 
-typedef void	(*t_libx_key_func)(void*);
+typedef void	(*t_libx_key_func)();
 
 /*
 ** libx_init
 */
-void			libx_func_key(int key, t_libx_key_func f);
-void			libx_hook_key(int key, void *e);
+void			libx_func_key(int key, int flag, t_libx_key_func f);
+/*
+** mlx_hook(*win, 2, (1L << 0), &libx_hook_key_press, *e);
+*/
+int				libx_hook_key_press(int key, void *e);
+/*
+** mlx_hook(*win, 3, (1L << 1), &libx_hook_key_release, *e);
+*/
+int				libx_hook_key_release(int key, void *e);
 
 /*
 ** libx_new_image

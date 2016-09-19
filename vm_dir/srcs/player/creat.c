@@ -6,21 +6,13 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:23:37 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/16 16:10:23 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/19 00:20:46 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-static unsigned int		s_swap_int(unsigned int a)
-{
-	return ((a << 24) | \
-			((a << 8) & 0x00ff0000) | \
-			((a >> 8) & 0x0000ff00) | \
-			((unsigned int)(a >> 24)));
-}
-
-static void				s_id_free(int id, t_listd *player_list)
+/*
+static void		s_id_free(int id, t_listd *player_list)
 {
 	t_player	*player;
 
@@ -36,7 +28,7 @@ static void				s_id_free(int id, t_listd *player_list)
 	}
 }
 
-static int				s_find_id(t_listd *player_list)
+static int		s_find_id(t_listd *player_list)
 {
 	int			id;
 	int			index;
@@ -65,13 +57,12 @@ static int				s_find_id(t_listd *player_list)
 	return (-1);
 }
 
-static void				s_player_read_file(t_player *player, char *file_name,
+static void		s_player_read_file(t_vm_file *file, char *file_name,
 		int fd)
 {
 	char		buff[BUFF_SIZE + 1];
 	int			ret_read;
 	int			index;
-	t_header	*header;
 
 	index = 0;
 	while ((ret_read = read(fd, &buff, BUFF_SIZE)) > 0)
@@ -95,7 +86,7 @@ static void				s_player_read_file(t_player *player, char *file_name,
 	player->prog_size = s_swap_int(header->prog_size);
 }
 
-t_player				*player_creat(int id, char *file_name)
+t_file			*player_creat(int id, char *file_name)
 {
 	int			fd;
 	t_player	*player;
@@ -117,4 +108,4 @@ t_player				*player_creat(int id, char *file_name)
 	ft_bzero(player->reg, REG_NUMBER * sizeof(int));
 	player->reg[0] = id;
 	return (player);
-}
+}*/
