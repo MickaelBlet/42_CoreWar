@@ -6,34 +6,49 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/19 00:50:16 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/19 01:09:07 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/19 12:21:37 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void		s_check_file(int *i, char **argv)
+static int		s_find_free_id(void)
+{
+	t_listd		*list;
+	t_vm_file	*file;
+	int			id;
+
+	id = 0;
+	while (id < MAX_PLAYERS)
+	{
+		list = sgt_corewar()->files;
+		while (list)
+		{
+			file = list->data;
+			if (file->id == id)
+				break ;
+			list = list->next;
+		}
+		if (list == NULL)
+			return (id);
+		++id;
+	}
+	ERR("corewar: max player.");
+	exit(EXIT_FAILURE);
+}
+
+static void		s_check_file_without_id(char *arg)
 {
 	t_vm_file	*file;
 
-	++(*i);
-	if (ft_aisi(argv[*i]))
+	file = file_read(arg);
+	if (file == NULL)
 	{
-		file = file_read(argv[(*i) + 1]);
-		if (file == NULL)
-		{
-			ERR("corwar: error read file.");
-			exit(EXIT_FAILURE);
-		}
-		file->id = ft_atoi(argv[*i]);
-		++(*i);
-		ft_lstd_push_front(&sgt_corewar()->files, file);
-	}
-	else
-	{
-		ERR("corwar: id \"%s\" not valid.", argv[*i]);
+		ERR("corewar: error read file.");
 		exit(EXIT_FAILURE);
 	}
+	file->id = s_find_free_id();
+	ft_lstd_push_front(&sgt_corewar()->files, file);
 }
 
 static void		s_check_dump(int *i, char *arg)
@@ -45,12 +60,12 @@ static void		s_check_dump(int *i, char *arg)
 	}
 	else
 	{
-		ERR("corwar: dump not valid.");
+		ERR("corewar: dump not valid.");
 		exit(EXIT_FAILURE);
 	}
 }
 
-t_bool			vm_option(int argc, char **argv)
+t_bool			vm_check_option(int argc, char **argv)
 {
 	int		i;
 
@@ -62,7 +77,10 @@ t_bool			vm_option(int argc, char **argv)
 		if (ft_strequ(argv[i], "-dump"))
 			s_check_dump(&i, argv[i + 1]);
 		else if (ft_strequ(argv[i], "-n"))
-			s_check_file(&i, argv);
+			vm_check_file(&i, argv);
+		else
+			s_check_file_without_id(argv[i]);
 		++i;
 	}
+	return (true);
 }

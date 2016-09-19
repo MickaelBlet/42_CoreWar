@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/19 01:07:00 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/19 17:57:07 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@
 typedef struct		s_byte
 {
 	unsigned char	data;
+	int				index;
 	int				id;
 	int				last_id;
 }					t_byte;
 
 typedef struct		s_player
 {
+	int				index;
 	int				id;
 	t_byte			*pc;
 	int				reg[REG_NUMBER];
@@ -56,6 +58,7 @@ typedef struct		s_corewar
 {
 	size_t			nbr_cycles;
 	t_byte			ram[MEM_SIZE];
+	t_listd			*files;
 	t_listd			*players;
 }					t_corewar;
 
@@ -71,8 +74,14 @@ t_corewar			**sgt_addr_corewar(void);
 t_corewar			*sgt_corewar(void);
 
 /*
+** OPTION
+*/
+t_bool				vm_check_option(int argc, char **argv);
+
+/*
 ** FILE
 */
+void				vm_check_file(int *i, char **argv);
 t_vm_file			*file_read(char *file_name);
 t_header			*file_get_header(void *ptr);
 

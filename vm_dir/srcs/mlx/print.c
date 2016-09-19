@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/15 12:40:07 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/18 03:18:51 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/19 17:57:56 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	vm_mlx_print(void)
 	{
 		ft_asprintf(&str, "%02x", (unsigned char)sgt_corewar()->ram[i].data);
 		LIBX_STRING_TO_IMAGE(sgt_mlx()->img_ram, sgt_mlx()->img_font,
-				str, i % 64 * 20 + 100, i / 64 * 18, color[sgt_corewar()->ram[i].id]);
+				str, i % 64 * 20 + 100, i / 64 * 18, color[sgt_corewar()->ram[i].index]);
 		if (i % 64 == 0)
 		{
 			ft_asprintf(&str, "%010p:", i);

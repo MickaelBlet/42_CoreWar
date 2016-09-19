@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:16:20 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/15 16:20:52 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/19 11:13:26 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 static void			s_ini_singleton(t_corewar *t)
 {
 	t->nbr_cycles = 0;
-	t->players = NULL;
-	ft_bzero(t->ram, MEM_SIZE);
+	t->files = NULL;
 }
 
 static t_corewar	**s_singleton(void)
