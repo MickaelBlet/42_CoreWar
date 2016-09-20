@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/07 09:22:24 by mblet             #+#    #+#              #
-#    Updated: 2016/09/19 17:57:57 by mblet            ###   ########.fr        #
+#    Updated: 2016/09/20 12:02:35 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,10 @@ SRCBASE		=	\
 				mlx/loop_hook.c												\
 				mlx/mlx_ini.c												\
 				mlx/print.c													\
+				op/byte_code_to_type.c										\
+				op/ld.c														\
+				op/live.c													\
+				op/sti.c													\
 				op_tab.c													\
 				option.c													\
 				player/creat.c												\

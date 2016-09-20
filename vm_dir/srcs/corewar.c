@@ -6,13 +6,13 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:04:28 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/19 17:53:10 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/20 11:50:49 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void			s_fill_player_ram(t_vm_file *file, t_byte *b)
+static void			s_fill_player_ram(t_vm_file *file, t_byte *b, int index)
 {
 	size_t		i;
 
@@ -21,6 +21,7 @@ static void			s_fill_player_ram(t_vm_file *file, t_byte *b)
 	{
 		b->data = file->data[sizeof(t_header) + i];
 		b->id = file->id;
+		b->index = index;
 		b->last_id = file->id;
 		++b;
 		++i;
@@ -68,7 +69,7 @@ static void			s_place_player(void)
 					(MEM_SIZE / player_size)));
 		s_fill_player_ram(vm_file,
 				sgt_corewar()->ram + (index - 1) *
-					(MEM_SIZE / player_size));
+					(MEM_SIZE / player_size), index);
 		list_files = list_files->next;
 		++index;
 	}
@@ -118,6 +119,10 @@ static void			s_sort_files(void)
 
 void				corewar(int argc, char **argv)
 {
+	int i[4];
+	byte_code_to_type(&i, 0x68);
+	byte_code_to_type(&i, 0x64);
+	DGL;
 	if (vm_check_option(argc, argv) == false)
 	{
 		ft_printf("Usage: %s\n", MSG_USAGE);
