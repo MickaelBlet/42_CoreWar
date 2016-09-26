@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:04:28 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/20 11:50:49 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/26 00:46:22 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ void				corewar(int argc, char **argv)
 	s_sort_files();
 	s_ini_ram();
 	s_place_player();
+	check_op(sgt_corewar()->players->data);
 	if (vm_mlx_init() == false)
 	{
 		ft_dprintf(STDERR_FILENO, "init mlx.\n");

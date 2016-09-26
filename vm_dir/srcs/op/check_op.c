@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   live.c                                             :+:      :+:    :+:   */
+/*   check_op.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/20 09:35:43 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/25 01:44:30 by mblet            ###   ########.fr       */
+/*   Created: 2016/09/25 01:53:52 by mblet             #+#    #+#             */
+/*   Updated: 2016/09/26 00:44:34 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	vm_live(int id)
+void	check_op(t_player *player)
 {
-	t_player	*player;
-	t_listd		*list;
+	int		i;
 
-	list = sgt_corewar()->players;
-	while (list)
+	i = 0;
+	while (i < 17)
 	{
-		player = list->data;
-		if (player->id == id)
-			player->live += 1;
-		list = list->next;
+		if (op_tab(i).op_code == player->pc->data)
+		{
+			DG("%s %s", op_tab(i).name, op_tab(i).description);
+		}
+		++i;
 	}
 }

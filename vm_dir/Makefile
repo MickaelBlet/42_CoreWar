@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/07 09:22:24 by mblet             #+#    #+#              #
-#    Updated: 2016/09/20 12:02:35 by mblet            ###   ########.fr        #
+#    Updated: 2016/09/26 00:46:23 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,11 +39,12 @@ SRCBASE		=	\
 				mlx/mlx_ini.c												\
 				mlx/print.c													\
 				op/byte_code_to_type.c										\
+				op/check_op.c												\
 				op/ld.c														\
 				op/live.c													\
 				op/sti.c													\
-				op_tab.c													\
 				option.c													\
+				op_tab.c													\
 				player/creat.c												\
 				sgt/sgt_corewar.c											\
 				sgt/sgt_mlx.c
