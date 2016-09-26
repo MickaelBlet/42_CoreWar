@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/26 00:46:22 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/26 16:45:36 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct		s_corewar
 	t_listd			*players;
 }					t_corewar;
 
+typedef void		(*t_func_op)(t_player *);
+
 /*
 ** MAIN
 */
@@ -88,6 +90,9 @@ t_header			*file_get_header(void *ptr);
 /*
 ** OP
 */
+unsigned int		get_reg_value(t_byte *b);
+unsigned int		get_dir_value(t_byte *b);
+unsigned int		get_ind_value(t_byte *b);
 void				check_op(t_player *player);
 void				byte_code_to_type(int (*t)[4], unsigned char b);
 t_op				op_tab(int index);

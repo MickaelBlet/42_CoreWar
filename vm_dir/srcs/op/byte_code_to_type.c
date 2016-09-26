@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 10:08:31 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/20 12:02:35 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/26 15:21:27 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static int	s_char_to_type(char *s)
 	if (s[0] == '0' && s[1] == '1')
 		return (T_REG);
 	if (s[0] == '1' && s[1] == '1')
-		return (T_DIR);
+		return (T_IND);
 	if (s[0] == '1' && s[1] == '0')
-		return (T_LAB);
+		return (T_DIR);
 	return (0);
 }
 

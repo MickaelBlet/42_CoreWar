@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/12 12:35:30 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/14 11:11:49 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/26 09:38:43 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,11 @@ t_op			op_tab(int index)
 
 	if (t == NULL)
 	{
-		t = (t_op *)malloc(sizeof(t_op) * 17);
+		if ((t = (t_op *)malloc(sizeof(t_op) * 17)) == NULL)
+		{
+			ERR("malloc: error.");
+			exit(EXIT_FAILURE);
+		}
 		s_ini_op_tab(&t);
 	}
 	if (index >= 0 && index <= 15)
