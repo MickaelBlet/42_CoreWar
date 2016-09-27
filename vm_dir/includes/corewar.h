@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/26 16:45:36 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/27 12:16:29 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,29 @@ t_header			*file_get_header(void *ptr);
 /*
 ** OP
 */
-unsigned int		get_reg_value(t_byte *b);
-unsigned int		get_dir_value(t_byte *b);
-unsigned int		get_ind_value(t_byte *b);
+int					get_reg_value(t_byte *b);
+int					get_dir_value(t_byte *b);
+int					get_ind_value(t_byte *b);
 void				check_op(t_player *player);
 void				byte_code_to_type(int (*t)[4], unsigned char b);
 t_op				op_tab(int index);
+t_func_op			func_tab(int index);
+void				vm_live(t_player *player);
+void				vm_ld(t_player *player);
+void				vm_st(t_player *player);
+void				vm_add(t_player *player);
+void				vm_sub(t_player *player);
+void				vm_and(t_player *player);
+void				vm_or(t_player *player);
+void				vm_xor(t_player *player);
+void				vm_zjmp(t_player *player);
+void				vm_ldi(t_player *player);
+void				vm_sti(t_player *player);
+void				vm_fork(t_player *player);
+void				vm_lld(t_player *player);
+void				vm_lldi(t_player *player);
+void				vm_lfork(t_player *player);
+void				vm_aff(t_player *player);
 
 /*
 ** PLAYER

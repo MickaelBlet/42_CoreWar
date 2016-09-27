@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:04:28 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/26 00:46:22 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/27 12:01:29 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,6 @@ static void			s_sort_files(void)
 
 void				corewar(int argc, char **argv)
 {
-	int i[4];
-	byte_code_to_type(&i, 0x68);
-	byte_code_to_type(&i, 0x64);
-	DGL;
 	if (vm_check_option(argc, argv) == false)
 	{
 		ft_printf("Usage: %s\n", MSG_USAGE);
@@ -131,12 +127,27 @@ void				corewar(int argc, char **argv)
 	s_sort_files();
 	s_ini_ram();
 	s_place_player();
-	check_op(sgt_corewar()->players->data);
 	if (vm_mlx_init() == false)
 	{
 		ft_dprintf(STDERR_FILENO, "init mlx.\n");
 		exit(EXIT_FAILURE);
 	}
-	vm_mlx_print();
-	mlx_loop(sgt_mlx()->mlx);
+	while (1)
+	{
+		t_listd		*list;
+		t_player	*player;
+
+		list = sgt_corewar()->players;
+		while (list)
+		{
+			player = list->data;
+			DGL;
+			check_op(player);
+			list = list->next;
+		}
+		vm_mlx_print();
+		vm_mlx_loop_hook(sgt_mlx()->mlx);
+		mlx_do_sync(sgt_mlx()->mlx);
+	}
+	//mlx_loop(sgt_mlx()->mlx);
 }

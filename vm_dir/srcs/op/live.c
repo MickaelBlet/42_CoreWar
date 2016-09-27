@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 09:35:43 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/26 10:11:10 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/27 11:57:23 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ void	vm_live(t_player *player)
 			p->live += 1;
 		list = list->next;
 	}
-	players->pc += 5;
+	player->pc += 5;
 }
