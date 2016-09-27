@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:04:28 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/27 12:01:29 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/27 20:19:15 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void			s_fill_player_ram(t_vm_file *file, t_byte *b, int index)
 {
-	size_t		i;
+	size_t	i;
 
 	i = 0;
 	while (i < file->header->prog_size)
@@ -22,7 +22,7 @@ static void			s_fill_player_ram(t_vm_file *file, t_byte *b, int index)
 		b->data = file->data[sizeof(t_header) + i];
 		b->id = file->id;
 		b->index = index;
-		b->last_id = file->id;
+		b->modified = 0;
 		++b;
 		++i;
 	}
@@ -69,7 +69,7 @@ static void			s_place_player(void)
 					(MEM_SIZE / player_size)));
 		s_fill_player_ram(vm_file,
 				sgt_corewar()->ram + (index - 1) *
-					(MEM_SIZE / player_size), index);
+				(MEM_SIZE / player_size), index);
 		list_files = list_files->next;
 		++index;
 	}
@@ -84,7 +84,7 @@ static void			s_ini_ram(void)
 	{
 		sgt_corewar()->ram[i].data = 0;
 		sgt_corewar()->ram[i].id = 0;
-		sgt_corewar()->ram[i].last_id = 0;
+		sgt_corewar()->ram[i].modified = 0;
 		++i;
 	}
 }
@@ -132,11 +132,14 @@ void				corewar(int argc, char **argv)
 		ft_dprintf(STDERR_FILENO, "init mlx.\n");
 		exit(EXIT_FAILURE);
 	}
+	vm_mlx_print();
+	vm_mlx_loop_hook(sgt_mlx()->mlx);
+	mlx_do_sync(sgt_mlx()->mlx);
+	sleep(2);
 	while (1)
 	{
 		t_listd		*list;
 		t_player	*player;
-
 		list = sgt_corewar()->players;
 		while (list)
 		{
@@ -148,6 +151,7 @@ void				corewar(int argc, char **argv)
 		vm_mlx_print();
 		vm_mlx_loop_hook(sgt_mlx()->mlx);
 		mlx_do_sync(sgt_mlx()->mlx);
+		sleep(1);
 	}
 	//mlx_loop(sgt_mlx()->mlx);
 }

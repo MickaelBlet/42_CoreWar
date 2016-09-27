@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/15 12:40:07 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/19 17:57:56 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/27 19:41:12 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	vm_mlx_print(void)
 {
 	size_t	i;
 	char	*str;
+	int		c;
 	int		color[7] = (int[7]){0xFFFFFF, VM_COLOR_PLAYER1, VM_COLOR_PLAYER2, VM_COLOR_PLAYER3, VM_COLOR_PLAYER4, VM_COLOR_PLAYER5, VM_COLOR_PLAYER6};
 
 	i = 0;
@@ -27,8 +28,11 @@ void	vm_mlx_print(void)
 	while (i < MEM_SIZE)
 	{
 		ft_asprintf(&str, "%02x", (unsigned char)sgt_corewar()->ram[i].data);
+		c = color[sgt_corewar()->ram[i].index];
+		if (sgt_corewar()->ram[i].modified == 1)
+			c += 0x444444;
 		LIBX_STRING_TO_IMAGE(sgt_mlx()->img_ram, sgt_mlx()->img_font,
-				str, i % 64 * 20 + 100, i / 64 * 18, color[sgt_corewar()->ram[i].index]);
+				str, i % 64 * 20 + 100, i / 64 * 18, c);
 		if (i % 64 == 0)
 		{
 			ft_asprintf(&str, "%010p:", i);

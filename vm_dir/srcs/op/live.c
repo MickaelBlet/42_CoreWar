@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 09:35:43 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/27 11:57:23 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/27 19:56:58 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ void	vm_live(t_player *player)
 	t_listd		*list;
 	int			id;
 
-	id = (int)(player->pc + 1);
+		DGL;
+	id = get_ind_value(player->pc + 1);
+		DGL;
 	list = sgt_corewar()->players;
+		DGL;
 	while (list)
 	{
 		p = list->data;

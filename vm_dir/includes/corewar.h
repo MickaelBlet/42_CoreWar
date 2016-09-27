@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/27 12:16:29 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/27 20:19:16 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ typedef struct		s_byte
 	unsigned char	data;
 	int				index;
 	int				id;
-	int				last_id;
+	int				modified;
 }					t_byte;
 
 typedef struct		s_player
 {
 	int				index;
 	int				id;
-	t_byte			*pc;
 	int				reg[REG_NUMBER];
+	t_byte			*pc;
 	int				live;
 	int				carry;
 }					t_player;
@@ -93,6 +93,12 @@ t_header			*file_get_header(void *ptr);
 int					get_reg_value(t_byte *b);
 int					get_dir_value(t_byte *b);
 int					get_ind_value(t_byte *b);
+void				set_1byte_value(t_player *player, t_byte *b,
+		unsigned char value);
+void				set_2byte_value(t_player *player, t_byte *b,
+		unsigned short value);
+void				set_4byte_value(t_player *player, t_byte *b,
+		unsigned int value);
 void				check_op(t_player *player);
 void				byte_code_to_type(int (*t)[4], unsigned char b);
 t_op				op_tab(int index);

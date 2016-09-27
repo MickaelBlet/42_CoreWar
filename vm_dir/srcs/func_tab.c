@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/26 09:27:06 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/27 12:16:34 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/27 20:00:01 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_func_op		func_tab(int index)
 {
 	static t_func_op	*t = NULL;
 
+		DGL;
 	if (t == NULL)
 	{
 		if ((t = (t_func_op *)malloc(sizeof(t_func_op) * 17)) == NULL)
