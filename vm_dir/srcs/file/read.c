@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 03:45:35 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/19 00:19:24 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/28 16:24:54 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		s_error(int id, void *object)
 	exit(EXIT_FAILURE);
 }
 
-static void		s_read(t_vm_file *file, int fd, char *file_name)
+static void		s_read(t_file *file, int fd, char *file_name)
 {
 	int		index;
 	int		ret_read;
@@ -46,10 +46,10 @@ static void		s_read(t_vm_file *file, int fd, char *file_name)
 
 t_vm_file		*file_read(char *file_name)
 {
-	int			fd;
-	t_vm_file	*file;
+	int		fd;
+	t_file	*file;
 
-	if ((file = (t_vm_file *)malloc(sizeof(t_vm_file))) == NULL)
+	if ((file = (t_file *)malloc(sizeof(t_file))) == NULL)
 		return (NULL);
 	if ((fd = open(file_name, O_RDONLY)) == -1)
 		s_error(0, file_name);

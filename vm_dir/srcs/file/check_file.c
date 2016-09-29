@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/19 12:16:13 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/19 12:21:46 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/28 16:24:40 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void		s_check_if_free_id(int id)
 {
 	t_listd		*list;
-	t_vm_file	*file;
+	t_file		*file;
 
 	list = sgt_corewar()->files;
 	while (list)
@@ -32,7 +32,7 @@ static void		s_check_if_free_id(int id)
 
 void			vm_check_file(int *i, char **argv)
 {
-	t_vm_file	*file;
+	t_file	*file;
 
 	++(*i);
 	if (ft_aisi(argv[*i]))

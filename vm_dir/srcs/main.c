@@ -6,13 +6,11 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:20 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/19 12:03:34 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/28 12:38:39 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
-
-#include <libft.h>
 
 int		main(int argc, char **argv)
 {

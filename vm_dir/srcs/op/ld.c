@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 09:38:33 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/27 20:31:08 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/28 08:35:22 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		s_action(t_player *player, int type[4])
 		val0 = get_ind_value(b);
 		b += 4;
 	}
-	else 	
+	else
 	{
 		val0 = get_dir_value(b);
 		b += 4;

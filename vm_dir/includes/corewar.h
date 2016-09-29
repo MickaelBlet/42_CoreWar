@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/27 20:19:16 by mblet            ###   ########.fr       */
+/*   Updated: 2016/09/28 16:19:36 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <unistd.h>
 
 # define MSG_USAGE		"./corewar [-dump nbr_cycles] [[-n number] file.cor]"
+
 # define ERR_OPEN_FILE			"corewar: Can't open file \"%s\".\n"
 # define ERR_SAME_ID			"corewar: Same file id.\n"
 # define ERR_FILE_TOO_LARGE		"corewar: File \"%s\" is too large.\n"
@@ -32,31 +33,33 @@
 typedef struct		s_byte
 {
 	unsigned char	data;
-	int				index;
 	int				id;
-	int				modified;
+	t_bool			modified;
+	t_bool			live;
 }					t_byte;
 
-typedef struct		s_player
+typedef struct		s_process
 {
-	int				index;
 	int				id;
+	int				index;
 	int				reg[REG_NUMBER];
 	t_byte			*pc;
 	int				live;
 	int				carry;
-}					t_player;
+	int				op_cycle;
+}					t_process;
 
-typedef struct		s_vm_file
+typedef struct		s_file
 {
 	int				id;
 	t_header		*header;
 	char			data[CHAMP_MAX_SIZE + sizeof(t_header)];
-}					t_vm_file;
+}					t_file;
 
 typedef struct		s_corewar
 {
 	size_t			nbr_cycles;
+	size_t			nbr_live;
 	t_byte			ram[MEM_SIZE];
 	t_listd			*files;
 	t_listd			*players;
