@@ -5,28 +5,37 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 12:07:51 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/04 23:53:34 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/04 23:37:54 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/04 23:43:33 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void		s_action(t_process *process)
+static void		s_fork_reg(t_process *new, t_process *process)
 {
-	t_process		*new;
-	unsigned short	addr;
+	size_t	i;
 
-	addr = (process->pc + (get_dir_value(process->pc) % IDX_MOD));
-	addr %= MEM_SIZE;
-	if ((new = process_fork(process, addr)) == NULL)
-		return ;
-	ft_lstd_push_front(&sgt_corewar()->process, new);
+	i = 0;
+	while (i < REG_NUMBER)
+	{
+		new->reg[i] = process->reg[i];
+		++i;
+	}
 }
 
-void			op_fork(t_process *process)
+t_process		*process_fork(t_process *process, size_t index)
 {
-	process->pc += REG_CODE;
-	s_action(process);
-	process->pc += DIR_CODE;
+	t_process	*new;
+
+	if ((new = (t_process *)malloc(sizeof(t_process))) == NULL)
+		return (NULL);
+	new->id = process->id;
+	new->pc = index;
+	s_ini_reg(new, process);
+	new->live = process->live;
+	new->carry = process->carry;
+	new->op_cycle = process->op_cycle;
+	new->color_id = process->color_id;
+	return (new);
 }

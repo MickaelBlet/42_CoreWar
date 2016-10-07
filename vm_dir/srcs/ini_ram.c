@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:31:06 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/28 17:30:54 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/07 14:29:37 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ static void		s_place_file_and_creat_pc(void)
 	}
 }
 
-static void			s_sort_files(void)
+static void		s_sort_files(void)
 {
 	size_t		len;
 	t_listd		*list;
-	t_vm_file	*tmp;
-	t_vm_file	*file1;
-	t_vm_file	*file2;
+	t_file		*tmp;
+	t_file		*file1;
+	t_file		*file2;
 
 	len = ft_lstd_size(sgt_corewar()->files);
 	while (len > 0)

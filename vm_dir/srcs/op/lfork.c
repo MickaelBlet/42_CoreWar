@@ -6,13 +6,13 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 12:08:45 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/27 12:08:52 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/04 23:08:51 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	vm_lfork(t_player *player)
+void	op_lfork(t_process *process)
 {
-	(void)player;
+	(void)process;
 }

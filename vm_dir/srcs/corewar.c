@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:04:28 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/27 20:19:15 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/07 14:31:18 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static t_player		*s_creat_player(int index, int id, t_byte *pc)
 static void			s_place_player(void)
 {
 	t_listd		*list_files;
-	t_vm_file	*vm_file;
+	t_file		*vm_file;
 	size_t		player_size;
 	size_t		index;
 
@@ -93,9 +93,9 @@ static void			s_sort_files(void)
 {
 	size_t		len;
 	t_listd		*list;
-	t_vm_file	*tmp;
-	t_vm_file	*file1;
-	t_vm_file	*file2;
+	t_file		*tmp;
+	t_file		*file1;
+	t_file		*file2;
 
 	len = ft_lstd_size(sgt_corewar()->files);
 	while (len > 0)

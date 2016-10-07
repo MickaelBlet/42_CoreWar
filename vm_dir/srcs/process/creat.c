@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   creat_pc.c                                         :+:      :+:    :+:   */
+/*   creat.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/29 09:33:43 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/04 23:34:45 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/04 23:37:18 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/04 23:43:40 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		s_ini_reg(t_process *process, int id)
 	process->reg[0] = id;
 }
 
-t_process		*creat_pc(size_t index, int id, int color_id)
+t_process		*process_creat(size_t index, int id, int color_id)
 {
 	t_process	*process;
 
@@ -38,4 +38,5 @@ t_process		*creat_pc(size_t index, int id, int color_id)
 	process->carry = 0;
 	process->op_cycle = 0;
 	process->color_id = color_id;
+	return (process);
 }

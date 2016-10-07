@@ -6,23 +6,23 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 09:35:43 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/27 19:56:58 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/04 23:09:26 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	vm_live(t_player *player)
+void	op_live(t_process *process)
 {
-	t_player	*p;
+	t_process	*p;
 	t_listd		*list;
 	int			id;
 
-		DGL;
-	id = get_ind_value(player->pc + 1);
-		DGL;
-	list = sgt_corewar()->players;
-		DGL;
+	DGL;
+	id = get_ind_value(process->pc + 1);
+	DGL;
+	list = sgt_corewar()->processs;
+	DGL;
 	while (list)
 	{
 		p = list->data;
@@ -30,5 +30,5 @@ void	vm_live(t_player *player)
 			p->live += 1;
 		list = list->next;
 	}
-	player->pc += 5;
+	process->pc += 5;
 }

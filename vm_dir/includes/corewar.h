@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/28 16:19:36 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/07 15:03:26 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 typedef struct		s_byte
 {
 	unsigned char	data;
-	int				id;
+	int				color_id;
 	t_bool			modified;
 	t_bool			live;
 }					t_byte;
@@ -41,12 +41,12 @@ typedef struct		s_byte
 typedef struct		s_process
 {
 	int				id;
-	int				index;
+	size_t			pc;
 	int				reg[REG_NUMBER];
-	t_byte			*pc;
 	int				live;
 	int				carry;
 	int				op_cycle;
+	int				color_id;
 }					t_process;
 
 typedef struct		s_file
@@ -65,7 +65,7 @@ typedef struct		s_corewar
 	t_listd			*players;
 }					t_corewar;
 
-typedef void		(*t_func_op)(t_player *);
+typedef void		(*t_func_op)(t_process *, int *val);
 
 /*
 ** MAIN
@@ -91,37 +91,54 @@ t_vm_file			*file_read(char *file_name);
 t_header			*file_get_header(void *ptr);
 
 /*
+** PROCESS
+*/
+t_process			*process_creat(size_t index, int id, int color_id);
+t_process			*process_fork(t_process *process, size_t index);
+
+/*
 ** OP
+*/
+void				check_op(t_process *process);
+void				byte_code_to_type(int (*t)[4], unsigned char b);
+t_op				op_tab(int index);
+t_func_op			func_tab(int index);
+void				op_live(t_process *process);
+void				op_ld(t_process *process);
+void				op_st(t_process *process);
+void				op_add(t_process *process);
+void				op_sub(t_process *process);
+void				op_and(t_process *process);
+void				op_or(t_process *process);
+void				op_xor(t_process *process);
+void				op_zjmp(t_process *process);
+void				op_ldi(t_process *process);
+void				op_sti(t_process *process);
+void				op_fork(t_process *process);
+void				op_lld(t_process *process);
+void				op_lldi(t_process *process);
+void				op_lfork(t_process *process);
+void				op_aff(t_process *process);
+
+/*
+** GET
 */
 int					get_reg_value(t_byte *b);
 int					get_dir_value(t_byte *b);
 int					get_ind_value(t_byte *b);
-void				set_1byte_value(t_player *player, t_byte *b,
+int					get_reg_value_from_index(size_t index);
+int					get_dir_value_from_index(size_t index);
+int					get_ind_value_from_index(size_t index);
+
+/*
+** SET
+*/
+void				set_1byte_value_to_index(t_process *process, size_t index,
 		unsigned char value);
-void				set_2byte_value(t_player *player, t_byte *b,
+void				set_2byte_value_to_index(t_process *process, size_t index,
 		unsigned short value);
-void				set_4byte_value(t_player *player, t_byte *b,
+void				set_4byte_value_to_index(t_process *process, size_t index,
 		unsigned int value);
-void				check_op(t_player *player);
-void				byte_code_to_type(int (*t)[4], unsigned char b);
-t_op				op_tab(int index);
-t_func_op			func_tab(int index);
-void				vm_live(t_player *player);
-void				vm_ld(t_player *player);
-void				vm_st(t_player *player);
-void				vm_add(t_player *player);
-void				vm_sub(t_player *player);
-void				vm_and(t_player *player);
-void				vm_or(t_player *player);
-void				vm_xor(t_player *player);
-void				vm_zjmp(t_player *player);
-void				vm_ldi(t_player *player);
-void				vm_sti(t_player *player);
-void				vm_fork(t_player *player);
-void				vm_lld(t_player *player);
-void				vm_lldi(t_player *player);
-void				vm_lfork(t_player *player);
-void				vm_aff(t_player *player);
 
 /*
 ** PLAYER
@@ -134,8 +151,8 @@ t_header			*player_get_header(void *ptr);
 **                                     MLX
 ** #############################################################################
 */
-# define VM_WIN_WIDTH		2000
-# define VM_WIN_HEIGHT		1190
+# define VM_WIN_WIDTH		1600
+# define VM_WIN_HEIGHT		1200
 # define VM_FONT_PATH		"./resources/font/11.xpm"
 
 # define VM_COLOR_PLAYER1	0xA00000
@@ -144,6 +161,7 @@ t_header			*player_get_header(void *ptr);
 # define VM_COLOR_PLAYER4	0x0000A0
 # define VM_COLOR_PLAYER5	0xA000A0
 # define VM_COLOR_PLAYER6	0x00A0A0
+# define VM_COLOR_BOLD		0x505050
 
 typedef struct		s_vm_mlx
 {

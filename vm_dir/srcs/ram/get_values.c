@@ -6,40 +6,39 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/26 10:39:04 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/27 19:24:27 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/04 19:58:46 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-int		get_reg_value(t_byte *b)
+int		get_reg_value(size_t index)
 {
-	DGL;
-	return ((unsigned int)(b->data - 1));
+	return ((unsigned int)(sgt_corewar()->ram[index % MEM_SIZE]->data));
 }
 
-int		get_dir_value(t_byte *b)
+int		get_dir_value(size_t index)
 {
 	int		ret;
 
-	ret = 0;
-	ret += b->data;
-	ret *= 16;
-	ret += (b + 1)->data;
+	ret = 0x0;
+	ret += sgt_corewar()->ram[(index + 0) % MEM_SIZE]->data;
+	ret *= 0x10;
+	ret += sgt_corewar()->ram[(index + 1) % MEM_SIZE]->data;
 	return (ret);
 }
 
-int		get_ind_value(t_byte *b)
+int		get_ind_value(size_t index)
 {
 	int		ret;
 
-	ret = 0;
-	ret += b->data;
-	ret *= 16;
-	ret += (b + 1)->data;
-	ret *= 16;
-	ret += (b + 2)->data;
-	ret *= 16;
-	ret += (b + 3)->data;
+	ret = 0x0;
+	ret += sgt_corewar()->ram[(index + 0) % MEM_SIZE]->data;
+	ret *= 0x10;
+	ret += sgt_corewar()->ram[(index + 1) % MEM_SIZE]->data;
+	ret *= 0x10;
+	ret += sgt_corewar()->ram[(index + 2) % MEM_SIZE]->data;
+	ret *= 0x10;
+	ret += sgt_corewar()->ram[(index + 3) % MEM_SIZE]->data;
 	return (ret);
 }

@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/07 09:22:24 by mblet             #+#    #+#              #
-#    Updated: 2016/09/29 11:58:10 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/07 15:03:55 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ SRCBASE		=	\
 				file/get_header.c											\
 				file/read.c													\
 				func_tab.c													\
-				get_values.c												\
 				ini_ram.c													\
 				main.c														\
 				mlx/hook.c													\
@@ -60,10 +59,12 @@ SRCBASE		=	\
 				op/sub.c													\
 				op/xor.c													\
 				op/zjmp.c													\
-				op_tab.c													\
 				option.c													\
-				player/creat.c												\
-				set_values.c												\
+				op_tab.c													\
+				process/creat.c												\
+				process/fork.c												\
+				ram/get_values.c											\
+				ram/set_values.c											\
 				sgt/sgt_corewar.c											\
 				sgt/sgt_mlx.c
 

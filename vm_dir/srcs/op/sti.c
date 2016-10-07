@@ -6,20 +6,20 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 09:54:50 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/27 19:21:12 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/04 23:10:08 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void		s_action(t_player *player, int type[4])
+static void		s_action(t_process *process, int type[4])
 {
 	t_byte	*b;
 	int		val0;
 	int		val1;
 	int		val2;
 
-	b = player->pc + 2;
+	b = process->pc + 2;
 		val0 = get_reg_value(b);
 		b += 1;
 	if (type[1] == T_REG)
@@ -43,19 +43,19 @@ static void		s_action(t_player *player, int type[4])
 		b += 2;
 	}
 	DG("%i %i %i", val1, val2, val1 + val2);
-	set_4byte_value(player, player->pc + val1 + val2, player->reg[val0]);
+	set_4byte_value(process, process->pc + val1 + val2, process->reg[val0]);
 }
 
-void			vm_sti(t_player *player)
+void			op_sti(t_process *process)
 {
 	int		types[4];
 	size_t	size;
 
 	size = 1;
-	byte_code_to_type(&types, (player->pc + 1)->data);
+	byte_code_to_type(&types, (process->pc + 1)->data);
 	if (types[0] != T_REG || types[1] == 0
 		|| !(types[2] == T_DIR || types[2] == T_REG))
-		player->carry = 1;
+		process->carry = 1;
 	else
 	{
 		if (types[0] == T_REG)
@@ -69,7 +69,7 @@ void			vm_sti(t_player *player)
 		else if (types[2] == T_DIR)
 			size += 2;
 		size += 1;
-		s_action(player, types);
+		s_action(process, types);
 	}
-	player->pc += size;
+	process->pc += size;
 }
