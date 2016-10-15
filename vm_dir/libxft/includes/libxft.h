@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/15 16:41:31 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/19 00:16:06 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/15 18:27:40 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,10 +236,10 @@ void			libx_draw_line_to_image(t_libx_img *img, ...);
 
 /*
 ** WARNING : if you want use this function please make sure int cast :
-**			-x1
-**			-y1
-**			-x2
-**			-y2
+**			-x
+**			-y
+**			-w
+**			-h
 **			-color
 ** libx_circle_to_image
 ** parameters :
@@ -254,10 +254,10 @@ void			libx_draw_circle_to_image(t_libx_img *img, ...);
 
 /*
 ** WARNING : if you want use this function please make sure int cast :
-**			-x1
-**			-y1
-**			-x2
-**			-y2
+**			-x
+**			-y
+**			-w
+**			-h
 **			-color
 ** libx_circle_to_image
 ** parameters :

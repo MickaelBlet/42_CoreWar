@@ -6,27 +6,24 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 12:07:51 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/04 23:53:34 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/13 18:10:06 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void		s_action(t_process *process)
+void	op_fork(t_process *process, int type[4], int arg[4])
 {
 	t_process		*new;
 	unsigned short	addr;
 
-	addr = (process->pc + (get_dir_value(process->pc) % IDX_MOD));
-	addr %= MEM_SIZE;
+	(void)type;
+	addr = (process->pc + (arg[0] % IDX_MOD)) % MEM_SIZE;
 	if ((new = process_fork(process, addr)) == NULL)
+	{
+		process->carry = 0;
 		return ;
+	}
 	ft_lstd_push_front(&sgt_corewar()->process, new);
-}
-
-void			op_fork(t_process *process)
-{
-	process->pc += REG_CODE;
-	s_action(process);
-	process->pc += DIR_CODE;
+	process->carry = 1;
 }

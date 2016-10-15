@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aff.c                                              :+:      :+:    :+:   */
+/*   rect.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 12:08:55 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/13 18:09:18 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/15 18:29:04 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/15 18:33:43 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	op_aff(t_process *process, int type[4], int arg[4])
+void	vm_mlx_draw_rect(t_libx_img *img, int xy[2], int wh[2],
+		int color)
 {
-	(void)type;
-	if (arg[0] > 0 && arg[0] <= REG_NUMBER)
-	{
-		ft_putchar(process->reg[arg[0] - 1] % 256);
-		process->carry = 1;
-	}
-	else
-	{
-		process->carry = 0;
-	}
+	int		i;
+	int		j;
+
+	i = xy[0];
+	j = xy[1];
+	while (i < xy[0] + wh[0])
+		libx_put_pixel_to_image(img, i++, j, color);
+	--i;
+	while (j < xy[1] + wh[1])
+		libx_put_pixel_to_image(img, i, j++, color);
+	--j;
+	while (i > xy[0])
+		libx_put_pixel_to_image(img, --i, j, color);
+	while (j > xy[1])
+		libx_put_pixel_to_image(img, i, --j, color);
 }

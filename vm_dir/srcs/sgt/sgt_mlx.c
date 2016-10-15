@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/15 11:05:53 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/19 00:21:14 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/15 13:20:26 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 static void			s_ini_singleton(t_vm_mlx *t)
 {
-	t->mlx = NULL;
-	t->win = NULL;
-	t->img_main = NULL;
-	t->img_font = NULL;
-	t->img_ram = NULL;
+	(void)t;
 }
 
 static t_vm_mlx		**s_singleton(void)

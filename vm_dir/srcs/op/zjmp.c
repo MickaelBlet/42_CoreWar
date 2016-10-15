@@ -6,13 +6,17 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 12:06:59 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/04 23:10:30 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/13 23:26:40 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	op_zjmp(t_process *process)
+void	op_zjmp(t_process *process, int type[4], int arg[4])
 {
-	(void)process;
+	(void)type;
+	if (process->carry == 1)
+	{
+		process->pc = (process->pc + arg[0] - 3) % MEM_SIZE;
+	}
 }

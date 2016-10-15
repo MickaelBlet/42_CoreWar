@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/07 09:22:24 by mblet             #+#    #+#              #
-#    Updated: 2016/10/07 15:03:55 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/15 19:11:09 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,22 +30,30 @@ LIBXFT_LIB	=	$(LIBXFT_DIR)libxft.a
 
 SRCBASE		=	\
 				corewar.c													\
-				creat_pc.c													\
-				file/check_file.c											\
+				file/check.c												\
 				file/get_header.c											\
 				file/read.c													\
 				func_tab.c													\
-				ini_ram.c													\
+				launch.c													\
 				main.c														\
-				mlx/hook.c													\
+				mlx/draw/background.c										\
+				mlx/draw/fill_transparent_rect.c							\
+				mlx/draw/info.c												\
+				mlx/draw/memory.c											\
+				mlx/draw/rect.c												\
+				mlx/keys/c.c												\
+				mlx/keys/esc.c												\
+				mlx/launch.c												\
 				mlx/loop_hook.c												\
-				mlx/mlx_ini.c												\
-				mlx/print.c													\
+				mlx/mlx_init.c												\
+				mlx/mouse/byte_position_mouse.c								\
+				mlx/mouse/motion.c											\
+				mlx/threads/info.c											\
+				mlx/threads/memory.c										\
 				op/add.c													\
 				op/aff.c													\
 				op/and.c													\
 				op/byte_code_to_type.c										\
-				op/check_op.c												\
 				op/fork.c													\
 				op/ld.c														\
 				op/ldi.c													\
@@ -61,12 +69,15 @@ SRCBASE		=	\
 				op/zjmp.c													\
 				option.c													\
 				op_tab.c													\
+				process/action.c											\
 				process/creat.c												\
 				process/fork.c												\
 				ram/get_values.c											\
+				ram/ini_ram.c												\
 				ram/set_values.c											\
 				sgt/sgt_corewar.c											\
-				sgt/sgt_mlx.c
+				sgt/sgt_mlx.c												\
+				thread/vm.c
 
 SRCS		=	$(addprefix $(SRCDIR), $(SRCBASE))
 INCS		=	$(addprefix $(INCDIR), $(INCBASE))

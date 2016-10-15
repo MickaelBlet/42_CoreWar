@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aff.c                                              :+:      :+:    :+:   */
+/*   motion.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 12:08:55 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/13 18:09:18 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/15 16:53:28 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/15 16:59:58 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	op_aff(t_process *process, int type[4], int arg[4])
+int		vm_mlx_mouse_motion(int x, int y, t_vm_mlx *mlx)
 {
-	(void)type;
-	if (arg[0] > 0 && arg[0] <= REG_NUMBER)
-	{
-		ft_putchar(process->reg[arg[0] - 1] % 256);
-		process->carry = 1;
-	}
-	else
-	{
-		process->carry = 0;
-	}
+	(void)mlx;
+	mlx->mouse.x = x;
+	mlx->mouse.y = y;
+	return (1);
 }

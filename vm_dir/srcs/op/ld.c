@@ -6,61 +6,26 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 09:38:33 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/04 23:06:48 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/14 00:34:42 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void		s_action(t_process *process, int type[4])
+void	op_ld(t_process *process, int type[4], int arg[4])
 {
-	t_byte	*b;
-	int		val0;
-	int		val1;
-
-	b = process->pc + 2;
-	if (type[0] == T_IND)
+	if (arg[1] > 0 && arg[1] <= REG_NUMBER)
 	{
-		val0 = get_ind_value(b);
-		b += 4;
-	}
-	else
-	{
-		val0 = get_dir_value(b);
-		b += 4;
-	}
-	val1 = get_reg_value(b);
-	if (val1 >= REG_NUMBER)
+		if (type[0] == T_DIR && process->op.has_idx == 1)
+			process->reg[arg[1] - 1] = get_dir_value(process->pc + \
+					(arg[0] % IDX_MOD));
+		else
+			process->reg[arg[1] - 1] = get_ind_value(process->pc + \
+					(arg[0] % IDX_MOD));
 		process->carry = 1;
+	}
 	else
 	{
-		DG("%i %i", val1, val0);
-		process->reg[val1] = val0;
+		process->carry = 0;
 	}
-}
-
-void			op_ld(t_process *process)
-{
-	int		types[4];
-	int		size;
-
-	size = 1;
-	DG("%p", process->pc);
-	byte_code_to_type(&types, (process->pc + 1)->data);
-	if (!(types[0] == T_DIR || types[0] == T_IND) || types[1] != T_REG)
-		process->carry = 1;
-	else
-	{
-		if (types[0] == T_IND)
-			size += 4;
-		if (types[0] == T_DIR)
-			size += 4;
-		size += 1;
-		size += 1;
-		s_action(process, types);
-	}
-	DG("%i", size);
-	DG("%p", process->pc);
-	process->pc += size;
-	DG("%p", process->pc);
 }

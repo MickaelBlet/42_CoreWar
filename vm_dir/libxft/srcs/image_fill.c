@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/20 23:54:19 by mblet             #+#    #+#             */
-/*   Updated: 2016/06/13 15:15:56 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/14 01:56:27 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,16 @@
 
 void	libx_image_fill(t_libx_img *img, int c)
 {
-	int	x;
-	int	y;
+	int		i;
+	int		*ptr;
 
 	if (img == NULL)
 		return ;
-	y = 0;
-	while (y < img->height)
+	i = 0;
+	ptr = (int *)img->buffer;
+	while (i < img->width * img->height)
 	{
-		x = 0;
-		while (x < img->width)
-		{
-			libx_put_pixel_to_image(img, x, y, c);
-			++x;
-		}
-		++y;
+		*(ptr + i) = c;
+		i += 1;
 	}
 }

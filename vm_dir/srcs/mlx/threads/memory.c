@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   memory.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/15 11:42:30 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/19 00:19:40 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/14 10:51:03 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/15 14:03:19 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	vm_press_key_esc(t_vm_mlx *mlx)
+void	*vm_mlx_thread_memory(void *e)
 {
-	(void)mlx;
-	exit(EXIT_SUCCESS);
+	(void)e;
+	while (true)
+	{
+		pthread_mutex_lock(&sgt_mlx()->mutex_memory);
+		vm_mlx_draw_memory();
+		pthread_mutex_unlock(&sgt_mlx()->mutex_memory);
+		usleep(100000);
+	}
+	return (NULL);
 }

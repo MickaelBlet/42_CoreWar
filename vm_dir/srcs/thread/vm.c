@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   live.c                                             :+:      :+:    :+:   */
+/*   vm.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/20 09:35:43 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/13 23:30:05 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/15 13:08:05 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/15 17:24:30 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	op_live(t_process *process, int type[4], int arg[4])
+void	*thread_vm(void *e)
 {
 	t_listd		*list;
-	t_process	*tmp_process;
+	t_process	*process;
 
-	(void)type;
-	(void)arg;
-	(void)process;
-	(void)list;
-	(void)tmp_process;
-	/*list = sgt_corewar()->process;
-	while (list != NULL)
+	(void)e;
+	pthread_mutex_lock(&sgt_corewar()->mutex);
+	while (sgt_corewar()->run == true)
 	{
-		tmp_process = list->data;
-		if (tmp_process != NULL && tmp_process->id == arg[0])
-			tmp_process->live += 1;
-		list = list->next;
-	}*/
-	process->carry = 1;
+		pthread_mutex_lock(&sgt_corewar()->mutex);
+		++sgt_corewar()->nbr_cycles;
+		list = sgt_corewar()->process;
+		while (list != NULL)
+		{
+			process = list->data;
+			process_action(process);
+			list = list->next;
+		}
+		pthread_mutex_unlock(&sgt_corewar()->mutex);
+		usleep(10);
+	}
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 03:45:35 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/28 16:24:54 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/13 18:21:56 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void		s_read(t_file *file, int fd, char *file_name)
 		s_error(2, file_name);
 }
 
-t_vm_file		*file_read(char *file_name)
+t_file			*file_read(char *file_name)
 {
 	int		fd;
 	t_file	*file;

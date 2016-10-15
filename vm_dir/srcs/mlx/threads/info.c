@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aff.c                                              :+:      :+:    :+:   */
+/*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 12:08:55 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/13 18:09:18 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/14 10:53:27 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/15 14:38:22 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	op_aff(t_process *process, int type[4], int arg[4])
+void	*vm_mlx_thread_info(void *e)
 {
-	(void)type;
-	if (arg[0] > 0 && arg[0] <= REG_NUMBER)
+	(void)e;
+	while (true)
 	{
-		ft_putchar(process->reg[arg[0] - 1] % 256);
-		process->carry = 1;
+		pthread_mutex_lock(&sgt_mlx()->mutex_info);
+		vm_mlx_draw_info();
+		pthread_mutex_unlock(&sgt_mlx()->mutex_info);
+		usleep(100000);
 	}
-	else
-	{
-		process->carry = 0;
-	}
+	return (NULL);
 }

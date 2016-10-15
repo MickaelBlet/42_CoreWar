@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aff.c                                              :+:      :+:    :+:   */
+/*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 12:08:55 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/13 18:09:18 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/15 14:38:47 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/15 14:41:39 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	op_aff(t_process *process, int type[4], int arg[4])
+void	vm_mlx_draw_info(void)
 {
-	(void)type;
-	if (arg[0] > 0 && arg[0] <= REG_NUMBER)
-	{
-		ft_putchar(process->reg[arg[0] - 1] % 256);
-		process->carry = 1;
-	}
-	else
-	{
-		process->carry = 0;
-	}
+	char	str[30];
+
+	ft_memcpy(sgt_mlx()->img_info->buffer, sgt_mlx()->background_info,
+			sgt_mlx()->img_info->width * sgt_mlx()->img_info->height * \
+			(sgt_mlx()->img_info->bits_per_pixel >> 3) * \
+			sizeof(unsigned char));
+	ft_sprintf(str, "nbr_cycle = %i", sgt_corewar()->nbr_cycles);
+	LIBX_STRING_TO_IMAGE(sgt_mlx()->img_info, sgt_mlx()->img_font, str,
+			0,
+			0, 0xFFFFFF);
 }

@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:16:20 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/19 11:13:26 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/15 15:43:58 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 static void			s_ini_singleton(t_corewar *t)
 {
+	t->nbr_cycles_limit = 0;
 	t->nbr_cycles = 0;
+	t->nbr_live = 0;
 	t->files = NULL;
+	t->process = NULL;
+	t->run = true;
 }
 
 static t_corewar	**s_singleton(void)

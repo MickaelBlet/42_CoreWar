@@ -6,24 +6,24 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:31:06 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/07 14:29:37 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/15 15:59:03 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void		s_file_merge(t_file *file, t_byte *b, int id)
+static void		s_file_merge(t_file *file, size_t index, int id)
 {
 	size_t	i;
 
 	i = 0;
 	while (i < file->header->prog_size)
 	{
-		b->data = file->data[sizeof(t_header) + i];
-		b->id = id;
-		b->modified = false;
-		b->live = false;
-		++b;
+		sgt_corewar()->ram[index].data = file->data[sizeof(t_header) + i];
+		sgt_corewar()->ram[index].color_id = id;
+		sgt_corewar()->ram[index].modified_cycle = -100;
+		sgt_corewar()->ram[index].live = false;
+		++index;
 		++i;
 	}
 }
@@ -34,6 +34,7 @@ static void		s_place_file_and_creat_pc(void)
 	t_file		*file;
 	size_t		list_size;
 	size_t		id;
+	size_t		index;
 
 	list_size = ft_lstd_size(sgt_corewar()->files);
 	list_files = sgt_corewar()->files;
@@ -41,8 +42,10 @@ static void		s_place_file_and_creat_pc(void)
 	while (list_files)
 	{
 		file = list_files->data;
-		s_file_merge(file,
-				sgt_corewar()->ram + (id - 1) * (MEM_SIZE / list_size), id);
+		index = (id - 1) * (MEM_SIZE / list_size);
+		s_file_merge(file, index, id);
+		ft_lstd_push_front(&sgt_corewar()->process,
+				process_creat(index, file->id, id));
 		list_files = list_files->next;
 		++id;
 	}
@@ -84,11 +87,11 @@ void			ini_ram(void)
 	while (i < MEM_SIZE)
 	{
 		sgt_corewar()->ram[i].data = 0;
-		sgt_corewar()->ram[i].id = 0;
-		sgt_corewar()->ram[i].modified = false;
+		sgt_corewar()->ram[i].color_id = 0;
+		sgt_corewar()->ram[i].modified_cycle = -100;
 		sgt_corewar()->ram[i].live = false;
 		++i;
 	}
 	s_sort_files();
-	s_place_file();
+	s_place_file_and_creat_pc();
 }

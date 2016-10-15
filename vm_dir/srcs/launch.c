@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aff.c                                              :+:      :+:    :+:   */
+/*   launch.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 12:08:55 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/13 18:09:18 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/15 13:14:23 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/15 13:35:39 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	op_aff(t_process *process, int type[4], int arg[4])
+static t_bool	s_mutex_init(void)
 {
-	(void)type;
-	if (arg[0] > 0 && arg[0] <= REG_NUMBER)
+	if (pthread_mutex_init(&sgt_corewar()->mutex, NULL) < 0)
+		return (false);
+	return (true);
+}
+
+void			launch(void)
+{
+	DGL;
+	if (s_mutex_init() == false)
 	{
-		ft_putchar(process->reg[arg[0] - 1] % 256);
-		process->carry = 1;
+		ERR("corwar: mlx mutex error.");
+		exit(EXIT_FAILURE);
 	}
-	else
+	if (pthread_create(&sgt_corewar()->thread, NULL,
+				&thread_vm, (void *)sgt_corewar()) < 0)
 	{
-		process->carry = 0;
+		ERR("corwar: pthread creat error.");
+		exit(EXIT_FAILURE);
 	}
 }
