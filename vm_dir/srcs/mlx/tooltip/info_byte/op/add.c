@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zjmp.c                                             :+:      :+:    :+:   */
+/*   add.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 12:06:59 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/16 16:56:01 by mblet            ###   ########.fr       */
+/*   Created: 2016/09/27 12:05:19 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/15 23:16:03 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	op_zjmp(t_process *process, int type[4], int arg[4])
+char	*vm_mlx_op_add(int pc, int type[4], int arg[4])
 {
+	char	*ret;
+
 	(void)type;
-	if (process->carry == 1)
+	(void)pc;
+	ret = NULL;
+	if (arg[0] > 0 && arg[0] <= REG_NUMBER
+		&& arg[1] > 0 && arg[1] <= REG_NUMBER
+		&& arg[2] > 0 && arg[2] <= REG_NUMBER)
 	{
-		process->pc = (process->pc + (arg[0] % IDX_MOD) - 3) % MEM_SIZE;
+		ft_asprintf(&ret, "*r%i = *r%i + *r%i", arg[2], arg[0], arg[1]);
 	}
+	return (ret);
 }

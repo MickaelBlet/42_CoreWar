@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zjmp.c                                             :+:      :+:    :+:   */
+/*   live.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 12:06:59 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/16 16:56:01 by mblet            ###   ########.fr       */
+/*   Created: 2016/09/20 09:35:43 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/15 23:13:52 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	op_zjmp(t_process *process, int type[4], int arg[4])
+void	vm_mlx_op_live(t_process *process, int type[4], int arg[4])
 {
+	t_listd		*list;
+	t_process	*tmp_process;
+
 	(void)type;
-	if (process->carry == 1)
+	(void)arg;
+	(void)process;
+	(void)list;
+	(void)tmp_process;
+	/*list = sgt_corewar()->process;
+	while (list != NULL)
 	{
-		process->pc = (process->pc + (arg[0] % IDX_MOD) - 3) % MEM_SIZE;
-	}
+		tmp_process = list->data;
+		if (tmp_process != NULL && tmp_process->id == arg[0])
+			tmp_process->live += 1;
+		list = list->next;
+	}*/
+	process->carry = 1;
 }

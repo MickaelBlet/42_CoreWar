@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:16:20 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/15 15:43:58 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/17 01:17:17 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 static void			s_ini_singleton(t_corewar *t)
 {
-	t->nbr_cycles_limit = 0;
-	t->nbr_cycles = 0;
-	t->nbr_live = 0;
+	t->cycle = 0;
+	t->cycle_to_die = CYCLE_TO_DIE;
+	t->cycle_check = CYCLE_TO_DIE;
 	t->files = NULL;
+	t->players = NULL;
 	t->process = NULL;
+	t->dump = -1;
+	t->graphic = false;
+	t->nb_cycle_per_second = 100000;
 	t->run = true;
 }
 

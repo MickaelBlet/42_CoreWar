@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:31:06 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/15 15:59:03 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/17 00:54:58 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void		s_file_merge(t_file *file, size_t index, int id)
 		sgt_corewar()->ram[index].data = file->data[sizeof(t_header) + i];
 		sgt_corewar()->ram[index].color_id = id;
 		sgt_corewar()->ram[index].modified_cycle = -100;
-		sgt_corewar()->ram[index].live = false;
+		sgt_corewar()->ram[index].live = 0;
 		++index;
 		++i;
 	}
@@ -46,6 +46,8 @@ static void		s_place_file_and_creat_pc(void)
 		s_file_merge(file, index, id);
 		ft_lstd_push_front(&sgt_corewar()->process,
 				process_creat(index, file->id, id));
+		ft_lstd_push_front(&sgt_corewar()->players,
+				player_creat(file, id));
 		list_files = list_files->next;
 		++id;
 	}
@@ -67,7 +69,7 @@ static void		s_sort_files(void)
 		{
 			file1 = list->data;
 			file2 = list->next->data;
-			if (file1->id > file2->id)
+			if (file1->id < file2->id)
 			{
 				tmp = list->data;
 				list->data = list->next->data;
@@ -89,7 +91,7 @@ void			ini_ram(void)
 		sgt_corewar()->ram[i].data = 0;
 		sgt_corewar()->ram[i].color_id = 0;
 		sgt_corewar()->ram[i].modified_cycle = -100;
-		sgt_corewar()->ram[i].live = false;
+		sgt_corewar()->ram[i].live = 0;
 		++i;
 	}
 	s_sort_files();

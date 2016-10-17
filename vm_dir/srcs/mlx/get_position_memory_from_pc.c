@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zjmp.c                                             :+:      :+:    :+:   */
+/*   get_position_memory_from_pc.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 12:06:59 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/16 16:56:01 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/16 12:36:06 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/16 12:37:20 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	op_zjmp(t_process *process, int type[4], int arg[4])
+void	vm_mlx_get_position_memory_from_pc(int pc, int *x, int *y)
 {
-	(void)type;
-	if (process->carry == 1)
-	{
-		process->pc = (process->pc + (arg[0] % IDX_MOD) - 3) % MEM_SIZE;
-	}
+	*x = pc % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH;
+	*y = pc / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT;
 }

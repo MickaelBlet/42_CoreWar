@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 13:08:05 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/15 17:24:30 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/17 00:55:39 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,15 @@
 
 void	*thread_vm(void *e)
 {
-	t_listd		*list;
-	t_process	*process;
-
 	(void)e;
 	pthread_mutex_lock(&sgt_corewar()->mutex);
-	while (sgt_corewar()->run == true)
+	while (sgt_corewar()->run)
 	{
 		pthread_mutex_lock(&sgt_corewar()->mutex);
-		++sgt_corewar()->nbr_cycles;
-		list = sgt_corewar()->process;
-		while (list != NULL)
-		{
-			process = list->data;
-			process_action(process);
-			list = list->next;
-		}
 		pthread_mutex_unlock(&sgt_corewar()->mutex);
-		usleep(10);
+		cycle();
+		if (sgt_corewar()->nb_cycle_per_second > 0)
+			usleep(1000000 / sgt_corewar()->nb_cycle_per_second);
 	}
 	return (NULL);
 }

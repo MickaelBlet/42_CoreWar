@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zjmp.c                                             :+:      :+:    :+:   */
+/*   lfork.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 12:06:59 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/16 16:56:01 by mblet            ###   ########.fr       */
+/*   Created: 2016/09/27 12:08:45 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/15 23:13:42 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	op_zjmp(t_process *process, int type[4], int arg[4])
+void	vm_mlx_op_lfork(t_process *process, int type[4], int arg[4])
 {
+	t_process		*new;
+	unsigned short	addr;
+
 	(void)type;
-	if (process->carry == 1)
+	addr = (process->pc + (arg[0])) % MEM_SIZE;
+	if ((new = process_fork(process, addr)) == NULL)
 	{
-		process->pc = (process->pc + (arg[0] % IDX_MOD) - 3) % MEM_SIZE;
+		process->carry = 0;
+		return ;
 	}
+	ft_lstd_push_front(&sgt_corewar()->process, new);
+	process->carry = 1;
 }

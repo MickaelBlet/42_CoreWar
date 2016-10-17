@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/15 11:17:57 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/15 16:52:50 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/15 19:58:54 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		s_color_init(void)
 {
-	sgt_mlx()->color[0] = 0xFFFFFF;
+	sgt_mlx()->color[0] = 0x505050;
 	sgt_mlx()->color[1] = 0xA00000;
 	sgt_mlx()->color[2] = 0x00A000;
 	sgt_mlx()->color[3] = 0xA0A000;
@@ -40,7 +40,8 @@ static t_bool	s_hook_init(void)
 	t_vm_mlx	*mlx;
 
 	libx_func_key(LIBX_KEY_ESC, LIBX_KEY_PRESS, &vm_press_key_esc);
-	libx_func_key(LIBX_KEY_C, LIBX_KEY_RELEASE, &vm_release_key_c);
+	libx_func_key(LIBX_KEY_S, LIBX_KEY_PRESS, &vm_press_key_s);
+	libx_func_key(LIBX_KEY_SPACE, LIBX_KEY_PRESS, &vm_press_key_space);
 	mlx = sgt_mlx();
 	mlx_expose_hook(mlx->win, &vm_mlx_loop_hook, mlx);
 	mlx_loop_hook(mlx->mlx, &vm_mlx_loop_hook, mlx);

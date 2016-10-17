@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   launch.c                                           :+:      :+:    :+:   */
+/*   ld.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/15 13:14:23 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/15 13:35:39 by mblet            ###   ########.fr       */
+/*   Created: 2016/09/20 09:38:33 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/16 01:09:54 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static t_bool	s_mutex_init(void)
+void	vm_mlx_op_ld(t_process *process, int type[4], int arg[4])
 {
-	if (pthread_mutex_init(&sgt_corewar()->mutex, NULL) < 0)
-		return (false);
-	return (true);
-}
-
-void			launch(void)
-{
-	DGL;
-	if (s_mutex_init() == false)
+	if (arg[1] > 0 && arg[1] <= REG_NUMBER)
 	{
-		ERR("corwar: mlx mutex error.");
-		exit(EXIT_FAILURE);
+		if (type[0] == T_DIR && process->op.has_idx == 1)
+			process->reg[arg[1] - 1] = get_dir_value(process->pc + 2 + \
+					(arg[0] % IDX_MOD));
+		else
+			process->reg[arg[1] - 1] = get_ind_value(process->pc + 2 + \
+					(arg[0] % IDX_MOD));
+		process->carry = 1;
 	}
-	if (pthread_create(&sgt_corewar()->thread, NULL,
-				&thread_vm, (void *)sgt_corewar()) < 0)
+	else
 	{
-		ERR("corwar: pthread creat error.");
-		exit(EXIT_FAILURE);
+		process->carry = 0;
 	}
 }

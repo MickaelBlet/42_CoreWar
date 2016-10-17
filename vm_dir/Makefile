@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/07 09:22:24 by mblet             #+#    #+#              #
-#    Updated: 2016/10/15 19:11:09 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/17 02:23:03 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,19 +30,23 @@ LIBXFT_LIB	=	$(LIBXFT_DIR)libxft.a
 
 SRCBASE		=	\
 				corewar.c													\
+				cycle.c														\
+				dump.c														\
 				file/check.c												\
 				file/get_header.c											\
 				file/read.c													\
 				func_tab.c													\
-				launch.c													\
 				main.c														\
 				mlx/draw/background.c										\
 				mlx/draw/fill_transparent_rect.c							\
 				mlx/draw/info.c												\
 				mlx/draw/memory.c											\
 				mlx/draw/rect.c												\
-				mlx/keys/c.c												\
+				mlx/draw/tooltip.c											\
+				mlx/get_position_memory_from_pc.c							\
 				mlx/keys/esc.c												\
+				mlx/keys/s.c												\
+				mlx/keys/space.c											\
 				mlx/launch.c												\
 				mlx/loop_hook.c												\
 				mlx/mlx_init.c												\
@@ -50,6 +54,22 @@ SRCBASE		=	\
 				mlx/mouse/motion.c											\
 				mlx/threads/info.c											\
 				mlx/threads/memory.c										\
+				mlx/tooltip/info_byte/op/add.c								\
+				mlx/tooltip/info_byte/op/aff.c								\
+				mlx/tooltip/info_byte/op/and.c								\
+				mlx/tooltip/info_byte/op/fork.c								\
+				mlx/tooltip/info_byte/op/ld.c								\
+				mlx/tooltip/info_byte/op/ldi.c								\
+				mlx/tooltip/info_byte/op/lfork.c							\
+				mlx/tooltip/info_byte/op/live.c								\
+				mlx/tooltip/info_byte/op/lld.c								\
+				mlx/tooltip/info_byte/op/lldi.c								\
+				mlx/tooltip/info_byte/op/or.c								\
+				mlx/tooltip/info_byte/op/st.c								\
+				mlx/tooltip/info_byte/op/sti.c								\
+				mlx/tooltip/info_byte/op/sub.c								\
+				mlx/tooltip/info_byte/op/xor.c								\
+				mlx/tooltip/info_byte/op/zjmp.c								\
 				op/add.c													\
 				op/aff.c													\
 				op/and.c													\
@@ -69,7 +89,9 @@ SRCBASE		=	\
 				op/zjmp.c													\
 				option.c													\
 				op_tab.c													\
+				player/creat.c												\
 				process/action.c											\
+				process/check_live.c										\
 				process/creat.c												\
 				process/fork.c												\
 				ram/get_values.c											\
@@ -77,6 +99,7 @@ SRCBASE		=	\
 				ram/set_values.c											\
 				sgt/sgt_corewar.c											\
 				sgt/sgt_mlx.c												\
+				thread/launch.c												\
 				thread/vm.c
 
 SRCS		=	$(addprefix $(SRCDIR), $(SRCBASE))

@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zjmp.c                                             :+:      :+:    :+:   */
+/*   creat.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 12:06:59 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/16 16:56:01 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/17 00:47:55 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/17 00:53:39 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	op_zjmp(t_process *process, int type[4], int arg[4])
+t_player	*player_creat(t_file *file, int color_id)
 {
-	(void)type;
-	if (process->carry == 1)
-	{
-		process->pc = (process->pc + (arg[0] % IDX_MOD) - 3) % MEM_SIZE;
-	}
+	t_player	*player;
+
+	if ((player = (t_player *)malloc(sizeof(t_player))) == NULL)
+		return (NULL);
+	player->id = file->id;
+	player->color_id = color_id;
+	player->live = 0;
+	player->last_live = -1;
+	player->name = file->header->prog_name;
+	player->description = file->header->comment;
+	return (player);
 }

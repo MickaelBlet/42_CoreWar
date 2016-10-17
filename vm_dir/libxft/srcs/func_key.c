@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/13 06:07:03 by mblet             #+#    #+#             */
-/*   Updated: 2016/09/19 00:15:04 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/16 00:57:47 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,6 @@ static t_libx_key_func	*s_singleton(int flag)
 		return (f_release);
 }
 
-static void				s_putnbr_hex(int key)
-{
-	if (key < 10)
-	{
-		key = '0' + key;
-		write(2, &key, 1);
-	}
-	else if (key < 16)
-	{
-		key = 'A' + key - 10;
-		write(2, &key, 1);
-	}
-	else if (key >= 16)
-	{
-		s_putnbr_hex(key / 16);
-		s_putnbr_hex(key % 16);
-	}
-}
-
 int						libx_hook_key_press(int key, void *e)
 {
 	if (key >= 0 && key < 0x200 && s_singleton(0)[key] != NULL)
@@ -51,13 +32,7 @@ int						libx_hook_key_press(int key, void *e)
 		s_singleton(0)[key](e);
 		return (1);
 	}
-	else
-	{
-		write(2, "0x", 2);
-		s_putnbr_hex(key);
-		write(2, ": \033[38;5;124mthis key is not assigned.\033[0m\n", 44);
-		return (0);
-	}
+	return (0);
 }
 
 int						libx_hook_key_release(int key, void *e)
@@ -67,13 +42,7 @@ int						libx_hook_key_release(int key, void *e)
 		s_singleton(1)[key](e);
 		return (1);
 	}
-	else
-	{
-		write(2, "0x", 2);
-		s_putnbr_hex(key);
-		write(2, ": \033[38;5;124mthis key is not assigned.\033[0m\n", 44);
-		return (0);
-	}
+	return (0);
 }
 
 void					libx_func_key(int key, int flag, t_libx_key_func f)

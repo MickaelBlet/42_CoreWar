@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/26 16:45:51 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/15 15:55:41 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/17 00:54:41 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	set_1byte_value(t_process *process, int index, unsigned char value)
 	sgt_corewar()->ram[index % MEM_SIZE].data = value;
 	sgt_corewar()->ram[index % MEM_SIZE].color_id = process->color_id;
 	sgt_corewar()->ram[index % MEM_SIZE].modified_cycle =
-		sgt_corewar()->nbr_cycles;
+		sgt_corewar()->cycle;
 	sgt_corewar()->ram[index % MEM_SIZE].live = false;
 }
 

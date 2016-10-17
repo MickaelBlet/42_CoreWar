@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/19 00:50:16 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/15 15:43:45 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/17 00:22:23 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void		s_check_dump(int *i, char *arg)
 {
 	if (ft_aisi(arg))
 	{
-		sgt_corewar()->nbr_cycles_limit = ft_atoi(arg);
+		sgt_corewar()->dump = ft_atoi(arg);
 		++(*i);
 	}
 	else
@@ -69,7 +69,7 @@ void			option(int argc, char **argv)
 {
 	int		i;
 
-	if (argc <= 2)
+	if (argc <= 1)
 	{
 		ft_printf("Usage: %s\n", MSG_USAGE);
 		exit(EXIT_FAILURE);
@@ -81,6 +81,8 @@ void			option(int argc, char **argv)
 			s_check_dump(&i, argv[i + 1]);
 		else if (ft_strequ(argv[i], "-n"))
 			file_check(&i, argv);
+		else if (ft_strequ(argv[i], "-g"))
+			sgt_corewar()->graphic = true;
 		else
 			s_check_file_without_id(argv[i]);
 		++i;

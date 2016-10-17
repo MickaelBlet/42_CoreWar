@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:18:18 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/15 14:55:47 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/17 01:07:00 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,19 @@ static void		s_func_pcode(t_process *process)
 			index_type += 4;
 		++i;
 	}
-	//DG("%x, %x, %x, %x", val[0], val[1], val[2], val[3]);
+	//DG("reg: %x %x %x %x %x %x %x %x %x %x",
+			//process->reg[0],
+			//process->reg[1],
+			//process->reg[2],
+			//process->reg[3],
+			//process->reg[4],
+			//process->reg[5],
+			//process->reg[6],
+			//process->reg[8],
+			//process->reg[9]);
+	//DG("%s", process->op.name);
+	//DG("type: %x, %x, %x, %x", type[0], type[1], type[2], type[3]);
+	//DG("val:  %x, %x, %x, %x", val[0], val[1], val[2], val[3]);
 	func_tab(process->op.op_code - 1)(process, type, val);
 	process->pc = (process->pc + index_type) % MEM_SIZE;
 	process->op = op_tab(16);
@@ -95,31 +107,30 @@ static void		s_func_pcode(t_process *process)
 
 static t_bool	s_new_op(t_process *process)
 {
-	int		i;
+	int		op;
 
 	if (process->op_cycle == 0 && process->op.name != 0)
 		return (false);
 	if (process->op_cycle > 0 && process->op.name != 0)
 		return (true);
-	i = 0;
-	while (i < 16)
+	op = sgt_corewar()->ram[process->pc].data - 1;
+	if (op_tab(op).op_code != 0)
 	{
-		if (sgt_corewar()->ram[process->pc].data == op_tab(i).op_code)
-		{
-			//DG("code:%s", op_tab(i).name);
-			process->op = op_tab(i);
-			process->op_cycle = op_tab(i).nb_cycles;
-			return (true);
-		}
-		++i;
+		//DG("code:%s", op_tab(i).name);
+		process->op = op_tab(op);
+		process->op_cycle = op_tab(op).nb_cycles - 1;
+		return (true);
 	}
 	process->op = op_tab(16);
 	process->pc = (process->pc + 1) % MEM_SIZE;
+	process->carry = 0;
 	return (true);
 }
 
 void			process_action(t_process *process)
 {
+	if (process == NULL)
+		return ;
 	//DG("info pc:\n\tindex=%i\n\top_code=%i\n\tnb_cycle=%i", process->pc, sgt_corewar()->ram[process->pc].data, process->op_cycle);
 	if (process->op_cycle > 0)
 		process->op_cycle -= 1;

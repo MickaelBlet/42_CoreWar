@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 11:11:46 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/15 18:37:37 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/17 02:04:35 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void		s_convert_byte_to_hex(char *ret, unsigned char byte)
 {
 	ret[0] = (byte / 0x10) % 0x10;
 	ret[1] = byte % 0x10;
-	ret[0] += (ret[0] > 9) ? 'A' - 10 : '0';
-	ret[1] += (ret[1] > 9) ? 'A' - 10 : '0';
+	ret[0] += (ret[0] > 9) ? 'a' - 10 : '0';
+	ret[1] += (ret[1] > 9) ? 'a' - 10 : '0';
 	ret[2] = '\0';
 }
 
@@ -28,24 +28,67 @@ static void		s_draw_process_pc(void)
 	int			x;
 	int			y;
 
+	pthread_mutex_lock(&sgt_corewar()->mutex_process);
 	list = sgt_corewar()->process;
 	while (list != NULL)
 	{
 		process = list->data;
-		x = process->pc % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH - 1;
+		x = process->pc % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH;
 		y = process->pc / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT;
 		vm_mlx_draw_rect(sgt_mlx()->img_memory, (int[2]){x, y},
 				(int[2]){VM_MEMORY_BYTE_WIDTH, VM_MEMORY_BYTE_HEIGHT},
 				sgt_mlx()->color[process->color_id]);
 		list = list->next;
 	}
+	pthread_mutex_unlock(&sgt_corewar()->mutex_process);
+}
+
+static void		s_draw_live(size_t i)
+{
+	LIBX_DRAW_CIRCLE_TO_IMAGE(sgt_mlx()->img_memory,
+			i % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 1,
+			i / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT,
+			VM_MEMORY_BYTE_HEIGHT, VM_MEMORY_BYTE_HEIGHT,
+			sgt_mlx()->color[sgt_corewar()->ram[i].color_id]);
+	LIBX_STRING_TO_IMAGE(sgt_mlx()->img_memory, sgt_mlx()->img_font,
+			"01", i % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 3,
+			i / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT + 1,
+			0x000000);
+}
+
+static void		*s_thread(void *e)
+{
+	size_t	i;
+	int		color;
+	char	str[3];
+
+	i = *((size_t *)e);
+	while (i < MEM_SIZE)
+	{
+		s_convert_byte_to_hex(str, sgt_corewar()->ram[i].data);
+		color = sgt_mlx()->color[sgt_corewar()->ram[i].color_id];
+		if (sgt_corewar()->ram[i].modified_cycle > \
+				(int)(sgt_corewar()->cycle - CYCLE_DELTA))
+			color += VM_COLOR_BOLD;
+		if (sgt_corewar()->ram[i].live >
+				(int)(sgt_corewar()->cycle - CYCLE_DELTA)
+			&& sgt_corewar()->ram[i].live > 0)
+			s_draw_live(i);
+		else
+			LIBX_STRING_TO_IMAGE(sgt_mlx()->img_memory, sgt_mlx()->img_font,
+					str, i % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 3,
+					i / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT + 1,
+					color);
+		i += 32;
+	}
+	return (NULL);
 }
 
 void			vm_mlx_draw_memory(void)
 {
-	size_t	i;
-	int		color;
-	char	str[BUFF_SIZE];
+	size_t		i;
+	size_t		t[32];
+	pthread_t	thread[32];
 
 	ft_memcpy(sgt_mlx()->img_memory->buffer, sgt_mlx()->background_memory,
 			sgt_mlx()->img_memory->width * sgt_mlx()->img_memory->height * \
@@ -53,16 +96,17 @@ void			vm_mlx_draw_memory(void)
 			sizeof(unsigned char));
 	s_draw_process_pc();
 	i = 0;
-	while (i < MEM_SIZE)
+	while (i < 32)
 	{
-		s_convert_byte_to_hex(str, sgt_corewar()->ram[i].data);
-		color = sgt_mlx()->color[sgt_corewar()->ram[i].color_id];
-		if (sgt_corewar()->ram[i].modified_cycle > \
-				(int)(sgt_corewar()->nbr_cycles - 100))
-			color += VM_COLOR_BOLD;
-		LIBX_STRING_TO_IMAGE(sgt_mlx()->img_memory, sgt_mlx()->img_font, str,
-				i % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 2,
-				i / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT + 1, color);
+		t[i] = i;
+		if ((pthread_create(&thread[i], NULL, &s_thread, &t[i]) < 0))
+			exit(EXIT_FAILURE);
+		i++;
+	}
+	i = 0;
+	while (i < 32)
+	{
+		pthread_join(thread[i], (void *)&t[i]);
 		++i;
 	}
 	byte_position_mouse();

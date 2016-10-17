@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zjmp.c                                             :+:      :+:    :+:   */
+/*   s.c                                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 12:06:59 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/16 16:56:01 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/15 16:31:50 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/15 19:47:48 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	op_zjmp(t_process *process, int type[4], int arg[4])
+/*
+** STEP BY STEP
+*/
+void	vm_press_key_s(t_vm_mlx *mlx)
 {
-	(void)type;
-	if (process->carry == 1)
-	{
-		process->pc = (process->pc + (arg[0] % IDX_MOD) - 3) % MEM_SIZE;
-	}
+	(void)mlx;
+	pthread_mutex_unlock(&sgt_corewar()->mutex);
+	pthread_mutex_lock(&sgt_corewar()->mutex);
 }

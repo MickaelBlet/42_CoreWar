@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c.c                                                :+:      :+:    :+:   */
+/*   lld.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/15 16:31:50 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/15 16:43:34 by mblet            ###   ########.fr       */
+/*   Created: 2016/09/27 12:08:17 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/15 23:14:01 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	vm_release_key_c(t_vm_mlx *mlx)
+void	vm_mlx_op_lld(t_process *process, int type[4], int arg[4])
 {
-	(void)mlx;
-	pthread_mutex_unlock(&sgt_corewar()->mutex);
-	pthread_mutex_lock(&sgt_corewar()->mutex);
+	if (arg[1] > 0 && arg[1] <= REG_NUMBER)
+	{
+		if (type[0] == T_DIR || process->op.has_idx)
+			process->reg[arg[1] - 1] = get_dir_value(process->pc + \
+					(arg[0]));
+		else
+			process->reg[arg[1] - 1] = get_ind_value(process->pc + \
+					(arg[0]));
+		process->carry = 1;
+	}
+	else
+	{
+		process->carry = 0;
+	}
 }
