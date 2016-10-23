@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 12:08:17 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/23 19:43:29 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/24 00:35:30 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,11 @@
 
 void	op_lld(t_process *process, int type[4], int arg[4])
 {
-	if (arg[1] > 0 && arg[1] <= REG_NUMBER)
-	{
-		if (type[0] == T_DIR)
-			process->reg[arg[1] - 1] = get_dir_value(process->pc + \
-					(arg[0]));
-		else
-			process->reg[arg[1] - 1] = get_ind_value(process->pc + \
-					(arg[0]));
-		process->carry = (process->reg[arg[1] - 1] == 0);
-	}
+	if (type[0] == T_DIR)
+		process->reg[arg[1] - 1] = get_dir_value(process->pc +
+				(arg[0]));
 	else
-	{
-		process->carry = 0;
-	}
+		process->reg[arg[1] - 1] = get_ind_value(process->pc +
+				(arg[0]));
+	process->carry = (process->reg[arg[1] - 1] == 0);
 }

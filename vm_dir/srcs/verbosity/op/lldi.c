@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 14:46:22 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/23 15:51:13 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/24 00:41:12 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ void	verbose_op_lldi(t_process *process, int type[4], int arg[4])
 {
 	char	str[2][256];
 
-	if (type[0] == T_REG && (arg[0] <= 0 || arg[0] > REG_NUMBER))
-		return ;
-	if (type[1] == T_REG && (arg[1] <= 0 || arg[1] > REG_NUMBER))
-		return ;
-	if ((arg[2] <= 0 || arg[2] > REG_NUMBER))
-		return ;
 	if (type[0] == T_REG)
 		ft_sprintf(str[0], "r%i", arg[0]);
 	else
