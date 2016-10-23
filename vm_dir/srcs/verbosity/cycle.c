@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm.c                                               :+:      :+:    :+:   */
+/*   cycle.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/15 13:08:05 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/22 23:43:38 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/21 16:55:11 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/21 21:12:34 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	*thread_vm(void *e)
+void	verbose_cycle(void)
 {
-	(void)e;
-	pthread_mutex_lock(&sgt_corewar()->mutex);
-	while (sgt_corewar()->run)
-	{
-		pthread_mutex_lock(&sgt_corewar()->mutex);
-		pthread_mutex_unlock(&sgt_corewar()->mutex);
-		cycle();
-		if (sgt_corewar()->nb_cycle_per_second > 0)
-			usleep(1000000 / sgt_corewar()->nb_cycle_per_second);
-		if (sgt_corewar()->cycle == 20700)
-			pthread_mutex_lock(&sgt_corewar()->mutex);
-	}
-	win();
-	return (NULL);
+	if (sgt_corewar()->option.verbose.cycle == false)
+		return ;
+	ft_printf("It is now cycle %lli\n", sgt_corewar()->cycle);
 }

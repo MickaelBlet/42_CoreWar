@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/19 00:50:16 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/17 00:22:23 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/21 22:43:51 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static int		s_find_free_id(void)
 	t_file		*file;
 	int			id;
 
-	id = 0;
-	while (id < MAX_PLAYERS)
+	id = -1;
+	while (id > -MAX_PLAYERS - 1)
 	{
 		list = sgt_corewar()->files;
 		while (list)
@@ -31,7 +31,7 @@ static int		s_find_free_id(void)
 		}
 		if (list == NULL)
 			return (id);
-		++id;
+		--id;
 	}
 	ERR("corewar: max player.");
 	exit(EXIT_FAILURE);
@@ -51,11 +51,29 @@ static void		s_check_file_without_id(char *arg)
 	ft_lstd_push_front(&sgt_corewar()->files, file);
 }
 
+static t_bool	s_check_verbosity(char *arg)
+{
+	t_bool	ret;
+
+	ret = false;
+	if (ft_strequ(arg, "--lives") && (ret = true))
+		sgt_corewar()->option.verbose.live = true;
+	if (ft_strequ(arg, "--cycles") && (ret = true))
+		sgt_corewar()->option.verbose.cycle = true;
+	if (ft_strequ(arg, "--ops") && (ret = true))
+		sgt_corewar()->option.verbose.op = true;
+	if (ft_strequ(arg, "--deaths") && (ret = true))
+		sgt_corewar()->option.verbose.death = true;
+	if (ft_strequ(arg, "--moves") && (ret = true))
+		sgt_corewar()->option.verbose.move = true;
+	return (ret);
+}
+
 static void		s_check_dump(int *i, char *arg)
 {
 	if (ft_aisi(arg))
 	{
-		sgt_corewar()->dump = ft_atoi(arg);
+		sgt_corewar()->option.dump = ft_atoi(arg);
 		++(*i);
 	}
 	else
@@ -77,13 +95,13 @@ void			option(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		if (ft_strequ(argv[i], "-dump"))
+		if (ft_strequ(argv[i], "-d"))
 			s_check_dump(&i, argv[i + 1]);
 		else if (ft_strequ(argv[i], "-n"))
 			file_check(&i, argv);
 		else if (ft_strequ(argv[i], "-g"))
-			sgt_corewar()->graphic = true;
-		else
+			sgt_corewar()->option.graphic = true;
+		else if (s_check_verbosity(argv[i]) == false)
 			s_check_file_without_id(argv[i]);
 		++i;
 	}

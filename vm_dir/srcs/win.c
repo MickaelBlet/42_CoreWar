@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm.c                                               :+:      :+:    :+:   */
+/*   win.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/15 13:08:05 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/22 23:43:38 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/17 18:49:09 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/22 13:03:04 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	*thread_vm(void *e)
+void	win(void)
 {
-	(void)e;
-	pthread_mutex_lock(&sgt_corewar()->mutex);
-	while (sgt_corewar()->run)
+	t_listd		*list;
+	t_player	*player;
+	t_player	*tmp;
+
+	list = sgt_corewar()->players;
+	tmp = NULL;
+	while (list)
 	{
-		pthread_mutex_lock(&sgt_corewar()->mutex);
-		pthread_mutex_unlock(&sgt_corewar()->mutex);
-		cycle();
-		if (sgt_corewar()->nb_cycle_per_second > 0)
-			usleep(1000000 / sgt_corewar()->nb_cycle_per_second);
-		if (sgt_corewar()->cycle == 20700)
-			pthread_mutex_lock(&sgt_corewar()->mutex);
+		player = list->data;
+		if (tmp == NULL)
+			tmp = player;
+		else if (player->last_live > tmp->last_live)
+			tmp = player;
+		list = list->next;
 	}
-	win();
-	return (NULL);
+	ft_printf("Contestant %i, \"%s\", has won !\n", -tmp->id, tmp->name);
 }

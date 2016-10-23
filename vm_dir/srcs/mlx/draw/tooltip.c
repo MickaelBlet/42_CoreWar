@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/16 12:58:22 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/16 13:39:18 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/22 23:50:18 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void		s_info(int pc, int x, int y)
 	x += 5;
 	y += 2;
 	op = op_tab(sgt_corewar()->ram[pc].data - 1);
-	ft_sprintf(str, "op: %-14s code: %02x\n\n%6s%9s%9s\n%08x %08x %08x",
-			op.name, op.op_code, "T_REG", "T_REG", "T_REG",
+	ft_sprintf(str, "index: 0x%04x op: %-5s code: %02x\n\n%6s%9s%9s\n%08x %08x %08x",
+			pc, op.name, op.op_code, "T_REG", "T_REG", "T_REG",
 			0, 0, 0);
 	LIBX_STRING_TO_IMAGE(sgt_mlx()->img_memory, sgt_mlx()->img_font,
 			str, x, y, 0xFFFFFF);

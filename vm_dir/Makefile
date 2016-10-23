@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/07 09:22:24 by mblet             #+#    #+#              #
-#    Updated: 2016/10/17 02:23:03 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/23 11:16:09 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCBASE		=	\
 				file/get_header.c											\
 				file/read.c													\
 				func_tab.c													\
+				func_verbose_tab.c											\
 				main.c														\
 				mlx/draw/background.c										\
 				mlx/draw/fill_transparent_rect.c							\
@@ -94,13 +95,37 @@ SRCBASE		=	\
 				process/check_live.c										\
 				process/creat.c												\
 				process/fork.c												\
+				process/jump.c												\
 				ram/get_values.c											\
 				ram/ini_ram.c												\
 				ram/set_values.c											\
 				sgt/sgt_corewar.c											\
 				sgt/sgt_mlx.c												\
 				thread/launch.c												\
-				thread/vm.c
+				thread/vm.c													\
+				verbosity/cycle.c											\
+				verbosity/cycle_to_die.c									\
+				verbosity/death.c											\
+				verbosity/live.c											\
+				verbosity/move.c											\
+				verbosity/op/add.c											\
+				verbosity/op/aff.c											\
+				verbosity/op/and.c											\
+				verbosity/op/fork.c											\
+				verbosity/op/ld.c											\
+				verbosity/op/ldi.c											\
+				verbosity/op/lfork.c										\
+				verbosity/op/live.c											\
+				verbosity/op/lld.c											\
+				verbosity/op/lldi.c											\
+				verbosity/op/or.c											\
+				verbosity/op/st.c											\
+				verbosity/op/sti.c											\
+				verbosity/op/sub.c											\
+				verbosity/op/xor.c											\
+				verbosity/op/zjmp.c											\
+				verbosity/op.c												\
+				win.c
 
 SRCS		=	$(addprefix $(SRCDIR), $(SRCBASE))
 INCS		=	$(addprefix $(INCDIR), $(INCBASE))

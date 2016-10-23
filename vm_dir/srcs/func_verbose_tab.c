@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   func_tab.c                                         :+:      :+:    :+:   */
+/*   func_verbose_tab.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/26 09:27:06 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/22 14:34:07 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/22 14:34:49 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/22 14:42:11 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 
 static void		s_ini_func_tab(t_func_op *t)
 {
-	t[0] = &op_live;
-	t[1] = &op_ld;
-	t[2] = &op_st;
-	t[3] = &op_add;
-	t[4] = &op_sub;
-	t[5] = &op_and;
-	t[6] = &op_or;
-	t[7] = &op_xor;
-	t[8] = &op_zjmp;
-	t[9] = &op_ldi;
-	t[10] = &op_sti;
-	t[11] = &op_fork;
-	t[12] = &op_lld;
-	t[13] = &op_lldi;
-	t[14] = &op_lfork;
-	t[15] = &op_aff;
+	t[0] = &verbose_op_live;
+	t[1] = &verbose_op_ld;
+	t[2] = &verbose_op_st;
+	t[3] = &verbose_op_add;
+	t[4] = &verbose_op_sub;
+	t[5] = &verbose_op_and;
+	t[6] = &verbose_op_or;
+	t[7] = &verbose_op_xor;
+	t[8] = &verbose_op_zjmp;
+	t[9] = &verbose_op_ldi;
+	t[10] = &verbose_op_sti;
+	t[11] = &verbose_op_fork;
+	t[12] = &verbose_op_lld;
+	t[13] = &verbose_op_lldi;
+	t[14] = &verbose_op_lfork;
+	t[15] = &verbose_op_aff;
 	t[16] = NULL;
 }
 
-t_func_op		func_tab(int index)
+t_func_op		func_verbose_tab(int index)
 {
 	static t_func_op	*t = NULL;
 

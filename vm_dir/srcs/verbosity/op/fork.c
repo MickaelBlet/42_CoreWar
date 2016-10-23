@@ -5,35 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/04 23:37:54 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/22 01:21:50 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/22 14:46:22 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/22 16:25:20 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void		s_fork_reg(t_process *new, t_process *process)
+void	verbose_op_fork(t_process *process, int type[4], int arg[4])
 {
-	size_t	i;
-
-	i = 0;
-	while (i < REG_NUMBER)
-	{
-		new->reg[i] = process->reg[i];
-		++i;
-	}
-}
-
-t_process		*process_fork(t_process *process, size_t index)
-{
-	t_process	*new;
-
-	if ((new = process_creat(index, process->id, process->color_id)) == NULL)
-		return (NULL);
-	s_fork_reg(new, process);
-	new->live = process->live;
-	new->carry = process->carry;
-	new->op = op_tab(16);
-	new->op_cycle = process->op_cycle;
-	return (new);
+	(void)type;
+	ft_printf("P %4u | %s %i (%i)\n",
+			process->uid, process->op.name,
+			arg[0], process->pc + (arg[0] % IDX_MOD));
 }

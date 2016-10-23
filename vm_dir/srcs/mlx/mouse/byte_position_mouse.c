@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 17:39:59 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/16 13:00:20 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/18 10:40:29 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void			byte_position_mouse(void)
 	{
 		pc = (sgt_mlx()->mouse.y - VM_MEMORY_D_HEIGHT - 1) /
 			VM_MEMORY_BYTE_HEIGHT *
-			VM_MEMORY_NB_BYTE_LINE + (sgt_mlx()->mouse.x - VM_INFO_WIDTH - 1) /
+			VM_MEMORY_NB_BYTE_LINE + (sgt_mlx()->mouse.x - VM_INFO_WIDTH - 3) /
 			VM_MEMORY_BYTE_WIDTH;
 		s_draw_rect_position(pc);
 		vm_mlx_draw_tooltip(pc);

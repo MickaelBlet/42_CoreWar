@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/28 16:31:06 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/17 00:54:58 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/21 23:28:45 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ void			ini_ram(void)
 		++i;
 	}
 	s_sort_files();
+	ft_printf("Introducing contestants...\n");
 	s_place_file_and_creat_pc();
 }

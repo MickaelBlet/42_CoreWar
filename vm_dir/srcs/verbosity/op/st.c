@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/27 12:04:49 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/23 01:11:27 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/22 14:46:22 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/22 16:54:26 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,51 +15,36 @@
 static void		s_if_reg(t_process *process, int type[4], int arg[4])
 {
 	(void)type;
-	if (type[0] == T_REG && arg[0] > 0 && arg[0] <= REG_NUMBER
-		&& arg[1] > 0 && arg[1] <= REG_NUMBER)
-	{
-		set_4byte_value(process, process->pc + process->reg[arg[1] - 1],
-				process->reg[arg[0] - 1]);
-		process->carry = 1;
-	}
-	else
-	{
-		process->carry = 0;
-	}
+	if (arg[0] <= 0 || arg[0] > REG_NUMBER
+		|| arg[1] <= 0 || arg[1] > REG_NUMBER)
+		return ;
+	ft_printf("P %4u | %s r%i r%i\n",
+			process->uid, process->op.name,
+			arg[0], arg[1]);
 }
 
 static void		s_if_not_reg(t_process *process, int type[4], int arg[4])
 {
-	if (type[0] == T_REG && arg[0] > 0 && arg[0] <= REG_NUMBER)
+	if (arg[0] <= 0 || arg[0] > REG_NUMBER)
+		return ;
+	if (type[1] == T_IND)
 	{
-		if (type[1] == T_IND)
-		{
-			//DGL;
-			set_4byte_value(process, process->pc + (arg[1] % IDX_MOD),
-					process->reg[arg[0] - 1]);
-		}
-		else
-		{
-			//DGL;
-			set_4byte_value(process, process->pc + arg[1],
-					process->reg[arg[0] - 1]);
-		}
-		process->carry = 1;
+		ft_printf("P %4u | %s r%i %i\n",
+				process->uid, process->op.name,
+				arg[0], arg[1]);
 	}
 	else
 	{
-		process->carry = 0;
+		ft_printf("P %4u | %s r%i %i\n",
+				process->uid, process->op.name,
+				arg[0], arg[1]);
 	}
 }
 
-void			op_st(t_process *process, int type[4], int arg[4])
+void			verbose_op_st(t_process *process, int type[4], int arg[4])
 {
 	if (type[1] == T_REG)
-	{
 		s_if_reg(process, type, arg);
-	}
 	else
-	{
 		s_if_not_reg(process, type, arg);
-	}
 }

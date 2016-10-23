@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm.c                                               :+:      :+:    :+:   */
+/*   sub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/15 13:08:05 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/22 23:43:38 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/22 14:46:22 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/22 15:08:52 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	*thread_vm(void *e)
+void	verbose_op_sub(t_process *process, int type[4], int arg[4])
 {
-	(void)e;
-	pthread_mutex_lock(&sgt_corewar()->mutex);
-	while (sgt_corewar()->run)
-	{
-		pthread_mutex_lock(&sgt_corewar()->mutex);
-		pthread_mutex_unlock(&sgt_corewar()->mutex);
-		cycle();
-		if (sgt_corewar()->nb_cycle_per_second > 0)
-			usleep(1000000 / sgt_corewar()->nb_cycle_per_second);
-		if (sgt_corewar()->cycle == 20700)
-			pthread_mutex_lock(&sgt_corewar()->mutex);
-	}
-	win();
-	return (NULL);
+	(void)type;
+	if (arg[0] <= 0 || arg[0] > REG_NUMBER
+		|| arg[1] <= 0 || arg[1] > REG_NUMBER
+		|| arg[2] <= 0 || arg[2] > REG_NUMBER)
+		return ;
+	ft_printf("P %4u | %s r%i r%i r%i\n",
+			process->uid, process->op.name,
+			arg[0], arg[1], arg[3]);
 }

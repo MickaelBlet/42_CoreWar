@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/19 12:16:13 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/13 14:28:37 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/17 19:03:13 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void			file_check(int *i, char **argv)
 			ERR("corewar: error read file.");
 			exit(EXIT_FAILURE);
 		}
-		file->id = ft_atoi(argv[*i]);
+		file->id = -ft_atoi(argv[*i]);
 		s_check_if_free_id(file->id);
 		++(*i);
 		ft_lstd_push_front(&sgt_corewar()->files, file);

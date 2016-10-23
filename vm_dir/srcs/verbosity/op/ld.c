@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm.c                                               :+:      :+:    :+:   */
+/*   ld.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/15 13:08:05 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/22 23:43:38 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/22 14:46:22 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/22 14:54:17 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	*thread_vm(void *e)
+void	verbose_op_ld(t_process *process, int type[4], int arg[4])
 {
-	(void)e;
-	pthread_mutex_lock(&sgt_corewar()->mutex);
-	while (sgt_corewar()->run)
-	{
-		pthread_mutex_lock(&sgt_corewar()->mutex);
-		pthread_mutex_unlock(&sgt_corewar()->mutex);
-		cycle();
-		if (sgt_corewar()->nb_cycle_per_second > 0)
-			usleep(1000000 / sgt_corewar()->nb_cycle_per_second);
-		if (sgt_corewar()->cycle == 20700)
-			pthread_mutex_lock(&sgt_corewar()->mutex);
-	}
-	win();
-	return (NULL);
+	int		val;
+
+	if (arg[1] <= 0 || arg[1] > REG_NUMBER)
+		return ;
+	if (type[0] == T_IND)
+		val = arg[0] % IDX_MOD;
+	else
+		val = arg[0];
+	ft_printf("P %4u | %s %i r%i\n",
+			process->uid, process->op.name,
+			val, arg[1]);
 }

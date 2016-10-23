@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm.c                                               :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/15 13:08:05 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/22 23:43:38 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/21 22:15:08 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/22 17:05:44 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-void	*thread_vm(void *e)
+void	verbose_move(t_process *process, int jump)
 {
-	(void)e;
-	pthread_mutex_lock(&sgt_corewar()->mutex);
-	while (sgt_corewar()->run)
+	int		index;
+
+	if (sgt_corewar()->option.verbose.move == false)
+		return ;
+	ft_printf("ADV %u (0x%04x -> 0x%04x) ", jump, process->pc,
+			(process->pc + jump) % MEM_SIZE);
+	index = 0;
+	while (index < jump)
 	{
-		pthread_mutex_lock(&sgt_corewar()->mutex);
-		pthread_mutex_unlock(&sgt_corewar()->mutex);
-		cycle();
-		if (sgt_corewar()->nb_cycle_per_second > 0)
-			usleep(1000000 / sgt_corewar()->nb_cycle_per_second);
-		if (sgt_corewar()->cycle == 20700)
-			pthread_mutex_lock(&sgt_corewar()->mutex);
+		ft_printf("%02x ",
+				sgt_corewar()->ram[(process->pc + index) % MEM_SIZE]);
+		++index;
 	}
-	win();
-	return (NULL);
+	ft_putchar('\n');
 }

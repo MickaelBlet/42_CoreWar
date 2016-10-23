@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 11:11:46 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/17 02:04:35 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/18 19:46:07 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,30 +28,28 @@ static void		s_draw_process_pc(void)
 	int			x;
 	int			y;
 
-	pthread_mutex_lock(&sgt_corewar()->mutex_process);
 	list = sgt_corewar()->process;
 	while (list != NULL)
 	{
 		process = list->data;
-		x = process->pc % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH;
+		x = process->pc % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 2;
 		y = process->pc / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT;
 		vm_mlx_draw_rect(sgt_mlx()->img_memory, (int[2]){x, y},
 				(int[2]){VM_MEMORY_BYTE_WIDTH, VM_MEMORY_BYTE_HEIGHT},
 				sgt_mlx()->color[process->color_id]);
 		list = list->next;
 	}
-	pthread_mutex_unlock(&sgt_corewar()->mutex_process);
 }
 
 static void		s_draw_live(size_t i)
 {
 	LIBX_DRAW_CIRCLE_TO_IMAGE(sgt_mlx()->img_memory,
-			i % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 1,
+			i % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 3,
 			i / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT,
 			VM_MEMORY_BYTE_HEIGHT, VM_MEMORY_BYTE_HEIGHT,
 			sgt_mlx()->color[sgt_corewar()->ram[i].color_id]);
 	LIBX_STRING_TO_IMAGE(sgt_mlx()->img_memory, sgt_mlx()->img_font,
-			"01", i % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 3,
+			"01", i % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 5,
 			i / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT + 1,
 			0x000000);
 }
@@ -71,12 +69,12 @@ static void		*s_thread(void *e)
 				(int)(sgt_corewar()->cycle - CYCLE_DELTA))
 			color += VM_COLOR_BOLD;
 		if (sgt_corewar()->ram[i].live >
-				(int)(sgt_corewar()->cycle - CYCLE_DELTA)
+				(int)(sgt_corewar()->cycle - sgt_corewar()->nb_cycle_per_second)
 			&& sgt_corewar()->ram[i].live > 0)
 			s_draw_live(i);
 		else
 			LIBX_STRING_TO_IMAGE(sgt_mlx()->img_memory, sgt_mlx()->img_font,
-					str, i % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 3,
+					str, i % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 5,
 					i / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT + 1,
 					color);
 		i += 32;

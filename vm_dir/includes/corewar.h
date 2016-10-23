@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/17 02:03:27 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/22 16:42:51 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define MSG_USAGE		"./corewar [-dump nbr_cycles] [[-n number] file.cor]"
+# define __MSG0			"./corewar "
+# define __MSG1			"[-d nbr_cycles] "
+# define __MSG2			"[--lives --cycles --ops --deaths --moves] "
+# define __MSG3			"[[-n number] file.cor]"
+# define MSG_USAGE		__MSG0 __MSG1 __MSG2 __MSG3
 
 # define ERR_OPEN_FILE			"corewar: Can't open file \"%s\".\n"
 # define ERR_SAME_ID			"corewar: Same file id.\n"
@@ -41,11 +45,13 @@ typedef struct			s_byte
 
 typedef struct			s_process
 {
+	size_t				uid;
 	int					id;
 	size_t				pc;
-	int					reg[REG_NUMBER];
 	int					live;
+	int					reg[REG_NUMBER];
 	int					carry;
+	t_bool				in_action;
 	t_op				op;
 	int					op_cycle;
 	int					color_id;
@@ -68,6 +74,22 @@ typedef struct			s_file
 	char				data[CHAMP_MAX_SIZE + sizeof(t_header)];
 }						t_file;
 
+typedef struct			s_verbose
+{
+	t_bool				live;
+	t_bool				cycle;
+	t_bool				op;
+	t_bool				death;
+	t_bool				move;
+}						t_verbose;
+
+typedef struct			s_option
+{
+	t_verbose			verbose;
+	int					dump;
+	t_bool				graphic;
+}						t_option;
+
 typedef struct			s_corewar
 {
 	long				cycle;
@@ -81,9 +103,8 @@ typedef struct			s_corewar
 	pthread_t			thread;
 	pthread_mutex_t		mutex;
 	pthread_mutex_t		mutex_process;
-	int					dump;
-	t_bool				graphic;
 	size_t				nb_cycle_per_second;
+	t_option			option;
 	t_bool				run;
 }						t_corewar;
 
@@ -190,11 +211,59 @@ void					cycle(void);
 void					dump(void);
 
 /*
+** VERBOSE
+*/
+void					verbose_live(int id, char *name);
+void					verbose_cycle(void);
+void					verbose_cycle_to_die(void);
+void					verbose_op(t_process *process, int type[4], int arg[4]);
+void					verbose_death(t_process *process);
+void					verbose_move(t_process *process, int jump);
+t_func_op				func_verbose_tab(int index);
+void					verbose_op_live(t_process *process,
+		int type[4], int arg[4]);
+void					verbose_op_ld(t_process *process,
+		int type[4], int arg[4]);
+void					verbose_op_st(t_process *process,
+		int type[4], int arg[4]);
+void					verbose_op_add(t_process *process,
+		int type[4], int arg[4]);
+void					verbose_op_sub(t_process *process,
+		int type[4], int arg[4]);
+void					verbose_op_and(t_process *process,
+		int type[4], int arg[4]);
+void					verbose_op_or(t_process *process,
+		int type[4], int arg[4]);
+void					verbose_op_xor(t_process *process,
+		int type[4], int arg[4]);
+void					verbose_op_zjmp(t_process *process,
+		int type[4], int arg[4]);
+void					verbose_op_ldi(t_process *process,
+		int type[4], int arg[4]);
+void					verbose_op_sti(t_process *process,
+		int type[4], int arg[4]);
+void					verbose_op_fork(t_process *process,
+		int type[4], int arg[4]);
+void					verbose_op_lld(t_process *process,
+		int type[4], int arg[4]);
+void					verbose_op_lldi(t_process *process,
+		int type[4], int arg[4]);
+void					verbose_op_lfork(t_process *process,
+		int type[4], int arg[4]);
+void					verbose_op_aff(t_process *process,
+		int type[4], int arg[4]);
+
+/*
+** WIN
+*/
+void					win(void);
+
+/*
 ** #############################################################################
 **                                     MLX
 ** #############################################################################
 */
-# define VM_WIN_WIDTH				1682
+# define VM_WIN_WIDTH				1684
 # define VM_WIN_HEIGHT				1034
 
 # define VM_PATH_FONT				"./resources/font/11.xpm"

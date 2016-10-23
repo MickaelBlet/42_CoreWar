@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/16 02:25:26 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/16 03:25:34 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/18 22:20:57 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,22 @@ void			dump(void)
 	size_t	i;
 
 	i = 0;
+		ft_printf("0x%04x : ", i);
 	while (i < MEM_SIZE)
 	{
 		s_convert_byte_to_hex(hex, sgt_corewar()->ram[i].data);
-		if (sgt_corewar()->ram[i].color_id > 0)
-			ft_printf("{fg=%i}", sgt_corewar()->ram[i].color_id);
+		//if (sgt_corewar()->ram[i].color_id > 0)
+			//ft_printf("{fg=%i}", sgt_corewar()->ram[i].color_id);
 		ft_putstr(hex);
-		ft_printf("{reset}");
+		//ft_printf("{reset}");
 		++i;
-		if (i % 32 == 0)
-			ft_putchar('\n');
-		else
 			ft_putchar(' ');
+		if (i % 64 == 0)
+		{
+			ft_putchar('\n');
+			if (i < MEM_SIZE)
+				ft_printf("0x%04x : ", i);
+		}
 	}
-	system("afplay /System/Library/Sounds/Basso.aiff&");
+	//system("afplay /System/Library/Sounds/Basso.aiff&");
 }

@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/15 11:17:57 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/15 19:58:54 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/18 10:38:57 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static t_bool	s_img_init(void)
 	mlx = sgt_mlx();
 	mlx->img_font = libx_xpm_file_to_image(mlx->mlx, VM_PATH_FONT);
 	mlx->img_memory = libx_new_image(mlx->mlx,
-			VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH,
+			VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 3,
 			MEM_SIZE / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT);
 	mlx->img_info = libx_new_image(mlx->mlx,
 			VM_INFO_WIDTH, VM_WIN_HEIGHT);
