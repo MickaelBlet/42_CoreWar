@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/07 09:22:24 by mblet             #+#    #+#              #
-#    Updated: 2016/10/23 20:14:20 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/23 20:25:40 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRCBASE		=	\
 				op/aff.c													\
 				op/and.c													\
 				op/byte_code_to_type.c										\
+				op/check_type_args.c										\
 				op/fork.c													\
 				op/ld.c														\
 				op/ldi.c													\

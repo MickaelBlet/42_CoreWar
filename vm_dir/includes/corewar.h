@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/23 17:28:22 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/23 20:24:39 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,8 @@ void					process_check_live(void);
 ** OP
 */
 void					byte_code_to_type(int (*t)[4], unsigned char b);
+t_bool					check_type_args(t_process *process,
+		int type[4], int arg[4]);
 t_op					op_tab(int index);
 t_func_op				func_tab(int index);
 void					op_live(t_process *process, int type[4], int arg[4]);
