@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 12:07:14 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/13 18:04:40 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/23 19:43:08 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	op_ldi(t_process *process, int type[4], int arg[4])
 	{
 		process->reg[arg[2] - 1] = get_reg_value(process->pc + \
 				((val[0] + val[1]) % IDX_MOD));
-		process->carry = 1;
+		process->carry = (process->reg[arg[2] - 1] == 0);
 	}
 	else
 	{

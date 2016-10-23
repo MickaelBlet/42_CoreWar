@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/16 23:28:58 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/22 22:33:48 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/23 13:35:46 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void			cycle(void)
 		return ;
 	}
 	++sgt_corewar()->cycle;
-	verbose_cycle();
 	s_dump();
+	verbose_cycle();
 	while (list_process)
 	{
 		process_action(list_process->data);

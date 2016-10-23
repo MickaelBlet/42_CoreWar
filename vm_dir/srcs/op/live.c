@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 09:35:43 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/23 01:00:00 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/23 17:29:15 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,10 @@ void	op_live(t_process *process, int type[4], int arg[4])
 		player->live += 1;
 		process->live = sgt_corewar()->cycle;
 		player->last_live = sgt_corewar()->cycle;
+		sgt_corewar()->id_last_live = arg[0];
 		sgt_corewar()->ram[process->pc].color_id = player->color_id;
 		sgt_corewar()->ram[process->pc].live = sgt_corewar()->cycle;
-		//process->carry = 1;
 		return ;
 	}
 	process->live = sgt_corewar()->cycle;
-	//process->carry = 1;
 }

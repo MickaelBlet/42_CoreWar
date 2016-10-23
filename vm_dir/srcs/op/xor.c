@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 12:06:37 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/13 17:08:43 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/23 19:45:24 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	op_xor(t_process *process, int type[4], int arg[4])
 	if (arg[2] > 0 && arg[2] <= REG_NUMBER)
 	{
 		process->reg[arg[2] - 1] = val[0] ^ val[1];
-		process->carry = 1;
+		process->carry = (process->reg[arg[2] - 1] == 0);
 	}
 	else
 	{

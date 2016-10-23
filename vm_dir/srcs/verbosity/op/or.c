@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 14:46:22 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/22 16:41:24 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/23 15:51:21 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	verbose_op_or(t_process *process, int type[4], int arg[4])
 		ft_sprintf(str[1], "r%i", arg[1]);
 	else
 		ft_sprintf(str[1], "%i", arg[1]);
-	ft_printf("P %4u | %s %s %s r%i\n",
+	ft_printf("P %4lu | %s %s %s r%i\n",
 			process->uid, process->op.name,
 			str[0], str[1], arg[2]);
 }

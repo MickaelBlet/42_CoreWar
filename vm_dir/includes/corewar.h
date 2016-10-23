@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/22 16:42:51 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/23 17:28:22 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct			s_corewar
 	long				cycle_to_die;
 	size_t				cycle_check;
 	long				last_cycle_check;
+	int					id_last_live;
 	t_byte				ram[MEM_SIZE];
 	t_listd				*files;
 	t_listd				*players;

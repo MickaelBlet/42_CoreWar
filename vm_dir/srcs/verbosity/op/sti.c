@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 14:46:22 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/22 16:50:17 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/23 15:53:22 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	verbose_op_sti(t_process *process, int type[4], int arg[4])
 		ft_sprintf(str[1], "r%i", arg[2]);
 	else
 		ft_sprintf(str[1], "%i", arg[2]);
-	ft_printf("P %4u | %s r%i %s %s\n"
-			"       | -> store to %i + %i = %i (with pc and mod %i)\n",
+	ft_printf("P %4lu | %s r%i %s %s\n"
+			"       | -> store to %i + %i = %i (with pc and mod %li)\n",
 			process->uid, process->op.name,
 			arg[0], str[0], str[1],
 			arg[1], arg[2], arg[1] + arg[2],

@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:18:18 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/23 11:16:09 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/23 19:58:45 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,8 @@ static void		s_func(t_process *process)
 	int		val[4];
 	int		index_type;
 
-	type[0] = 0;
-	type[1] = 0;
-	type[2] = 0;
-	type[3] = 0;
-	val[0] = 0;
-	val[1] = 0;
-	val[2] = 0;
-	val[3] = 0;
+	ft_bzero(type, sizeof(int) * 4);
+	ft_bzero(val, sizeof(int) * 4);
 	index_type = 1;
 	val[0] = get_value_from_type((process->pc + index_type) % MEM_SIZE,
 			process->op.type_args[0], process->op.has_idx);
@@ -39,7 +33,6 @@ static void		s_func(t_process *process)
 	{
 		index_type += 4;
 	}
-	//DG("%i, %x, %x, %x", val[0], val[1], val[2], val[3]);
 	verbose_op(process, type, val);
 	func_tab(process->op.op_code - 1)(process, type, val);
 	if (process->op.op_code != 9)
@@ -57,32 +50,12 @@ static void		s_func_pcode(t_process *process)
 
 	ft_bzero(type, sizeof(int) * 4);
 	ft_bzero(val, sizeof(int) * 4);
-	type[0] = 0;
-	type[1] = 0;
-	type[2] = 0;
-	type[3] = 0;
-	val[0] = 0;
-	val[1] = 0;
-	val[2] = 0;
-	val[3] = 0;
 	byte_code_to_type(&type,
 			sgt_corewar()->ram[(process->pc + 1) % MEM_SIZE].data);
 	i = 0;
 	index_type = 2;
 	while (i < process->op.nb_args)
 	{
-		/*if (!(process->op.type_args[i] & type[i]))
-		{
-			process->pc = (process->pc + 1) % MEM_SIZE;
-			process->op = op_tab(16);
-			return ;
-		}*/
-		//if (process->op.op_code >= 3 && process->op.op_code <= 5
-			//&& type[i] == T_IND)
-		//{
-			//type[i] = T_DIR;
-			//process->op.has_idx = 1;
-		//}
 		val[i] = get_value_from_type(process->pc + index_type,
 				type[i], process->op.has_idx);
 		index_type = (type[i] == T_REG) ? index_type + 1 : index_type;
@@ -94,8 +67,11 @@ static void		s_func_pcode(t_process *process)
 			index_type += 2;
 		++i;
 	}
-	verbose_op(process, type, val);
-	func_tab(process->op.op_code - 1)(process, type, val);
+	if (index_type > 2)
+	{
+		verbose_op(process, type, val);
+		func_tab(process->op.op_code - 1)(process, type, val);
+	}
 	verbose_move(process, index_type);
 	process->pc = (process->pc + index_type) % MEM_SIZE;
 	process->op = op_tab(16);
@@ -112,14 +88,12 @@ static t_bool	s_new_op(t_process *process)
 	op = sgt_corewar()->ram[process->pc].data - 1;
 	if (op_tab(op).op_code != 0)
 	{
-		//DG("code:%s", op_tab(i).name);
 		process->op = op_tab(op);
 		process->op_cycle = op_tab(op).nb_cycles - 1;
 		return (true);
 	}
 	process->op = op_tab(16);
 	process->pc = (process->pc + 1) % MEM_SIZE;
-	process->carry = 0;
 	return (true);
 }
 
@@ -127,13 +101,10 @@ void			process_action(t_process *process)
 {
 	if (process == NULL)
 		return ;
-	//DG("info pc:\n\tindex=%i\n\top_code=%i\n\tnb_cycle=%i", process->pc, sgt_corewar()->ram[process->pc].data, process->op_cycle);
 	if (process->op_cycle > 0)
 		process->op_cycle -= 1;
 	if (s_new_op(process) == true)
 		return ;
-	//if (sgt_corewar()->ram[process->pc].data != process->op.op_code)
-		//return ((void)s_new_op(process));
 	if (process->op.has_pcode)
 		return (s_func_pcode(process));
 	else

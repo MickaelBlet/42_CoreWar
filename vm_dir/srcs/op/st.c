@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 12:04:49 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/23 01:11:27 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/23 19:44:36 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ static void		s_if_reg(t_process *process, int type[4], int arg[4])
 	{
 		set_4byte_value(process, process->pc + process->reg[arg[1] - 1],
 				process->reg[arg[0] - 1]);
-		process->carry = 1;
-	}
-	else
-	{
-		process->carry = 0;
 	}
 }
 
@@ -34,21 +29,14 @@ static void		s_if_not_reg(t_process *process, int type[4], int arg[4])
 	{
 		if (type[1] == T_IND)
 		{
-			//DGL;
 			set_4byte_value(process, process->pc + (arg[1] % IDX_MOD),
 					process->reg[arg[0] - 1]);
 		}
 		else
 		{
-			//DGL;
 			set_4byte_value(process, process->pc + arg[1],
 					process->reg[arg[0] - 1]);
 		}
-		process->carry = 1;
-	}
-	else
-	{
-		process->carry = 0;
 	}
 }
 

@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/07 09:22:24 by mblet             #+#    #+#              #
-#    Updated: 2016/10/23 12:07:52 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/23 20:14:20 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,22 +55,6 @@ SRCBASE		=	\
 				mlx/mouse/motion.c											\
 				mlx/threads/info.c											\
 				mlx/threads/memory.c										\
-				mlx/tooltip/info_byte/op/add.c								\
-				mlx/tooltip/info_byte/op/aff.c								\
-				mlx/tooltip/info_byte/op/and.c								\
-				mlx/tooltip/info_byte/op/fork.c								\
-				mlx/tooltip/info_byte/op/ld.c								\
-				mlx/tooltip/info_byte/op/ldi.c								\
-				mlx/tooltip/info_byte/op/lfork.c							\
-				mlx/tooltip/info_byte/op/live.c								\
-				mlx/tooltip/info_byte/op/lld.c								\
-				mlx/tooltip/info_byte/op/lldi.c								\
-				mlx/tooltip/info_byte/op/or.c								\
-				mlx/tooltip/info_byte/op/st.c								\
-				mlx/tooltip/info_byte/op/sti.c								\
-				mlx/tooltip/info_byte/op/sub.c								\
-				mlx/tooltip/info_byte/op/xor.c								\
-				mlx/tooltip/info_byte/op/zjmp.c								\
 				op/add.c													\
 				op/aff.c													\
 				op/and.c													\

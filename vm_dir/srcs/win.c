@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 18:49:09 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/22 13:03:04 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/23 17:39:05 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,15 @@ void	win(void)
 	while (list)
 	{
 		player = list->data;
-		if (tmp == NULL)
+		if (player->id == sgt_corewar()->id_last_live)
+		{
 			tmp = player;
-		else if (player->last_live > tmp->last_live)
-			tmp = player;
+			break ;
+		}
 		list = list->next;
 	}
-	ft_printf("Contestant %i, \"%s\", has won !\n", -tmp->id, tmp->name);
+	if (tmp == NULL)
+		ft_printf("All contestant, has lose !\n");
+	else
+		ft_printf("Contestant %i, \"%s\", has won !\n", -tmp->id, tmp->name);
 }

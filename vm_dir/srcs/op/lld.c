@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/27 12:08:17 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/22 16:34:37 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/23 19:43:29 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	op_lld(t_process *process, int type[4], int arg[4])
 		else
 			process->reg[arg[1] - 1] = get_ind_value(process->pc + \
 					(arg[0]));
-		process->carry = 1;
+		process->carry = (process->reg[arg[1] - 1] == 0);
 	}
 	else
 	{
