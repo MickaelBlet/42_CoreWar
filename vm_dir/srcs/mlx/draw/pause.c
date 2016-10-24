@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/24 11:10:35 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 15:28:24 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/24 18:08:33 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void		s_pixel_to_gray(t_libx_img *img, int x, int y)
 	b = *i++;
 	g = *i++;
 	r = *i;
-	color = ((r + b + g) / 3 + 0x70) % 255;
+	color = ((r + b + g) / 3 + 0x80);
+	color = (color > 255) ? 255 : color;
 	*i-- = color;
 	*i-- = color;
 	*i-- = color;
