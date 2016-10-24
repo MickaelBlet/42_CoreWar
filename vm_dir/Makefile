@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/07 09:22:24 by mblet             #+#    #+#              #
-#    Updated: 2016/10/24 00:44:50 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/24 03:52:06 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,7 @@ SRCBASE		=	\
 				sgt/sgt_mlx.c												\
 				thread/launch.c												\
 				thread/vm.c													\
+				usage.c														\
 				verbosity/cycle.c											\
 				verbosity/cycle_to_die.c									\
 				verbosity/death.c											\

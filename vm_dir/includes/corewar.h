@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/23 20:24:39 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/24 02:40:26 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <unistd.h>
 
 # define __MSG0			"./corewar "
-# define __MSG1			"[-d nbr_cycles] "
-# define __MSG2			"[--lives --cycles --ops --deaths --moves] "
+# define __MSG1			"[-g] [-d nbr_cycles] "
+# define __MSG2			"[--aff --lives --cycles --ops --deaths --moves] "
 # define __MSG3			"[[-n number] file.cor]"
 # define MSG_USAGE		__MSG0 __MSG1 __MSG2 __MSG3
 
@@ -76,6 +76,7 @@ typedef struct			s_file
 
 typedef struct			s_verbose
 {
+	t_bool				aff;
 	t_bool				live;
 	t_bool				cycle;
 	t_bool				op;
@@ -116,6 +117,7 @@ typedef void			(*t_func_op)(t_process *process, int type[4],
 ** MAIN
 */
 void					corewar(int argc, char **argv);
+void					usage(void);
 
 /*
 ** SGT

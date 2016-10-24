@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/19 00:50:16 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/21 22:43:51 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/24 01:13:10 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static t_bool	s_check_verbosity(char *arg)
 	t_bool	ret;
 
 	ret = false;
+	if (ft_strequ(arg, "--aff") && (ret = true))
+		sgt_corewar()->option.verbose.aff = true;
 	if (ft_strequ(arg, "--lives") && (ret = true))
 		sgt_corewar()->option.verbose.live = true;
 	if (ft_strequ(arg, "--cycles") && (ret = true))
@@ -87,11 +89,6 @@ void			option(int argc, char **argv)
 {
 	int		i;
 
-	if (argc <= 1)
-	{
-		ft_printf("Usage: %s\n", MSG_USAGE);
-		exit(EXIT_FAILURE);
-	}
 	i = 1;
 	while (i < argc)
 	{
@@ -105,4 +102,6 @@ void			option(int argc, char **argv)
 			s_check_file_without_id(argv[i]);
 		++i;
 	}
+	if (sgt_corewar()->files == NULL)
+		usage();
 }

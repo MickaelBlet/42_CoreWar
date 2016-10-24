@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 11:11:46 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/18 19:46:07 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/24 03:34:09 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void		*s_thread(void *e)
 				(int)(sgt_corewar()->cycle - CYCLE_DELTA))
 			color += VM_COLOR_BOLD;
 		if (sgt_corewar()->ram[i].live >
-				(int)(sgt_corewar()->cycle - sgt_corewar()->nb_cycle_per_second)
+				(int)(sgt_corewar()->last_cycle_check)
 			&& sgt_corewar()->ram[i].live > 0)
 			s_draw_live(i);
 		else
