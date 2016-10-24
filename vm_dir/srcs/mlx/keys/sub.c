@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_type_args.c                                  :+:      :+:    :+:   */
+/*   sub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/23 20:21:20 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 16:56:33 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/24 13:11:58 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/24 17:42:15 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-t_bool	check_type_args(t_op op, int type[4], int arg[4])
+void	vm_press_key_sub(t_vm_mlx *mlx)
 {
-	int		i;
-
-	i = 0;
-	while (i < op.nb_args)
+	(void)mlx;
+	if (pthread_mutex_trylock(&sgt_mlx()->mutex_key) == 0)
 	{
-		if (!(op.type_args[i] & type[i]))
-			return (false);
-		if (type[i] == T_REG && (arg[i] <= 0 || arg[i] > REG_NUMBER))
-			return (false);
-		++i;
+		sgt_corewar()->nb_cycle_per_second -= 50;
+		if ((int)sgt_corewar()->nb_cycle_per_second < 0)
+			sgt_corewar()->nb_cycle_per_second = 0;
+		pthread_mutex_unlock(&sgt_mlx()->mutex_key);
 	}
-	return (true);
 }

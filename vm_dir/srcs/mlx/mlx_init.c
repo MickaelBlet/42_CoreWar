@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/15 11:17:57 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/18 10:38:57 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/24 17:42:42 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ static t_bool	s_hook_init(void)
 
 	libx_func_key(LIBX_KEY_ESC, LIBX_KEY_PRESS, &vm_press_key_esc);
 	libx_func_key(LIBX_KEY_S, LIBX_KEY_PRESS, &vm_press_key_s);
+	libx_func_key(LIBX_KEY_SUB, LIBX_KEY_PRESS, &vm_press_key_sub);
+	libx_func_key(LIBX_KEY_ADD, LIBX_KEY_PRESS, &vm_press_key_add);
+	libx_func_key(LIBX_KEY_9, LIBX_KEY_PRESS, &vm_press_key_9);
+	libx_func_key(LIBX_KEY_0, LIBX_KEY_PRESS, &vm_press_key_0);
 	libx_func_key(LIBX_KEY_SPACE, LIBX_KEY_PRESS, &vm_press_key_space);
 	mlx = sgt_mlx();
 	mlx_expose_hook(mlx->win, &vm_mlx_loop_hook, mlx);
@@ -78,7 +82,7 @@ static t_bool	s_img_init(void)
 static t_bool	s_win_init(void)
 {
 	sgt_mlx()->win = ft_mlx_new_window(sgt_mlx()->mlx, 0, 0,
-			VM_WIN_WIDTH, VM_WIN_HEIGHT, "corewar");
+			VM_WIN_WIDTH, VM_WIN_HEIGHT, "mlx- corewar");
 	if (sgt_mlx()->win == NULL)
 		return (false);
 	s_color_init();

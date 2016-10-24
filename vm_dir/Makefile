@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/07 09:22:24 by mblet             #+#    #+#              #
-#    Updated: 2016/10/24 03:52:06 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/24 17:47:09 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,12 +42,17 @@ SRCBASE		=	\
 				mlx/draw/fill_transparent_rect.c							\
 				mlx/draw/info.c												\
 				mlx/draw/memory.c											\
+				mlx/draw/pause.c											\
 				mlx/draw/rect.c												\
 				mlx/draw/tooltip.c											\
 				mlx/get_position_memory_from_pc.c							\
+				mlx/keys/add.c												\
 				mlx/keys/esc.c												\
+				mlx/keys/key_0.c											\
+				mlx/keys/key_9.c											\
 				mlx/keys/s.c												\
 				mlx/keys/space.c											\
+				mlx/keys/sub.c												\
 				mlx/launch.c												\
 				mlx/loop_hook.c												\
 				mlx/mlx_init.c												\
@@ -55,6 +60,7 @@ SRCBASE		=	\
 				mlx/mouse/motion.c											\
 				mlx/threads/info.c											\
 				mlx/threads/memory.c										\
+				mlx/tooltip/info_byte/get_info.c							\
 				op/add.c													\
 				op/aff.c													\
 				op/and.c													\

@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 14:38:47 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 03:35:54 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/24 13:18:27 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,17 @@ static void		s_general(char *str)
 			"Next check   : %8lli\n" \
 			"Cycle to die : %-8lli     " \
 			"Cycle delta  : %8lli\n\n" \
-			"Process      : %u",
+			"Process      : %-8u     " \
+			"Cycles/second: %8lli",
 			sgt_corewar()->cycle,
 			sgt_corewar()->last_cycle_check + sgt_corewar()->cycle_to_die,
 			sgt_corewar()->cycle_to_die,
 			CYCLE_DELTA,
-			ft_lstd_size(sgt_corewar()->process));
+			ft_lstd_size(sgt_corewar()->process),
+			sgt_corewar()->nb_cycle_per_second);
 	LIBX_STRING_TO_IMAGE(sgt_mlx()->img_info, sgt_mlx()->img_font, str,
 			20,
-			20, 0x333333);
+			20, 0x222222);
 }
 
 void			vm_mlx_draw_info(void)

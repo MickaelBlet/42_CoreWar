@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:18:18 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/23 20:25:40 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/24 16:57:17 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void		s_func_pcode(t_process *process)
 			index_type += 2;
 		++i;
 	}
-	if (check_type_args(process, type, val) == true)
+	if (check_type_args(process->op, type, val) == true)
 	{
 		verbose_op(process, type, val);
 		func_tab(process->op.op_code - 1)(process, type, val);

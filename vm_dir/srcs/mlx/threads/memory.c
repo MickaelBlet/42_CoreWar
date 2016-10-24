@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/14 10:51:03 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/15 14:03:19 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/24 16:41:14 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*vm_mlx_thread_memory(void *e)
 		pthread_mutex_lock(&sgt_mlx()->mutex_memory);
 		vm_mlx_draw_memory();
 		pthread_mutex_unlock(&sgt_mlx()->mutex_memory);
-		usleep(100000);
+		usleep(1000);
 	}
 	return (NULL);
 }

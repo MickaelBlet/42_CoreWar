@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 12:57:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/15 14:42:17 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/24 14:01:07 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static t_bool	s_mutex_init(void)
 	if (pthread_mutex_init(&sgt_mlx()->mutex_memory, NULL) < 0)
 		return (false);
 	if (pthread_mutex_init(&sgt_mlx()->mutex_info, NULL) < 0)
+		return (false);
+	if (pthread_mutex_init(&sgt_mlx()->mutex_key, NULL) < 0)
 		return (false);
 	return (true);
 }

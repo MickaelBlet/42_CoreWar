@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 11:11:46 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 03:34:09 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/24 11:17:25 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ void			vm_mlx_draw_memory(void)
 		pthread_join(thread[i], (void *)&t[i]);
 		++i;
 	}
+	vm_mlx_draw_pause();
 	byte_position_mouse();
 }

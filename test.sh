@@ -6,20 +6,20 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/23 12:09:53 by mblet             #+#    #+#              #
-#    Updated: 2016/10/24 03:59:30 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/24 15:16:47 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-make && ./corewar -g -d 40000 -n 42 ./champions/examples/helltrain.cor ./champions/examples/turtle.cor ./champions/examples/helltrain.cor
-
+make && ./corewar -g -d 40000 -n 42 ./champions/examples/helltrain.cor ./champions/examples/helltrain.cor ./champions/examples/helltrain.cor ./champions/examples/helltrain.cor
+#
 exit
 
 dump=-1
 
 champion1="./champions/examples/helltrain.cor"
-champion2="./champions/examples/helltrain.cor"
+champion2="./champions/examples/turtle.cor"
 champion3="./champions/examples/helltrain.cor"
-champion4="./champions/examples/helltrain.cor"
+champion4="" #"./champions/examples/helltrain.cor"
 
 #if [ -n ${BASH_ARGV[0]} ]; then
 	#./corewar \

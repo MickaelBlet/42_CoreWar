@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 02:40:26 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/24 17:43:05 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,8 +154,7 @@ void					process_check_live(void);
 ** OP
 */
 void					byte_code_to_type(int (*t)[4], unsigned char b);
-t_bool					check_type_args(t_process *process,
-		int type[4], int arg[4]);
+t_bool					check_type_args(t_op op, int type[4], int arg[4]);
 t_op					op_tab(int index);
 t_func_op				func_tab(int index);
 void					op_live(t_process *process, int type[4], int arg[4]);
@@ -280,8 +279,10 @@ void					win(void);
 # define VM_MEMORY_BYTE_WIDTH		20
 # define VM_MEMORY_BYTE_HEIGHT		16
 
-# define VM_TOOLTIP_WIDTH			200
-# define VM_TOOLTIP_HEIGHT			100
+# define VM_TOOLTIP_WIDTH			180
+# define VM_TOOLTIP_HEIGHT			63
+# define VM_TOOLTIP_MINI_WIDTH		50
+# define VM_TOOLTIP_MINI_HEIGHT		20
 
 # define VM_INFO_WIDTH				400
 
@@ -304,8 +305,10 @@ typedef struct			s_vm_mlx
 	pthread_t			thread_info;
 	pthread_mutex_t		mutex_memory;
 	pthread_mutex_t		mutex_info;
+	pthread_mutex_t		mutex_key;
 	int					color[19];
 	t_mouse				mouse;
+	t_bool				pause;
 }						t_vm_mlx;
 
 /*
@@ -324,6 +327,10 @@ int						vm_hook_key(int key, t_vm_mlx *mlx);
 */
 void					vm_press_key_esc(t_vm_mlx *mlx);
 void					vm_press_key_s(t_vm_mlx *mlx);
+void					vm_press_key_sub(t_vm_mlx *mlx);
+void					vm_press_key_add(t_vm_mlx *mlx);
+void					vm_press_key_0(t_vm_mlx *mlx);
+void					vm_press_key_9(t_vm_mlx *mlx);
 void					vm_press_key_space(t_vm_mlx *mlx);
 
 /*
@@ -331,6 +338,7 @@ void					vm_press_key_space(t_vm_mlx *mlx);
 */
 int						vm_mlx_mouse_motion(int x, int y, t_vm_mlx *mlx);
 void					byte_position_mouse(void);
+char					*vm_mlx_get_info_byte(t_op op, int pc);
 
 /*
 ** DRAW
@@ -343,6 +351,7 @@ void					vm_mlx_draw_rect(t_libx_img *img, int xy[2], int wh[2],
 		int color);
 void					vm_mlx_draw_fill_transparent_rect(t_libx_img *img,
 		int xy[2], int wh[2]);
+void					vm_mlx_draw_pause(void);
 void					vm_mlx_draw_tooltip(int pc);
 void					vm_mlx_get_position_memory_from_pc(int pc, int *x,
 		int *y);

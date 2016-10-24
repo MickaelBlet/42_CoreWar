@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 19:47:54 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/15 19:56:35 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/24 14:00:48 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,17 @@
 void	vm_press_key_space(t_vm_mlx *mlx)
 {
 	(void)mlx;
-	if (pthread_mutex_trylock(&sgt_corewar()->mutex) != 0)
-		pthread_mutex_unlock(&sgt_corewar()->mutex);
+	if (pthread_mutex_trylock(&sgt_mlx()->mutex_key) == 0)
+	{
+		if (pthread_mutex_trylock(&sgt_corewar()->mutex) != 0)
+		{
+			sgt_mlx()->pause = false;
+			pthread_mutex_unlock(&sgt_corewar()->mutex);
+		}
+		else
+		{
+			sgt_mlx()->pause = true;
+		}
+		pthread_mutex_unlock(&sgt_mlx()->mutex_key);
+	}
 }

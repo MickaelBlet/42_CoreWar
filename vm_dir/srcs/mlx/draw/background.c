@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 12:37:20 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 03:52:05 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/24 14:10:15 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,16 @@ void			vm_mlx_draw_background_memory(void)
 static void		s_info_keys(t_vm_mlx *mlx)
 {
 	vm_mlx_draw_rect(mlx->img_info,
-			(int[2]){10, VM_WIN_HEIGHT - 90},
-			(int[2]){VM_INFO_WIDTH - 20, 80}, 0xBBBBBB);
+			(int[2]){10, VM_WIN_HEIGHT - 120},
+			(int[2]){VM_INFO_WIDTH - 20, 110}, 0xBBBBBB);
 	LIBX_STRING_TO_IMAGE(sgt_mlx()->img_info, sgt_mlx()->img_font,
-			"{space} : Run / Pause\n{s}     : Step by Step\n{esc}   : Exit",
-			20, VM_WIN_HEIGHT - 80, 0x33333);
+			"{space} : Run / Pause                {esc}   : Exit\n"
+			"{s}     : Step by Step\n"
+			"{+/=}   : Add 50 cycles / second\n"
+			"{_/-}   : Sub 50 cycles / second\n"
+			"{(/9}   : Add 10 cycles / second\n"
+			"{)/0}   : Add 10 cycles / second",
+			20, VM_WIN_HEIGHT - 110, 0x222222);
 }
 
 static void		s_info_players(t_vm_mlx *mlx)
