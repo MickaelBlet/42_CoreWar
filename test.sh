@@ -6,9 +6,13 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/23 12:09:53 by mblet             #+#    #+#              #
-#    Updated: 2016/10/24 00:46:14 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/24 03:59:30 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+make && ./corewar -g -d 40000 -n 42 ./champions/examples/helltrain.cor ./champions/examples/turtle.cor ./champions/examples/helltrain.cor
+
+exit
 
 dump=-1
 
