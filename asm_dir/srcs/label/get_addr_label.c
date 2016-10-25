@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_addr_label.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/12 12:17:07 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 21:44:51 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/25 02:47:42 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/25 02:55:42 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		main(int argc, char **argv)
+int		label_get_addr(int index, char *name)
 {
-	if (argc > 1)
-	cor_asm(argc, argv);
-	else
-		ft_printf("%s\n", USAGE);
+	t_listd		*list;
+	t_label		*label;
+
+	list = sgt_asm()->labels;
+	while (list != NULL)
+	{
+		label = list->data;
+		if (ft_strequ(label->name, name))
+			return (label->index - index);
+		list = list->next;
+	}
 	return (0);
 }

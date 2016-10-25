@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/12 12:17:07 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 21:44:51 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/24 21:53:54 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/25 02:57:02 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		main(int argc, char **argv)
+void	error_print(t_file *file, char *str_error,
+		int line, int column)
 {
-	if (argc > 1)
-	cor_asm(argc, argv);
-	else
-		ft_printf("%s\n", USAGE);
-	return (0);
+	ft_printf("{bold}%s/%s:%lu:%lu: {red}error:{reset} {bold}%s{reset}",
+			file->path, file->name, line, column, str_error);
 }

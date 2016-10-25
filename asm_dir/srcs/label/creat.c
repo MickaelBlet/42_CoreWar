@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   creat.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/12 12:17:07 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 21:44:51 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/25 02:34:57 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/25 02:55:34 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		main(int argc, char **argv)
+t_label		*label_creat(int index, char *name)
 {
-	if (argc > 1)
-	cor_asm(argc, argv);
-	else
-		ft_printf("%s\n", USAGE);
-	return (0);
+	t_label		*label;
+
+	if ((label = (t_label *)malloc(sizeof(t_label))) == NULL)
+		return (NULL);
+	label->index = index;
+	label->name = name;
+	return (label);
 }

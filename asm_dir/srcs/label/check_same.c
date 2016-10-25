@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_same.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/12 12:17:07 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 21:44:51 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/25 03:00:39 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/25 03:02:29 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		main(int argc, char **argv)
+t_bool	label_check_same(char *name)
 {
-	if (argc > 1)
-	cor_asm(argc, argv);
-	else
-		ft_printf("%s\n", USAGE);
-	return (0);
+	t_listd		*list;
+	t_label		*label;
+
+	list = sgt_asm()->labels;
+	while (list != NULL)
+	{
+		label = list->data;
+		if (ft_strque(label->name, name))
+			return (false);
+		list = list->next;
+	}
+	return (true);
 }

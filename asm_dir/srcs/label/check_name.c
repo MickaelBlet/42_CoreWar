@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_name.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/12 12:17:07 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 21:44:51 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/25 02:36:44 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/25 02:54:26 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		main(int argc, char **argv)
+t_bool	label_check_name(char *name)
 {
-	if (argc > 1)
-	cor_asm(argc, argv);
-	else
-		ft_printf("%s\n", USAGE);
-	return (0);
+	int		i;
+
+	if (name == NULL)
+		return (false);
+	i = 0;
+	while (name[i] != '\0')
+	{
+		if (ft_strchr(LABEL_CHARS, name[i]) == NULL)
+			return (false);
+		++i;
+	}
+	return (true);
 }

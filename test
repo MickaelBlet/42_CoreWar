@@ -1,0 +1,6 @@
+error: unable to open output file 'objs/errors/print.o': 'Error opening output file 'objs/errors/print.o': No such file or directory'
+1 error generated.
+make[3]: *** [objs/errors/print.o] Error 1
+make[2]: *** [all] Error 2
+make[1]: *** [_] Error 2
+make: *** [all] Error 2

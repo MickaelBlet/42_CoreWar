@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/12 12:17:07 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 21:44:51 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/24 21:25:53 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/24 23:55:59 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		main(int argc, char **argv)
+void	cor_asm(int argc, char **argv)
 {
-	if (argc > 1)
-	cor_asm(argc, argv);
-	else
-		ft_printf("%s\n", USAGE);
-	return (0);
+	int		i;
+
+	i = 0;
+	while (++i < argc)
+	{
+		if (argc > 2)
+			ft_printf("%s:\n", argv[i]);
+		file_read(argv[i]);
+		file_clean();
+		if (argc > 2 && i + 1 < argc)
+			ft_putchar('\n');
+	}
 }

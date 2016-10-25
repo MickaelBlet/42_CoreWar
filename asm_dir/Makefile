@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/12 12:08:30 by mblet             #+#    #+#              #
-#    Updated: 2016/09/12 12:17:28 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/25 03:22:04 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,18 @@ LIBFT_DIR	=	../libft/
 LIBFT_LIB	=	$(LIBFT_DIR)libft.a
 
 SRCBASE		=	\
-				main.c
+				asm.c														\
+				errors/print.c												\
+				file/clean.c												\
+				file/creat.c												\
+				file/read.c													\
+				label/check_name.c											\
+				label/check_same.c											\
+				label/creat.c												\
+				label/get_addr_label.c										\
+				line/creat.c												\
+				main.c														\
+				sgt/sgt_asm.c
 
 SRCS		=	$(addprefix $(SRCDIR), $(SRCBASE))
 INCS		=	$(addprefix $(INCDIR), $(INCBASE))

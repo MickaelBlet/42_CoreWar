@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 12:37:20 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 14:10:15 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/25 02:14:43 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		s_info_keys(t_vm_mlx *mlx)
 			"{+/=}   : Add 50 cycles / second\n"
 			"{_/-}   : Sub 50 cycles / second\n"
 			"{(/9}   : Add 10 cycles / second\n"
-			"{)/0}   : Add 10 cycles / second",
+			"{)/0}   : Sub 10 cycles / second",
 			20, VM_WIN_HEIGHT - 110, 0x222222);
 }
 
