@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/24 18:11:18 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/26 02:43:39 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/26 03:12:15 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,6 @@ void				op_arg_to_cor(t_line *line, t_arg *arg);
 */
 void				write_file(void);
 
-void dump(void);
+void				dump(void);
 
 #endif
