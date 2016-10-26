@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/24 18:11:18 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/26 03:12:15 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/26 03:13:30 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,6 @@ typedef struct		s_cor
 	t_header		header;
 	char			data[CHAMP_MAX_SIZE];
 }					t_cor;
-
-typedef struct		s_file
-{
-	char			*name;
-	t_listd			*lines;
-	t_listd			*commands;
-	t_listd			*labels;
-}					t_file;
 
 typedef struct		s_asm
 {
@@ -163,6 +155,6 @@ void				op_arg_to_cor(t_line *line, t_arg *arg);
 */
 void				write_file(void);
 
-void				dump(void);
+void dump(void);
 
 #endif
