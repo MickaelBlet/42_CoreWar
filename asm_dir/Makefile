@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/12 12:08:30 by mblet             #+#    #+#              #
-#    Updated: 2016/10/26 03:13:30 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/26 03:14:29 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ SRCBASE		=	\
 				errors/print.c												\
 				errors/warning.c											\
 				file/clean.c												\
-				file/creat.c												\
 				file/read.c													\
 				label/add.c													\
 				label/check_name.c											\

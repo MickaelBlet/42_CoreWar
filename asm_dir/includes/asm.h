@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/24 18:11:18 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/26 03:13:30 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/26 03:14:29 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ void				warning_print(t_arg arg, const char *str);
 ** FILE
 */
 void				file_read(char *file_name);
-t_file				*file_creat(char *file_name);
 void				file_clean(void);
 
 /*
