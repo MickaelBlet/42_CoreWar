@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 02:35:16 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/26 03:13:53 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/26 19:13:41 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		write_file(void)
 				sgt_asm()->file_name);
 	else
 		ft_sprintf(new_name, "%s.cor2", sgt_asm()->file_name);
-	if ((fd = open(new_name, O_WRONLY | O_CREAT, 0644)) == -1)
+	if ((fd = open(new_name, O_WRONLY | O_CREAT | O_TRUNC, 0644)) == -1)
 		return ((void)ERROR("%s: %s", sgt_asm()->file_name, ft_strerror()));
 	sgt_asm()->cor.header.magic = s_swap(COREWAR_EXEC_MAGIC);
 	sgt_asm()->cor.header.prog_size = s_swap(sgt_asm()->index_cor);
