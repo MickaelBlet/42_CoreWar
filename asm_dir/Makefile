@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/12 12:08:30 by mblet             #+#    #+#              #
-#    Updated: 2016/10/25 03:22:04 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/26 02:54:56 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,17 +26,35 @@ LIBFT_LIB	=	$(LIBFT_DIR)libft.a
 
 SRCBASE		=	\
 				asm.c														\
+				command/check_same.c										\
+				command/comment.c											\
+				command/name.c												\
+				dump.c														\
 				errors/print.c												\
+				errors/warning.c											\
 				file/clean.c												\
 				file/creat.c												\
 				file/read.c													\
+				label/add.c													\
 				label/check_name.c											\
 				label/check_same.c											\
-				label/creat.c												\
 				label/get_addr_label.c										\
+				line/check_command.c										\
+				line/check_label.c											\
+				line/check_op.c												\
 				line/creat.c												\
+				line/label_scan.c											\
+				line/scan.c													\
+				line/scan_op.c												\
 				main.c														\
-				sgt/sgt_asm.c
+				op/arg_to_cor.c												\
+				op/check_name.c												\
+				op/get_from_name.c											\
+				op/get_type.c												\
+				op/to_cor.c													\
+				op_tab.c													\
+				sgt/sgt_asm.c												\
+				write_file.c
 
 SRCS		=	$(addprefix $(SRCDIR), $(SRCBASE))
 INCS		=	$(addprefix $(INCDIR), $(INCBASE))

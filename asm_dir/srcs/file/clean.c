@@ -6,16 +6,16 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/24 23:36:42 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 23:49:48 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/25 16:18:00 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void		s_delete_label(t_label *label)
+static void		s_delete_arg(t_arg *arg)
 {
-	ft_strdel(&label->name);
-	free(label);
+	ft_strdel(&arg->data);
+	free(arg);
 }
 
 static void		s_delete_line(t_line *line)
@@ -26,6 +26,6 @@ static void		s_delete_line(t_line *line)
 
 void			file_clean(void)
 {
-	ft_lstd_clear(&sgt_asm()->file.lines, &s_delete_line);
-	ft_lstd_clear(&sgt_asm()->file.labels, &s_delete_label);
+	ft_lstd_clear(&sgt_asm()->lines, &s_delete_line);
+	ft_lstd_clear(&sgt_asm()->labels, &s_delete_arg);
 }

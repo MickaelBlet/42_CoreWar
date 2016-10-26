@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   creat.c                                            :+:      :+:    :+:   */
+/*   check_same.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/24 22:38:29 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/26 00:34:07 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/25 20:58:15 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/25 21:33:00 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-t_line	*line_creat(int index, char *str)
+t_bool	command_check_same(char *name)
 {
-	t_line	*line;
+	t_listd		*list;
+	char		*command;
 
-	if (str == NULL)
-		return (NULL);
-	if ((line = (t_line *)malloc(sizeof(t_line))) == NULL)
-		return (NULL);
-	line->index = index;
-	line->index_cor = 0;
-	line->data = str;
-	line->op = op_tab(-1);
-	line->nb_args = 0;
-	return (line);
+	list = sgt_asm()->commands;
+	while (list != NULL)
+	{
+		command = list->data;
+		if (ft_strequ(command, name))
+			return (false);
+		list = list->next;
+	}
+	return (true);
 }

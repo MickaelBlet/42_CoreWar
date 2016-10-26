@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   creat.c                                            :+:      :+:    :+:   */
+/*   get_from_name.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/24 22:38:29 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/26 00:34:07 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/25 22:07:07 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/25 22:08:46 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-t_line	*line_creat(int index, char *str)
+t_op	op_get_from_name(char *name)
 {
-	t_line	*line;
+	int		i;
 
-	if (str == NULL)
-		return (NULL);
-	if ((line = (t_line *)malloc(sizeof(t_line))) == NULL)
-		return (NULL);
-	line->index = index;
-	line->index_cor = 0;
-	line->data = str;
-	line->op = op_tab(-1);
-	line->nb_args = 0;
-	return (line);
+	i = 0;
+	while (i < 16)
+	{
+		if (ft_strequ(name, op_tab(i).name))
+			return (op_tab(i));
+		++i;
+	}
+	return (op_tab(-1));
 }
