@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 14:38:47 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 13:18:27 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/26 21:34:05 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void		s_players(char *str)
 				player->live);
 		LIBX_STRING_TO_IMAGE(sgt_mlx()->img_info, sgt_mlx()->img_font, str,
 				20, y, 0xFFFFFF);
-		ft_sprintf(str, "%s", player->name);
+		ft_sprintf(str, "%.26s", player->name);
 		LIBX_STRING_TO_IMAGE(sgt_mlx()->img_info, sgt_mlx()->img_font, str,
 				202, y, sgt_mlx()->color[player->color_id]);
 		list = list->prev;
@@ -78,7 +78,7 @@ static void		s_general(char *str)
 			sgt_corewar()->last_cycle_check + sgt_corewar()->cycle_to_die,
 			sgt_corewar()->cycle_to_die,
 			CYCLE_DELTA,
-			ft_lstd_size(sgt_corewar()->process),
+			sgt_corewar()->nb_process,
 			sgt_corewar()->nb_cycle_per_second);
 	LIBX_STRING_TO_IMAGE(sgt_mlx()->img_info, sgt_mlx()->img_font, str,
 			20,

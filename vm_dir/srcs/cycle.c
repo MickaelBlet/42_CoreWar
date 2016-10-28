@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/16 23:28:58 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/23 13:35:46 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/26 21:31:30 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ static void		s_dump(void)
 void			cycle(void)
 {
 	t_listd		*list_process;
+	size_t		nb_process;
 
 	list_process = sgt_corewar()->process;
 	if (list_process == NULL)
@@ -79,10 +80,13 @@ void			cycle(void)
 	++sgt_corewar()->cycle;
 	s_dump();
 	verbose_cycle();
+	nb_process = 0;
 	while (list_process)
 	{
 		process_action(list_process->data);
 		list_process = list_process->next;
+		++nb_process;
 	}
+	sgt_corewar()->nb_process = nb_process;
 	s_check_cycle(sgt_corewar());
 }

@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 17:43:05 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/26 21:29:17 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct			s_corewar
 	pthread_t			thread;
 	pthread_mutex_t		mutex;
 	pthread_mutex_t		mutex_process;
+	size_t				nb_process;
 	size_t				nb_cycle_per_second;
 	t_option			option;
 	t_bool				run;

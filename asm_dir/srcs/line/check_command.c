@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 16:24:55 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/25 21:31:52 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/28 00:24:12 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static char		*s_get_first_word(int *column, char *str)
 	while (str[*column] != '\0'
 		&& str[*column] != ' ' && str[*column] != '\t'
 		&& str[*column] != LABEL_CHAR && str[*column] != SEPARATOR_CHAR
-		&& str[*column] != COMMENT_CHAR)
+		&& str[*column] != COMMENT_CHAR && str[*column] != QUOTE_CHAR
+		&& str[*column] != COMMENT_CHAR_BASIC)
 		++(*column);
 	return (ft_strsub(str, start, *column - start));
 }
@@ -49,6 +50,13 @@ void			line_check_command(int column, t_line *line)
 		command_name(column, arg);
 	else if (ft_strequ(arg.data, COMMENT_CMD_STRING))
 		command_comment(column, arg);
-	else
+	else if (line->data[column] == '\0' || line->data[column] == COMMENT_CHAR
+		|| line->data[column] == COMMENT_CHAR_BASIC)
 		warning_print(arg, WAR_CMD_UNKNOWN);
+	else
+	{
+		arg.column = column;
+		ft_strdel(&arg.data);
+		error_print(arg, ERR_CMD_EXTRA_ARG);
+	}
 }

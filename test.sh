@@ -6,20 +6,21 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/23 12:09:53 by mblet             #+#    #+#              #
-#    Updated: 2016/10/26 03:01:37 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/28 11:42:09 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-make && ./corewar -g -d 40000 -n 42 ./test.cor2 ./champions/examples/helltrain.cor ./champions/examples/helltrain.cor ./champions/examples/helltrain.cor
+#make && ./corewar -g -dump 21000 -n 42 ./champions/examples/helltrain.cor ./champions/examples/helltrain.cor ./champions/examples/helltrain.cor ./champions/examples/helltrain.cor
 #
-exit
+#exit
 
 dump=-1
 
 champion1="./champions/examples/helltrain.cor"
-champion2="./champions/examples/turtle.cor"
+champion2="./champions/examples/helltrain.cor"
 champion3="./champions/examples/helltrain.cor"
-champion4="" #"./champions/examples/helltrain.cor"
+champion4="./champions/examples/helltrain.cor"
+#champion4="" #"./champions/examples/helltrain.cor"
 
 #if [ -n ${BASH_ARGV[0]} ]; then
 	#./corewar \
@@ -36,13 +37,13 @@ deaths=8
 moves=16
 
 champions/corewar/corewar \
-	-v $(($lives + $cycles + $ops + $deaths + $moves)) \
+	-v $(($lives + $cycles + $moves + $deaths)) \
 	-d $dump \
 	$champion1 $champion2 $champion3 $champion4 > "test_dump_zaz.test" &
 
 ./corewar \
-	--lives --cycles --ops --deaths --moves \
-	-d $dump \
+	--lives --cycles --deaths --moves \
+	-dump $dump \
 	$champion1 $champion2 $champion3 $champion4 > "test_dump_me.test"
 
 diff -s "test_dump_me.test" "test_dump_zaz.test" \

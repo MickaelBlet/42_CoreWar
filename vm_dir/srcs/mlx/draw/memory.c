@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 11:11:46 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 11:17:25 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/26 21:41:01 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,20 @@ static void		s_draw_process_pc(void)
 	int			x;
 	int			y;
 
-	list = sgt_corewar()->process;
-	while (list != NULL)
+	if (pthread_mutex_trylock(&sgt_corewar()->mutex_process) == 0)
 	{
-		process = list->data;
-		x = process->pc % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 2;
-		y = process->pc / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT;
-		vm_mlx_draw_rect(sgt_mlx()->img_memory, (int[2]){x, y},
-				(int[2]){VM_MEMORY_BYTE_WIDTH, VM_MEMORY_BYTE_HEIGHT},
-				sgt_mlx()->color[process->color_id]);
-		list = list->next;
+		list = sgt_corewar()->process;
+		while (list != NULL)
+		{
+			process = list->data;
+			x = process->pc % VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 2;
+			y = process->pc / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT;
+			vm_mlx_draw_rect(sgt_mlx()->img_memory, (int[2]){x, y},
+					(int[2]){VM_MEMORY_BYTE_WIDTH, VM_MEMORY_BYTE_HEIGHT},
+					sgt_mlx()->color[process->color_id]);
+			list = list->next;
+		}
+		pthread_mutex_unlock(&sgt_corewar()->mutex_process);
 	}
 }
 

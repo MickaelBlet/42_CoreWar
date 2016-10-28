@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/24 18:11:18 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/26 03:14:29 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/28 00:28:59 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # define __ER0		STDERR_FILENO, "{bold}" BIN_NAME ": {red}error: {white}"
 # define ERROR(f, ...)	ft_dprintf(__ER0 f "{reset}\n", ##__VA_ARGS__)
 
+# define COMMENT_CHAR_BASIC		';'
+# define QUOTE_CHAR				'"'
+
 # define ERR_CMD_SAME			"command is already declared"
 # define ERR_CMD_NAME_NO_ARG	"need argument after command .name"
 # define ERR_CMD_COM_NO_ARG		"need argument after command .comment"
@@ -34,6 +37,7 @@
 # define ERR_CMD_COM_NO_QUOTE	"need '\"' after command .comment"
 # define ERR_CMD_NAME_EXTRA_ARG	"extra argument after command .name"
 # define ERR_CMD_COM_EXTRA_ARG	"extra argument after command .comment"
+# define ERR_CMD_EXTRA_ARG		"extra argument after unknown command"
 
 # define WAR_CMD_UNKNOWN	"unknown command"
 
@@ -77,6 +81,13 @@ typedef struct		s_cor
 	char			data[CHAMP_MAX_SIZE];
 }					t_cor;
 
+typedef struct		s_error
+{
+	int				line;
+	int				column;
+	char			*str;
+}					t_error;
+
 typedef struct		s_asm
 {
 	int				index_cor;
@@ -85,6 +96,7 @@ typedef struct		s_asm
 	t_listd			*lines;
 	t_listd			*commands;
 	t_listd			*labels;
+	t_listd			*errors;
 	t_bool			error;
 }					t_asm;
 
@@ -106,12 +118,19 @@ t_op				op_tab(int index);
 void				error_print(t_arg arg, const char *str);
 void				error_print_sug(t_arg arg,
 		const char *str, const char *sug);
+void				error_list_print(void);
 void				warning_print(t_arg arg, const char *str);
+
+/*
+** COR
+*/
+void				ini_cor(void);
 
 /*
 ** FILE
 */
 void				file_read(char *file_name);
+void				file_write(void);
 void				file_clean(void);
 
 /*
@@ -154,6 +173,6 @@ void				op_arg_to_cor(t_line *line, t_arg *arg);
 */
 void				write_file(void);
 
-void dump(void);
+void				dump(void);
 
 #endif

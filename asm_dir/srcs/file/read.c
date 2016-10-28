@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/24 21:27:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/26 02:52:36 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/28 00:03:19 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,31 +55,20 @@ static t_bool	s_file_read_line(int fd)
 	return (true);
 }
 
-static void		s_scan_lexical(t_line *line)
-{
-	line_scan(0, line);
-}
-
-static void		s_scan_op(t_line *line)
-{
-	line_scan_op(line);
-}
-
 void			file_read(char *file_name)
 {
 	int		fd;
 
+	ini_cor();
 	if ((fd = open(file_name, O_RDONLY)) == -1)
+	{
+		sgt_asm()->error = true;
 		return ((void)ERROR("%s: %s", file_name, ft_strerror()));
-	sgt_asm()->index_cor = 0;
+	}
 	sgt_asm()->file_name = file_name;
-	sgt_asm()->lines = NULL;
-	sgt_asm()->labels = NULL;
-	sgt_asm()->commands = NULL;
-	sgt_asm()->error = false;
 	if (s_file_read_line(fd) == false)
+	{
+		sgt_asm()->error = true;
 		return ((void)ERROR("%s: %s", file_name, ft_strerror()));
-	ft_lstd_map(&sgt_asm()->lines, &s_scan_lexical);
-	ft_lstd_map(&sgt_asm()->lines, &s_scan_op);
-	write_file();
+	}
 }

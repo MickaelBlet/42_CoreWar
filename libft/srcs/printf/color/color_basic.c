@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 10:05:20 by mblet             #+#    #+#             */
-/*   Updated: 2016/05/01 19:41:45 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/26 23:55:23 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		s_replace4(t_replace_color co)
 					co.t->buffer + *(co.save), *(co.i) - *(co.save));
 			*(co.tmp) = concat(*(co.tmp), (co.len), "\033[", 2);
 			*(co.tmp) = concat(*(co.tmp), (co.len), c, 2);
-			*(co.tmp) = concat(*(co.tmp), (co.len), "m", 2);
+			*(co.tmp) = concat(*(co.tmp), (co.len), "m", 1);
 			*(co.save) = *(co.i) + ft_strlen(spl_replace[j]);
 		}
 		*(co.i) = (*(co.save) > *(co.i)) ? *(co.save) - 1 : *(co.i);
@@ -63,7 +63,7 @@ static void		s_replace3(t_replace_color co)
 					co.t->buffer + *(co.save), *(co.i) - *(co.save));
 			*(co.tmp) = concat(*(co.tmp), (co.len), "\033[", 2);
 			*(co.tmp) = concat(*(co.tmp), (co.len), c, 2);
-			*(co.tmp) = concat(*(co.tmp), (co.len), "m", 2);
+			*(co.tmp) = concat(*(co.tmp), (co.len), "m", 1);
 			*(co.save) = *(co.i) + ft_strlen(spl_replace[j]);
 		}
 		*(co.i) = (*(co.save) > *(co.i)) ? *(co.save) - 1 : *(co.i);
@@ -92,7 +92,7 @@ static void		s_replace2(t_replace_color co)
 					co.t->buffer + *(co.save), *(co.i) - *(co.save));
 			*(co.tmp) = concat(*(co.tmp), (co.len), "\033[", 2);
 			*(co.tmp) = concat(*(co.tmp), (co.len), c, 2);
-			*(co.tmp) = concat(*(co.tmp), (co.len), "m", 2);
+			*(co.tmp) = concat(*(co.tmp), (co.len), "m", 1);
 			*(co.save) = *(co.i) + ft_strlen(spl_replace[j]);
 		}
 		*(co.i) = (*(co.save) > *(co.i)) ? *(co.save) - 1 : *(co.i);
@@ -121,7 +121,7 @@ static void		s_replace1(t_replace_color co)
 					co.t->buffer + *(co.save), *(co.i) - *(co.save));
 			*(co.tmp) = concat(*(co.tmp), (co.len), "\033[", 2);
 			*(co.tmp) = concat(*(co.tmp), (co.len), c, 2);
-			*(co.tmp) = concat(*(co.tmp), (co.len), "m", 2);
+			*(co.tmp) = concat(*(co.tmp), (co.len), "m", 1);
 			*(co.save) = *(co.i) + ft_strlen(spl_replace[j]);
 		}
 		*(co.i) = (*(co.save) > *(co.i)) ? *(co.save) - 1 : *(co.i);

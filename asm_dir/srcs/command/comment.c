@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 18:55:45 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/25 20:42:09 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/28 00:25:54 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static char		*s_get_str_in_quote(int *column, char *str)
 		return (NULL);
 	ret = ft_strsub(str + *column, 1,
 			ft_strchr(str + *column + 1, quote) - (str + *column) - 1);
+	if (ret == NULL)
+		ret = ft_strdup("");
 	*column += ft_strchr(str + *column + 1, quote) - (str + *column) + 1;
 	return (ret);
 }

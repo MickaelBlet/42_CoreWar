@@ -6,11 +6,11 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/12 12:08:30 by mblet             #+#    #+#              #
-#    Updated: 2016/10/28 04:05:41 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/28 04:07:51 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	../asm
+NAME		=	../dasm
 NAMEBASE    =   $(shell basename $(NAME))
 LENGTHNAME	=	`printf "%s" $(NAMEBASE) | wc -c`
 MAX_COLS	=	$$(echo "$$(tput cols)-24-$(LENGTHNAME)"|bc)
@@ -25,36 +25,7 @@ LIBFT_DIR	=	../libft/
 LIBFT_LIB	=	$(LIBFT_DIR)libft.a
 
 SRCBASE		=	\
-				asm.c														\
-				command/check_same.c										\
-				command/comment.c											\
-				command/name.c												\
-				errors/list_print.c											\
-				errors/print.c												\
-				errors/warning.c											\
-				file/clean.c												\
-				file/read.c													\
-				file/write.c												\
-				ini_cor.c													\
-				label/add.c													\
-				label/check_name.c											\
-				label/check_same.c											\
-				label/get_addr_label.c										\
-				line/check_command.c										\
-				line/check_label.c											\
-				line/check_op.c												\
-				line/creat.c												\
-				line/label_scan.c											\
-				line/scan.c													\
-				line/scan_op.c												\
-				main.c														\
-				op/arg_to_cor.c												\
-				op/check_name.c												\
-				op/get_from_name.c											\
-				op/get_type.c												\
-				op/to_cor.c													\
-				op_tab.c													\
-				sgt/sgt_asm.c
+				main.c
 
 SRCS		=	$(addprefix $(SRCDIR), $(SRCBASE))
 INCS		=	$(addprefix $(INCDIR), $(INCBASE))

@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/19 00:50:16 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 01:13:10 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/28 11:28:29 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void			option(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		if (ft_strequ(argv[i], "-d"))
+		if (ft_strequ(argv[i], "-d") || ft_strequ(argv[i], "-dump"))
 			s_check_dump(&i, argv[i + 1]);
 		else if (ft_strequ(argv[i], "-n"))
 			file_check(&i, argv);

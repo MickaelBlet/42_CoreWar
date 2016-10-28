@@ -1,6 +1,98 @@
-error: unable to open output file 'objs/errors/print.o': 'Error opening output file 'objs/errors/print.o': No such file or directory'
-1 error generated.
-make[3]: *** [objs/errors/print.o] Error 1
-make[2]: *** [all] Error 2
-make[1]: *** [_] Error 2
-make: *** [all] Error 2
+.name		"ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooot" #test comment in line
+.comment	"TURTLE FFS U LAMA"
+
+entry:#test
+	sti			r1, %:zork, %1; test
+	sti			r1, %:ardef, %1
+	sti			r1, %:avdef, %1
+	sti			r1, %:entry_l1, %1
+	ld			%0, r16
+	fork		%:zork
+
+entry_l1:
+	live		%42
+	ld			%439025904, r2
+	ld			%0, r16
+	fork		%:avdef
+
+################################################################################
+
+ardef:
+	live		%42
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	st			r2, -400
+	zjmp		%:ardef
+	
+################################################################################
+
+zork:
+	live		%42
+	zjmp		%:zork
+	
+################################################################################
+
+avdef:
+	live		%42
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	st			r2, 400
+	zjmp		%:avdef
+	
+################################################################################

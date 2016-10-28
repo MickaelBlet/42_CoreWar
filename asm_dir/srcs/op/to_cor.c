@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 01:00:59 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/26 01:47:44 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/28 04:04:01 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static int	s_get_pcode(t_line *line)
 
 void		op_to_cor(t_line *line)
 {
-	sgt_asm()->cor.data[line->index_cor] = line->op.op_code;
+	sgt_asm()->cor.data[(line->index_cor) % CHAMP_MAX_SIZE] = line->op.op_code;
 	if (line->op.has_pcode)
-		sgt_asm()->cor.data[line->index_cor + 1] = s_get_pcode(line);
+		sgt_asm()->cor.data[(line->index_cor + 1) % CHAMP_MAX_SIZE] =
+			s_get_pcode(line);
 }
