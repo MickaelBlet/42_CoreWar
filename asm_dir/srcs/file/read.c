@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/24 21:27:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/28 00:03:19 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/29 01:00:33 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,5 @@ void			file_read(char *file_name)
 		sgt_asm()->error = true;
 		return ((void)ERROR("%s: %s", file_name, ft_strerror()));
 	}
+	close(fd);
 }

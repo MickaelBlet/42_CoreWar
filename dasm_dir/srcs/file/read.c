@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/28 18:12:18 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/28 21:44:54 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/29 01:00:15 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void					file_read(char *file_name)
 		return ((void)ERROR("%s: %s", file_name, ft_strerror()));
 	if (s_read(fd, file_name) == false)
 		return ;
+	close(fd);
 	sgt_dasm()->file.header = s_file_get_header();
 	if (sgt_dasm()->file.header->magic != COREWAR_EXEC_MAGIC)
 		return ((void)ERROR("%s: %s", file_name, "bad file"));

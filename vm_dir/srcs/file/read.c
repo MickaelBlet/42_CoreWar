@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 03:45:35 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/13 18:21:56 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/29 01:01:03 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ t_file			*file_read(char *file_name)
 	if ((fd = open(file_name, O_RDONLY)) == -1)
 		s_error(0, file_name);
 	s_read(file, fd, file_name);
+	close(fd);
 	return (file);
 }

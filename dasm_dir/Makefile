@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/12 12:08:30 by mblet             #+#    #+#              #
-#    Updated: 2016/10/29 00:23:15 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/29 01:03:07 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ LIBFT_LIB	=	$(LIBFT_DIR)libft.a
 
 SRCBASE		=	\
 				dasm.c														\
+				file/clean.c												\
 				file/read.c													\
 				file/write.c												\
 				line/creat.c												\

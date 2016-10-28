@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/28 17:56:46 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/29 00:19:41 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/29 01:03:07 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void				op_check(void);
 */
 void				file_read(char *file_name);
 void				file_write(void);
+void				file_clean(void);
 
 /*
 ** LINE

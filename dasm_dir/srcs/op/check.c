@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/28 21:20:43 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/29 00:10:05 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/29 00:49:03 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ void			op_check(void)
 		else
 			s_func(op, line);
 		ft_lstd_push_back(&list, line);
-		if (list->prev == NULL)
-			sgt_dasm()->lines = list;
-		else if (list->next != NULL)
+		if (list->next != NULL)
 			list = list->next;
+		else
+			sgt_dasm()->lines = list;
 	}
 	line_set_label();
 	line_print();

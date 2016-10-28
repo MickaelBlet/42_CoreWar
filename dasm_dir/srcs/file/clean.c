@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dasm.c                                             :+:      :+:    :+:   */
+/*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/28 17:56:34 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/29 01:03:07 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/29 00:40:40 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/29 01:02:46 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dasm.h"
 
-void	dasm(int argc, char **argv)
+static void		s_delete_line(t_line *line)
 {
-	int		i;
+	free(line);
+}
 
-	i = 0;
-	while (++i < argc)
-	{
-		if (argc > 2)
-			ft_printf("%s:\n", argv[i]);
-		file_read(argv[i]);
-		file_clean();
-		if (argc > 2)
-			ft_putchar('\n');
-	}
+void			file_clean(void)
+{
+	ft_lstd_clear(&sgt_dasm()->lines, &s_delete_line);
+	ft_bzero(sgt_dasm()->file.data, CHAMP_MAX_SIZE + sizeof(t_header));
+	sgt_dasm()->index_cor = 0;
+	sgt_dasm()->data = NULL;
+	sgt_dasm()->lines = NULL;
 }
