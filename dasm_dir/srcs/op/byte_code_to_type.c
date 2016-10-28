@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   and.c                                              :+:      :+:    :+:   */
+/*   byte_code_to_type.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/22 14:46:22 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/28 16:47:09 by mblet            ###   ########.fr       */
+/*   Created: 2016/09/20 10:08:31 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/28 22:30:59 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "dasm.h"
 
-void	verbose_op_and(t_process *process, int type[4], int arg[4])
+static int	s_to_type(unsigned char b)
 {
-	int		val[2];
+	if (b & 1)
+	{
+		if ((b >> 1) & 1)
+			return (T_IND);
+		else
+			return (T_REG);
+	}
+	else if (b & 2)
+		return (T_DIR);
+	else
+		return (0);
+}
 
-	if (type[0] == T_REG)
-		val[0] = process->reg[arg[0] - 1];
-	else
-		val[0] = arg[0];
-	if (type[1] == T_REG)
-		val[1] = process->reg[arg[1] - 1];
-	else
-		val[1] = arg[1];
-	ft_printf("P %4lu | %s %i %i r%i\n",
-			process->uid, process->op.name,
-			val[0], val[1], arg[2]);
+void		byte_code_to_type(int (*t)[4], unsigned char b)
+{
+	(*t)[3] = s_to_type(b >> 0);
+	(*t)[2] = s_to_type(b >> 2);
+	(*t)[1] = s_to_type(b >> 4);
+	(*t)[0] = s_to_type(b >> 6);
 }

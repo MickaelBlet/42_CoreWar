@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:18:18 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 16:57:17 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/28 12:16:05 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void		s_func(t_process *process)
 	}
 	verbose_op(process, type, val);
 	func_tab(process->op.op_code - 1)(process, type, val);
-	if (process->op.op_code != 9)
+	if (process->op.op_code != 9 || process->carry == 0)
 		verbose_move(process, index_type);
 	process->pc = (process->pc + index_type) % MEM_SIZE;
 	process->op = op_tab(16);

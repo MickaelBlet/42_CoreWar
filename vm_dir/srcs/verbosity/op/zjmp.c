@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/22 14:46:22 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/23 15:51:58 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/28 12:16:16 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ void	verbose_op_zjmp(t_process *process, int type[4], int arg[4])
 	{
 		ft_printf("P %4lu | %s %i FAILED\n",
 				process->uid, process->op.name, arg[0]);
-		verbose_move(process, 3);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 23:37:18 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/22 14:30:19 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/28 13:47:44 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_process		*process_creat(size_t index, int id, int color_id)
 	process->pc = index;
 	s_ini_reg(process, id);
 	process->live = 0;
-	process->carry = 1;
+	process->carry = 0;
 	process->op = op_tab(16);
 	process->op_cycle = 0;
 	process->color_id = color_id;

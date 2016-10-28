@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   and.c                                              :+:      :+:    :+:   */
+/*   creat.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/22 14:46:22 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/28 16:47:09 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/28 22:33:39 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/28 22:35:27 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
+#include "dasm.h"
 
-void	verbose_op_and(t_process *process, int type[4], int arg[4])
+t_line	*line_creat(int index_cor, t_op op)
 {
-	int		val[2];
+	t_line	*line;
 
-	if (type[0] == T_REG)
-		val[0] = process->reg[arg[0] - 1];
-	else
-		val[0] = arg[0];
-	if (type[1] == T_REG)
-		val[1] = process->reg[arg[1] - 1];
-	else
-		val[1] = arg[1];
-	ft_printf("P %4lu | %s %i %i r%i\n",
-			process->uid, process->op.name,
-			val[0], val[1], arg[2]);
+	if ((line = (t_line *)malloc(sizeof(t_line))) == NULL)
+		return (NULL);
+	line->index_cor = index_cor;
+	line->op = op;
+	return (line);
 }
