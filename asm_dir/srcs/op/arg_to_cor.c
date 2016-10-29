@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 00:59:33 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/28 04:05:40 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/29 01:28:16 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static void		s_lab_to_cor(t_line *line, t_arg *arg)
 	int		i;
 
 	i = (arg->data[0] == '%') ? 2 : 1;
+	if (label_check_name(arg->data + i) == false)
+		return (error_print(*arg, ERR_LAB_NAME));
 	if (label_check_same(arg->data + i) == true)
 		return (error_print(*arg, ERR_OP_LAB_NOT_FOUND));
 	arg->type -= T_LAB;

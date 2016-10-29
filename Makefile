@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/12 12:10:01 by mblet             #+#    #+#              #
-#    Updated: 2016/10/28 14:57:50 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/29 02:32:11 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,14 @@ fclean:		clean
 	make -C $(DASM_DIR) fclean
 	make -C $(VM_DIR) fclean
 
+fcleanlib:	fclean
+	make -C $(ASM_DIR) fcleanlib
+	make -C $(DASM_DIR) fcleanlib
+	make -C $(VM_DIR) fcleanlib
+	make -C $(LIBFT_DIR) fclean
+
 re:			fclean all
 
-.PHONY:		fclean clean re
+relib:		fclean fcleanlib all
+
+.PHONY:		fclean fcleanlib clean re relib

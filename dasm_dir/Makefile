@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/12 12:08:30 by mblet             #+#    #+#              #
-#    Updated: 2016/10/29 01:03:07 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/29 02:25:58 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LENGTHNAME	=	`printf "%s" $(NAMEBASE) | wc -c`
 MAX_COLS	=	$$(echo "$$(tput cols)-24-$(LENGTHNAME)"|bc)
 
 CC			=	gcc
-FLAGS		=	-Wall -Wextra -Werror -ggdb
+FLAGS		=	-Wall -Wextra -Werror -O3
 
 SRCDIR		=	srcs/
 OBJDIR		=	objs/
