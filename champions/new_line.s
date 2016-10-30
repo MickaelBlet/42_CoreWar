@@ -1,92 +1,184 @@
 .name		"NEWLINE"
 .comment	"Jump jUmp juMp jumP"
 
-	ld		%0x4a, r2
-	ld		%0x55, r3
-	ld		%0x4d, r4
-	ld		%0x50, r5
-	ld		%0x0a, r6
-	aff		r2
-	aff		r3
-	aff		r4
-	aff		r5
-	aff		r6
-	st		r1, 6
-loop:
-	live	%0x99999999
-	fork	%:loop
 start:
-	st		r1, 36
-	st		r1, 113
-;	st		r1, 119
-	st		r1, 137
-	st		r1, 161
-	st		r1, 185
+	sti		r1, %:fork1, %1
+	sti		r1, %:fork2, %1
+	sti		r1, %:fork3, %1
+
+	ld		%1, r15
+	ld		%2, r14
+	ld		%4, r13
+ini:
+	ld		%-8, r16
 	fork	%:fork1
-	ld		%0, r16
+	add		r16, r15, r16
 
 fork1:
-	live	%0x99999999
+	live	%0xface
 	fork	%:fork2
-	zjmp	%:preproc1
-	ld		%0, r16
-	ld		%0, r16
-	ld		%0, r16
-	zjmp	%:proc2 	; 3
+	add		r16, r14, r16
 
 fork2:
+	live	%0xface
+	fork	%:fork3
+	add		r16, r13, r16
+
+fork3:
+	live	%0xface
+	zjmp	%:preproc4
+	add		r16, r15, r16
+	zjmp	%:wall_jump		;preproc8
+	add		r16, r15, r16
+	zjmp	%:wall_jump		;preproc7
+	add		r16, r15, r16
+	zjmp	%:preproc5
+	add		r16, r15, r16
+	zjmp	%:wall_jump		;preproc6
+	add		r16, r15, r16
+	zjmp	%:preproc1
+	add		r16, r15, r16
 	zjmp	%:preproc2
+	add		r16, r15, r16
+	zjmp	%:preproc3
+
+preproc4:
 	ld		%0, r16
 	ld		%0, r16
-	zjmp	%:proc3		; 2
+	zjmp	%:proc4
+
+;preproc8:
+	;zjmp	%3
+	;zjmp	%3
+	;zjmp	%3
+	;zjmp	%3
+	;zjmp	%3
+	;zjmp	%3
+	;zjmp	%3
+	;zjmp	%3
+	;zjmp	%:proc8
+
+;preproc7:
+	;zjmp	%3
+	;zjmp	%3
+	;zjmp	%3
+	;zjmp	%3
+	;zjmp	%3
+	;zjmp	%3
+	;zjmp	%3
+	;zjmp	%:proc7
+
+preproc5:
+	zjmp	%3
+	zjmp	%3
+	zjmp	%3
+	zjmp	%3
+	zjmp	%3
+	ld		%0, r16
+	ld		%0, r16
+	zjmp	%:proc5
+
+;preproc6:
+	;zjmp	%3
+	;zjmp	%3
+	;zjmp	%3
+	;zjmp	%3
+	;ld		%0, r16
+	;ld		%0, r16
+	;zjmp	%:proc6
 
 preproc1:
+	zjmp	%3
+	zjmp	%3
 	ld		%0, r16
 	ld		%0, r16
-	ld		%0, r16
-	zjmp	%:proc4		; 4
+	zjmp	%:proc1
 
 preproc2:
-	zjmp	%:proc1		; 1
-
-; proc0 20
-; proc1 45
-; proc2 20
-; proc3 45
-
-proc4:
-	live	%0x99999999
-	ld		%0x00e50000, r2
-	ld		%0xef037003, r3
+	zjmp	%3
 	ld		%0, r16
-	zjmp	%:jump
-
-proc3:
-	live	%0x99999999
-	ld		%0xef037003, r2
-	ld		%0xf7037003, r3
 	ld		%0, r16
-	zjmp	%:jump
+	zjmp	%:proc2
 
-proc2:
-	live	%0x99999999
-	ld		%0xffff0900, r2
-	ld		%0xfa037003, r3
-	ld		%0, r16
-	zjmp	%:jump
+preproc3:
+	zjmp	%:proc3
+
+wall_jump:
+	st		r16, -250
+	st		r16, -250
+	st		r16, -250
+	st		r16, -250
+	st		r16, -250
+	st		r16, -250
+	st		r16, -250
+	st		r16, -250
+	st		r16, -250
+	st		r16, -250
+	st		r16, -250
+	st		r16, -250
+	st		r16, -250
+	st		r16, -250
+	st		r16, -250
+	zjmp	%:wall
 
 proc1:
-	live	%0x99999999
-	ld		%0x03700200, r2
+	ld		%0x03700201, r2
 	ld		%0xf3037003, r3
 	ld		%0, r16
 	zjmp	%:jump
 
+proc2:
+	ld		%0xef037003, r2
+	ld		%0xf7037003, r3
+	ld		%0, r16
+	ld		%0, r16
+	zjmp	%:jump
+
+proc3:
+	ld		%0xffff0100, r2
+	ld		%0xfa037003, r3
+	ld		%0, r16
+	ld		%0, r16
+	ld		%0, r16
+	zjmp	%:jump
+
+proc4:
+	st		r1, r2
+	ld		%0xfe037003, r3
+	ld		%0, r16
+	ld		%0, r16
+	ld		%0, r16
+	ld		%0, r16
+	zjmp	%:jump
+
+proc5:
+	ld		%0x0901e000, r2
+	ld		%0xef037003, r3
+	ld		%0, r16
+	ld		%0, r16
+	ld		%0, r16
+	ld		%0, r16
+	ld		%0, r16
+	zjmp	%:jump
+
 jump:
-	st		r2, 0xef
+	;aff		r1
+	st		r2, 0x1ef
 	st		r3, -1
 live:
-	zjmp	%0xe5
+	live	%42
+	zjmp	%0x1e0
+	xor		r16, r16, r16
+
+wall:
+	ld		%-1, r16
+wall2:
+	sti		r1, %:live, %1
+	zjmp	%:wall2
+	fork	%:live
+;proc6:
+;proc7:
+;proc8:
 
 #proc:
 #	ldi		%:proc, r2, r3	; 6 > 25
