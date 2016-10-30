@@ -1,135 +1,70 @@
-.name       "fluttershy"
-.comment    "oh, my, what a scary project"
+.name       "NEWLINE"
+.comment    "Jump jUmp juMp jumP"
 
 
 label_0:
-    fork    %:label_144
-    st      r1, 6
-    live    %42
-    fork    %:label_382
-    st      r1, 6
-    live    %42
-    fork    %:label_267
-
-label_29:
-    st      r1, 6
-
-label_34:
-    live    %213904
-    fork    %:label_34
-
-label_42:
-    sti     r1, %:label_94, %1
-    st      r1, 6
-    live    %43123
-    sti     r1, %:label_121, %1
-    ld      %-6, r2
-    ld      %-6, r3
-    ld      %150994953, r4
-    ld      %-186, r5
-
-label_94:
-    live    %295423
-    sti     r4, %:label_29, r2
-    add     r2, r3, r2
-    sti     r4, %:label_29, r2
-    add     r2, r3, r2
-
-label_121:
-    live    %3940641
-    xor     r2, r5, r15
-    zjmp    %:label_42
-    ld      %0, r16
-    zjmp    %:label_94
-
-label_144:
-    st      r1, 6
-
-label_149:
-    live    %123012
-    fork    %:label_149
-    st      r1, 58
-    st      r1, 58
-    st      r1, 58
-    st      r1, 58
-    st      r1, 58
-    st      r1, 58
-    st      r1, 58
-    st      r1, 58
-    st      r1, 58
-    st      r1, 58
+    st      r1, 41
+    st      r1, 118
+    st      r1, 119
+    st      r1, 137
+    st      r1, 161
+    st      r1, 185
+    fork    %:label_40
     ld      %0, r16
 
-label_214:
-    live    %985341
-    live    %985341
-    live    %985341
-    live    %985341
-    live    %985341
-    live    %985341
-    live    %985341
-    live    %985341
-    live    %985341
-    live    %985341
-    zjmp    %:label_214
-
-label_267:
-    st      r1, 6
-
-label_272:
-    live    %213904
-    fork    %:label_272
-
-label_280:
-    sti     r1, %:label_332, %1
-    st      r1, 6
-    live    %43123
-    sti     r1, %:label_359, %1
-    ld      %0, r2
-    ld      %6, r3
-    ld      %150994953, r4
-    ld      %180, r5
-
-label_332:
-    live    %295423
-    sti     r4, %153, r2
-    add     r2, r3, r2
-    sti     r4, %142, r2
-    add     r2, r3, r2
-
-label_359:
-    live    %3940641
-    xor     r2, r5, r15
-    zjmp    %:label_280
+label_40:
+    live    %-1717986919
+    fork    %:label_75
+    zjmp    %:label_95
     ld      %0, r16
-    zjmp    %:label_332
+    ld      %0, r16
+    ld      %0, r16
+    zjmp    %:label_180
 
-label_382:
-    st      r1, 6
+label_75:
+    zjmp    %:label_119
+    ld      %0, r16
+    ld      %0, r16
+    zjmp    %:label_151
 
-label_387:
-    live    %96824
-    fork    %:label_387
+label_95:
+    ld      %0, r16
+    ld      %0, r16
+    ld      %0, r16
+    zjmp    %:label_122
 
-label_395:
-    ld      %0, r2
-    ld      %4, r3
-    ld      %96, r5
-    sti     r1, %:label_467, %1
-    st      r1, 6
+label_119:
+    zjmp    %:label_209
 
-label_428:
-    live    %8008135
-    ldi     %:label_395, r2, r4
-    sti     r4, %400, r2
-    add     r2, r3, r2
-    ldi     %:label_395, r2, r4
-    sti     r4, %383, r2
-    add     r2, r3, r2
+label_122:
+    live    %-1717986919
+    ld      %-1717986919, r2
+    ld      %251883523, r3
+    ld      %0, r16
+    zjmp    %:label_238
 
-label_467:
-    live    %89523
-    xor     r2, r5, r15
-    zjmp    %362
-    ld      %0, r15
-    zjmp    %:label_428
+label_151:
+    live    %-1717986919
+    ld      %251883523, r2
+    ld      %386101251, r3
+    ld      %0, r16
+    zjmp    %:label_238
+
+label_180:
+    live    %-1717986919
+    ld      %-65280, r2
+    ld      %436432899, r3
+    ld      %0, r16
+    zjmp    %:label_238
+
+label_209:
+    live    %-1717986919
+    ld      %57672192, r2
+    ld      %318992387, r3
+    ld      %0, r16
+    zjmp    %:label_238
+
+label_238:
+    st      r2, 15
+    st      r3, -1
+    live    %0

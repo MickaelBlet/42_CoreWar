@@ -6,39 +6,52 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/22 13:47:59 by mblet             #+#    #+#             */
-/*   Updated: 2015/11/27 07:03:43 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/29 11:18:07 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 #include <stdlib.h>
+#include <unistd.h>
 
-static void		s_strcal(char *s, int n, size_t *index)
+static void		s_strcal(char **s, long long int n, char *base, size_t len)
 {
 	if (n < 0)
 	{
-		s[(*index)++] = '-';
+		(**s) = '-';
+		++(*s);
+		(**s) = '\0';
 		n = n * -1;
 	}
-	if (n < 10)
-		s[(*index)++] = '0' + n;
+	if (n < (long long int)len)
+	{
+		(**s) = base[n];
+		++(*s);
+		(**s) = '\0';
+	}
 	else
 	{
-		s_strcal(s, n / 10, index);
-		s[(*index)++] = '0' + n % 10;
+		s_strcal(s, n / len, base, len);
+		(**s) = base[n % len];
+		++(*s);
+		(**s) = '\0';
 	}
 }
 
 char			*ft_itoa(int n)
 {
+	char	tmp[128];
 	char	*str;
-	size_t	index;
+	size_t	len;
 
 	if (n == INT_MIN)
 		return (ft_strdup("-2147483648"));
-	str = ft_strnew(11);
-	index = 0;
-	s_strcal(str, n, &index);
+	str = tmp;
+	s_strcal(&str, n, "0123456789", 10);
+	len = str - tmp + 1;
+	if ((str = (char *)malloc((len) * sizeof(char))) == NULL)
+		return (NULL);
+	ft_memcpy(str, tmp, len);
 	return (str);
 }

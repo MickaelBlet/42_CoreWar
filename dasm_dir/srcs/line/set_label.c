@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/28 23:22:52 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/28 23:53:30 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/29 12:07:41 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void			line_set_label(void)
 		while (i < line->op.nb_args)
 		{
 			if ((line->arg[i].type == T_DIR || line->arg[i].type == T_IND)
-				&& line->arg[i].value != 0
+				&& line->arg[i].value != 0 && line->op.op_code != 1
 				&& s_set_to_index(line->index_cor + line->arg[i].value))
 			{
 				line->arg[i].label = true;

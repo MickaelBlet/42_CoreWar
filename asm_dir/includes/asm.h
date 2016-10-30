@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/24 18:11:18 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/28 18:10:24 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/29 22:39:48 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ typedef struct		s_asm
 /*
 ** MAIN
 */
-void				cor_asm(int argc, char **argv);
+int					cor_asm(int argc, char **argv);
 
 /*
 ** SINGLETON

@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 00:59:33 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/29 01:28:16 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/29 14:01:00 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,22 @@ void			op_arg_to_cor(t_line *line, t_arg *arg)
 	else if (arg->type == T_REG)
 		sgt_asm()->cor.data[arg->index_cor % CHAMP_MAX_SIZE] =
 			(unsigned char)ft_atoi(arg->data + 1);
+	else if (arg->type == T_DIR && !line->op.has_idx && ft_aisi(arg->data + 1))
+		s_set_4byte_value(sgt_asm()->cor.data, arg->index_cor,
+				ft_atoi(arg->data + 1));
 	else if (arg->type == T_DIR && !line->op.has_idx)
 		s_set_4byte_value(sgt_asm()->cor.data, arg->index_cor,
+				ft_ahtoi(arg->data + 1));
+	else if (arg->type == T_DIR && ft_aisi(arg->data + 1))
+		s_set_2byte_value(sgt_asm()->cor.data, arg->index_cor,
 				ft_atoi(arg->data + 1));
 	else if (arg->type == T_DIR)
 		s_set_2byte_value(sgt_asm()->cor.data, arg->index_cor,
-				ft_atoi(arg->data + 1));
-	else if (arg->type == T_IND)
+				ft_ahtoi(arg->data + 1));
+	else if (arg->type == T_IND && ft_aisi(arg->data))
 		s_set_2byte_value(sgt_asm()->cor.data, arg->index_cor,
 				ft_atoi(arg->data));
+	else if (arg->type == T_IND)
+		s_set_2byte_value(sgt_asm()->cor.data, arg->index_cor,
+				ft_ahtoi(arg->data));
 }

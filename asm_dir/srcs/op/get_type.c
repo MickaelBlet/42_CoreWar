@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 22:58:32 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/26 00:42:02 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/29 13:40:08 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	s_get_direct(t_op op, char *str)
 	ret = 0;
 	if (str[1] == ':')
 		ret = T_LAB;
-	else if (ft_aisi(str + 1) == false)
+	else if (ft_aisi(str + 1) == false && ft_aish(str + 1) == false)
 		return (0);
 	if (op.has_idx)
 		sgt_asm()->index_cor += 2;
@@ -60,7 +60,7 @@ int			op_get_type(t_op op, char *str)
 		return (s_get_direct(op, str));
 	else if (str[0] == ':')
 		return (s_get_label(op, str));
-	else if (ft_aisi(str))
+	else if (ft_aisi(str) || ft_aish(str))
 	{
 		sgt_asm()->index_cor += 2;
 		return (T_IND);

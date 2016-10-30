@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/17 12:29:09 by mblet             #+#    #+#             */
-/*   Updated: 2016/03/29 15:18:35 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/29 09:48:25 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_bool	s_check_conversion(t_printf *t, char **s)
 	char	*flags;
 
 	i = 0;
-	flags = ft_strdup("%sSpdDioOuUxXcCbBfF");
+	flags = "%sSpdDioOuUxXcCbBfF";
 	while (flags && flags[i])
 	{
 		if (**s == flags[i])
@@ -34,12 +34,8 @@ static t_bool	s_check_conversion(t_printf *t, char **s)
 		i++;
 	}
 	if (flags[i] == '\0')
-	{
-		ft_strdel(&flags);
 		return (false);
-	}
 	t->ptr_funcs[i](t);
-	ft_strdel(&flags);
 	return (true);
 }
 

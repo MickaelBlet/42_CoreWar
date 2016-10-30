@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strsub.c                                           :+:      :+:    :+:   */
+/*   aish.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/23 05:52:36 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/29 11:22:22 by mblet            ###   ########.fr       */
+/*   Created: 2016/10/29 13:40:40 by mblet             #+#    #+#             */
+/*   Updated: 2016/10/29 13:53:49 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
+#include <unistd.h>
+
+t_bool	ft_aish(const char *s)
 {
-	char	*str;
-	int		i;
-	size_t	j;
-
-	str = NULL;
-	if (s == NULL || len == 0)
-		return (str);
-	i = start;
-	j = 0;
-	str = (char *)malloc((len + 1) * sizeof(char));
-	if (str)
-	{
-		while (s[i] && j < len)
-		{
-			str[j] = s[i];
-			++i;
-			++j;
-		}
-		str[j] = '\0';
-	}
-	return (str);
+	if (s == NULL || *s == '\0')
+		return (false);
+	if (*s == '0' && *(s + 1) == 'x')
+		s += 2;
+	else
+		return (false);
+	while (*s != '\0' && (
+				(*s >= '0' && *s <= '9')
+			|| (*s >= 'a' && *s <= 'f')
+			|| (*s >= 'A' && *s <= 'F')))
+		++s;
+	if (*s == '\0')
+		return (true);
+	return (false);
 }

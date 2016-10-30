@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/24 21:25:53 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/28 18:10:23 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/29 22:39:48 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void		s_scan_op(t_line *line)
 	line_scan_op(line);
 }
 
-void			cor_asm(int argc, char **argv)
+int				cor_asm(int argc, char **argv)
 {
 	int		i;
 
@@ -42,4 +42,5 @@ void			cor_asm(int argc, char **argv)
 		if (argc > 2 && i + 1 < argc)
 			ft_putchar('\n');
 	}
+	return (sgt_asm()->error);
 }

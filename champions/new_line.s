@@ -1,145 +1,104 @@
-.name		"fluttershy"
-.comment	"oh, my, what a scary project"
+.name		"NEWLINE"
+.comment	"Jump jUmp juMp jumP"
 
-
-entry:
-	fork	%:coregeni
+	ld		%0x4a, r2
+	ld		%0x55, r3
+	ld		%0x4d, r4
+	ld		%0x50, r5
+	ld		%0x0a, r6
+	aff		r2
+	aff		r3
+	aff		r4
+	aff		r5
+	aff		r6
 	st		r1, 6
-	live	%42
-	fork	%:torpgeni
-	st		r1, 6
-	live	%42
-	fork	%:avdefgeni
-
-ardeftgt:
-
-ardefgeni:
-	st 		r1, 6
-
-ardefgen:
-	live 	%213904
-	fork 	%:ardefgen
-
-ardefinit:
-	sti		r1, %:ardefl1, %1
-	st		r1, 6
-	live	%43123
-	sti		r1, %:ardefchk, %1
-	ld		%-6, r2
-	ld		%-6, r3
-	ld		%150994953, r4
-	ld		%-186, r5
-
-ardefwrite:
-ardefl1:
-	live	%295423
-	sti		r4, %:ardeftgt, r2
-	add		r2, r3, r2
-	sti		r4, %:ardeftgt, r2
-	add		r2, r3, r2
-ardefchk:
-	live	%3940641
-	xor		r2, r5, r15
-	zjmp	%:ardefinit
-ardefloop:	
-	ld		%0, r16
-	zjmp	%:ardefwrite
-
-
-coregeni:
-	st		r1, 6
-
-coregen:
-	live	%123012
-	fork	%:coregen
-
-coreinit:
-	st		r1, 58
-	st		r1, 58
-	st		r1, 58
-	st		r1, 58
-	st		r1, 58
-	st		r1, 58
-	st		r1, 58
-	st		r1, 58
-	st		r1, 58
-	st		r1, 58
+loop:
+	live	%0x99999999
+	fork	%:loop
+start:
+	st		r1, 36
+	st		r1, 113
+;	st		r1, 119
+	st		r1, 137
+	st		r1, 161
+	st		r1, 185
+	fork	%:fork1
 	ld		%0, r16
 
-corelive:
-	live	%985341
-	live	%985341
-	live	%985341
-	live	%985341
-	live	%985341
-	live	%985341
-	live	%985341
-	live	%985341
-	live	%985341
-	live	%985341
-	zjmp	%:corelive
-
-avdefgeni:
-	st 		r1, 6
-
-avdefgen:
-	live 	%213904
-	fork 	%:avdefgen
-
-avdefinit:
-	sti		r1, %:avdefl1, %1
-	st		r1, 6
-	live	%43123
-	sti		r1, %:avdefchk, %1
-	ld		%0, r2
-	ld		%6, r3
-	ld		%150994953, r4
-	ld		%180, r5
-
-avdefwrite:
-avdefl1:
-	live	%295423
-	sti		r4, %:avdeftgt, r2
-	add		r2, r3, r2
-	sti		r4, %:avdeftgt, r2
-	add		r2, r3, r2
-avdefchk:
-	live	%3940641
-	xor		r2, r5, r15
-	zjmp	%:avdefinit
-avdefloop:	
+fork1:
+	live	%0x99999999
+	fork	%:fork2
+	zjmp	%:preproc1
 	ld		%0, r16
-	zjmp	%:avdefwrite
+	ld		%0, r16
+	ld		%0, r16
+	zjmp	%:proc2 	; 3
 
-torpgeni:
-	st		r1, 6
+fork2:
+	zjmp	%:preproc2
+	ld		%0, r16
+	ld		%0, r16
+	zjmp	%:proc3		; 2
 
-torpgen:
-	live	%96824
-	fork	%:torpgen
+preproc1:
+	ld		%0, r16
+	ld		%0, r16
+	ld		%0, r16
+	zjmp	%:proc4		; 4
 
-torpinit:
-	ld		%0, r2
-	ld		%4, r3
-	ld		%96, r5
-	sti		r1, %:torpchk, %1
-	st		r1, 6
+preproc2:
+	zjmp	%:proc1		; 1
 
-torpwrite:
-torpl1:
-	live	%8008135
-	ldi		%:torpinit, r2, r4
-	sti		r4, %400, r2
-	add		r2, r3, r2
-	ldi		%:torpinit, r2, r4
-	sti		r4, %383, r2
-	add		r2, r3, r2
-torpchk:
-	live	%89523
-	xor		r2, r5, r15	
-	zjmp	%362
-torploop:
-	ld		%0, r15
-	zjmp	%:torpwrite
+; proc0 20
+; proc1 45
+; proc2 20
+; proc3 45
 
-avdeftgt:
+proc4:
+	live	%0x99999999
+	ld		%0x00e50000, r2
+	ld		%0xef037003, r3
+	ld		%0, r16
+	zjmp	%:jump
+
+proc3:
+	live	%0x99999999
+	ld		%0xef037003, r2
+	ld		%0xf7037003, r3
+	ld		%0, r16
+	zjmp	%:jump
+
+proc2:
+	live	%0x99999999
+	ld		%0xffff0900, r2
+	ld		%0xfa037003, r3
+	ld		%0, r16
+	zjmp	%:jump
+
+proc1:
+	live	%0x99999999
+	ld		%0x03700200, r2
+	ld		%0xf3037003, r3
+	ld		%0, r16
+	zjmp	%:jump
+
+jump:
+	st		r2, 0xef
+	st		r3, -1
+live:
+	zjmp	%0xe5
+
+#proc:
+#	ldi		%:proc, r2, r3	; 6 > 25
+#	sti		r3, %400, r2	; 6 > 25
+#	live	%42				; 5 > 10
+#	add		r2, r4, r2		; 6 > 10
+#	xor		r2, r5, r15		; 6 > 6
+#	zjmp	%:set1			; 3 > 20
+#	ld		%0, r15			; 7 > 5
+#	zjmp	%:proc			; 3 > 20
+#
+#set1:
+#	xor		r2, r2, r2		; 6 > 6
+#	zjmp	%361			; 3 > 20
+#							; length  == 40

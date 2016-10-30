@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 11:00:17 by mblet             #+#    #+#              #
-#    Updated: 2016/10/29 02:21:35 by mblet            ###   ########.fr        #
+#    Updated: 2016/10/29 13:53:50 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ MAX_COLS	=	$$(echo "$$(tput cols)-24-$(LENGTHNAME)"|bc)
 
 CC			=	gcc
 
-FLAGS		=	-Wall -Wextra -Werror
+FLAGS		=	-Wall -Wextra -Werror -O3
 
 SRCDIR		=	srcs/
 
@@ -109,6 +109,7 @@ SRCBASE		=	\
 				printf/wstr_to_str.c										\
 				string/ahtoi.c												\
 				string/aisf.c												\
+				string/aish.c												\
 				string/aisi.c												\
 				string/atof.c												\
 				string/atol.c												\

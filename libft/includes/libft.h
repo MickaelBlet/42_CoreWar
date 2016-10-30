@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 05:52:47 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/23 15:53:57 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/29 13:44:04 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,6 +233,7 @@ void				*ft_hashtable_get(t_hashtable *ht, char *key);
 ** STRING
 */
 t_bool				ft_aisi(const char *s);
+t_bool				ft_aish(const char *s);
 t_bool				ft_aisf(const char *s);
 int					ft_ahtoi(const char *s);
 long				ft_atol(const char *s);
