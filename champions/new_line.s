@@ -5,7 +5,6 @@ start:
 	sti		r1, %:fork1, %1
 	sti		r1, %:fork2, %1
 	sti		r1, %:fork3, %1
-
 	ld		%1, r15
 	ld		%2, r14
 	ld		%4, r13
@@ -28,9 +27,9 @@ fork3:
 	live	%0xface
 	zjmp	%:preproc4
 	add		r16, r15, r16
-	zjmp	%:wall_jump		;preproc8
+	zjmp	%:ini			;preproc8
 	add		r16, r15, r16
-	zjmp	%:wall_jump		;preproc7
+	zjmp	%:ini			;preproc7
 	add		r16, r15, r16
 	zjmp	%:preproc5
 	add		r16, r15, r16
@@ -119,7 +118,7 @@ wall_jump:
 	st		r16, -250
 	st		r16, -250
 	st		r16, -250
-	zjmp	%:wall
+	zjmp	%:fork_live
 
 proc1:
 	ld		%0x03700201, r2
@@ -141,6 +140,16 @@ proc3:
 	ld		%0, r16
 	ld		%0, r16
 	zjmp	%:jump
+
+fake:
+	ld		%0, r1
+	ld		%0, r1
+	ld		%0, r1
+	ld		%0, r1
+	ld		%0, r1
+	ld		%0, r1
+	ld		%0, r1
+	ld		%0, r1
 
 proc4:
 	st		r1, r2
@@ -168,14 +177,24 @@ jump:
 live:
 	live	%42
 	zjmp	%0x1e0
-	xor		r16, r16, r16
 
-wall:
-	ld		%-1, r16
-wall2:
-	sti		r1, %:live, %1
-	zjmp	%:wall2
-	fork	%:live
+fork_live:
+	st		r1, 6
+	live	%42
+	fork	%:fork_live
+	st		r1, 6
+	live	%42
+	fork	%:fork_live
+	st		r1, 6
+	live	%42
+	xor		r16, r16, r16
+	fork	%:fork_live
+
+infinit:
+	st		r1, 6
+	live	%42
+	zjmp	%:infinit
+
 ;proc6:
 ;proc7:
 ;proc8:

@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 13:08:05 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/30 17:48:17 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/31 12:26:02 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void		s_sleep(void)
 void			*thread_vm(void *e)
 {
 	(void)e;
-	//sgt_corewar()->nb_cycle_per_second = 0;
+	sgt_corewar()->nb_cycle_per_second = 0;
 	pthread_mutex_lock(&sgt_corewar()->mutex);
 	while (sgt_corewar()->run)
 	{
@@ -43,11 +43,11 @@ void			*thread_vm(void *e)
 		pthread_mutex_unlock(&sgt_corewar()->mutex);
 		cycle();
 		s_sleep();
-		//if (sgt_corewar()->cycle == 2815)
-		//{
-		//sgt_corewar()->nb_cycle_per_second = 10;
-		//pthread_mutex_lock(&sgt_corewar()->mutex);
-		//}
+		if (sgt_corewar()->cycle == 2815)
+		{
+		sgt_corewar()->nb_cycle_per_second = 10;
+		pthread_mutex_lock(&sgt_corewar()->mutex);
+		}
 	}
 	win();
 	return (NULL);
