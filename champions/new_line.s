@@ -170,14 +170,6 @@ proc5:
 	ld		%0, r16
 	zjmp	%:jump
 
-jump:
-	;aff		r1
-	st		r2, 0x1ef
-	st		r3, -1
-live:
-	live	%42
-	zjmp	%0x1e0
-
 fork_live:
 	st		r1, 6
 	live	%42
@@ -194,6 +186,14 @@ infinit:
 	st		r1, 6
 	live	%42
 	zjmp	%:infinit
+
+jump:
+	;aff		r1
+	st		r2, 0x1ef
+	st		r3, -1
+live:
+	live	%42
+	zjmp	%0x1e0
 
 ;proc6:
 ;proc7:
