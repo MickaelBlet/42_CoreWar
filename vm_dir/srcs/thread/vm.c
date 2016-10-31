@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 13:08:05 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/30 17:09:01 by mblet            ###   ########.fr       */
+/*   Updated: 2016/10/30 17:48:17 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void			*thread_vm(void *e)
 		s_sleep();
 		//if (sgt_corewar()->cycle == 2815)
 		//{
-			//sgt_corewar()->nb_cycle_per_second = 10;
-			//pthread_mutex_lock(&sgt_corewar()->mutex);
+		//sgt_corewar()->nb_cycle_per_second = 10;
+		//pthread_mutex_lock(&sgt_corewar()->mutex);
 		//}
 	}
 	win();
