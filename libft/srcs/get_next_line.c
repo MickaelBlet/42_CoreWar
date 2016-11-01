@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/06 14:44:24 by mblet             #+#    #+#             */
-/*   Updated: 2016/06/01 15:57:51 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/01 03:49:44 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int				s_read_fd(t_get_next_line **old, char **line)
 	{
 		if ((*old)->eof == 1 && ((*old)->eof = 2))
 			return (0);
-		*line = ft_strdup((*old)->str);
+		*line = ((*old)->str == NULL) ? NULL : ft_strdup((*old)->str);
 		(*old)->eof = 1;
 		return (2);
 	}
