@@ -1,3 +1,6 @@
+# Newline random champion by mblet
+# 2016(c)
+
 .name		"NEWLINE"
 .comment	"Jump jUmp juMp jumP"
 
@@ -6,7 +9,7 @@ start:
 	sti		r1, %:fork2, %1
 	sti		r1, %:fork3, %1
 	sti		r1, %:ini_fork, %1
-	st		r2, -7
+	st		r2, -7				# delete prev sti
 	ld		%1, r15
 	ld		%2, r14
 	ld		%4, r13
@@ -118,29 +121,8 @@ proc5:
 	zjmp	%:jump
 
 jump:
-	;aff		r1
 	st		r2,  0xd3
 	st		r3, -1
 live:
 	live	%0xfeedface
 	zjmp	%0xc4
-
-
-;proc6:
-;proc7:
-;proc8:
-
-#proc:
-#	ldi		%:proc, r2, r3	; 6 > 25
-#	sti		r3, %400, r2	; 6 > 25
-#	live	%42				; 5 > 10
-#	add		r2, r4, r2		; 6 > 10
-#	xor		r2, r5, r15		; 6 > 6
-#	zjmp	%:set1			; 3 > 20
-#	ld		%0, r15			; 7 > 5
-#	zjmp	%:proc			; 3 > 20
-#
-#set1:
-#	xor		r2, r2, r2		; 6 > 6
-#	zjmp	%361			; 3 > 20
-#							; length  == 40
