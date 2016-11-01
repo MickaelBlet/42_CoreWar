@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/15 11:17:57 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/30 12:00:55 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/01 10:21:23 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static t_bool	s_img_init(void)
 static t_bool	s_win_init(void)
 {
 	sgt_mlx()->win = ft_mlx_new_window(sgt_mlx()->mlx, 100, 0,
-			VM_WIN_WIDTH, VM_WIN_HEIGHT, "mlx- corewar");
+			VM_WIN_WIDTH, VM_WIN_HEIGHT, "mlx - corewar");
 	if (sgt_mlx()->win == NULL)
 		return (false);
 	s_color_init();
@@ -97,7 +97,7 @@ void			vm_mlx_init(void)
 		|| s_img_init() == false
 		|| s_hook_init() == false)
 	{
-		ft_dprintf(STDERR_FILENO, "init mlx.\n");
+		ERROR(ERR_INIT_MLX);
 		exit(EXIT_FAILURE);
 	}
 }

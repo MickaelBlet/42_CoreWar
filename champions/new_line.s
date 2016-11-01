@@ -6,6 +6,7 @@ start:
 	sti		r1, %:fork2, %1
 	sti		r1, %:fork3, %1
 	sti		r1, %:ini_fork, %1
+	st		r2, -7
 	ld		%1, r15
 	ld		%2, r14
 	ld		%4, r13
@@ -40,17 +41,12 @@ fork3:
 	zjmp	%:preproc2
 	add		r16, r15, r16
 	zjmp	%:preproc3
+	; preproc4
 
 preproc4:
 	ld		%0, r16
 	ld		%0, r16
 	zjmp	%:proc4
-
-ini_fork:
-	live	%0xface
-	fork	%:ini_fork
-	xor		r16, r16, r16
-	zjmp	%:ini
 
 preproc5:
 	zjmp	%3
@@ -83,6 +79,12 @@ proc1:
 	ld		%0xd7037003, r3
 	ld		%0, r16
 	zjmp	%:jump
+
+ini_fork:
+	live	%0xface
+	fork	%:ini_fork
+	xor		r16, r16, r16
+	zjmp	%:ini_fork
 
 proc2:
 	ld		%0xd3037003, r2

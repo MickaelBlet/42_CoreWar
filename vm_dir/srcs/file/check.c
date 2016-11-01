@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/19 12:16:13 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/17 19:03:13 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/01 10:15:03 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void		s_check_if_free_id(int id)
 		file = list->data;
 		if (file->id == id)
 		{
-			ERR("corewar: same id.");
+			ERROR(ERR_FILE_SAME_ID, -id);
 			exit(EXIT_FAILURE);
 		}
 		list = list->next;
@@ -40,7 +40,7 @@ void			file_check(int *i, char **argv)
 		file = file_read(argv[(*i) + 1]);
 		if (file == NULL)
 		{
-			ERR("corewar: error read file.");
+			ERROR("%s", ft_strerror());
 			exit(EXIT_FAILURE);
 		}
 		file->id = -ft_atoi(argv[*i]);
@@ -50,7 +50,7 @@ void			file_check(int *i, char **argv)
 	}
 	else
 	{
-		ERR("corewar: id \"%s\" not valid.", argv[*i]);
+		ERROR(ERR_FILE_FORMAT_ID, argv[*i]);
 		exit(EXIT_FAILURE);
 	}
 }

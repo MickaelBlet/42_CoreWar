@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/26 21:29:17 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/01 10:21:06 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,23 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define __MSG0			"./corewar "
-# define __MSG1			"[-g] [-d nbr_cycles] "
+# define BIN_NAME		"./corewar"
+
+# define __MSG1			" [-g] [-d nbr_cycles] "
 # define __MSG2			"[--aff --lives --cycles --ops --deaths --moves] "
 # define __MSG3			"[[-n number] file.cor]"
-# define MSG_USAGE		__MSG0 __MSG1 __MSG2 __MSG3
+# define MSG_USAGE		BIN_NAME __MSG1 __MSG2 __MSG3
 
-# define ERR_OPEN_FILE			"corewar: Can't open file \"%s\".\n"
-# define ERR_SAME_ID			"corewar: Same file id.\n"
-# define ERR_FILE_TOO_LARGE		"corewar: File \"%s\" is too large.\n"
-# define ERR_FILE_NOT_VALID		"corewar: File \"%s\" not valid.\n"
-# define ERR_TOO_MANY_PLAYERS	"corewar: Too many players.\n"
+# define __ER0		STDERR_FILENO, "{bold}" BIN_NAME ": {red}error: {white}"
+# define ERROR(f, ...)	ft_dprintf(__ER0 f "{reset}\n", ##__VA_ARGS__)
+
+# define ERR_FILE_NOT_VALID		"File not valid"
+# define ERR_FILE_SAME_ID		"Same file id \"%i\""
+# define ERR_FILE_FORMAT_ID		"Format id \"%s\""
+# define ERR_DUMP_FORMAT		"Format dump \"%s\""
+# define ERR_TOO_MANY_PLAYERS	"Too many players"
+
+# define ERR_INIT_MLX			"Init mlx"
 
 typedef struct			s_byte
 {

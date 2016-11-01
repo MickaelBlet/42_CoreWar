@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/19 00:50:16 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/28 11:28:29 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/01 10:21:58 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int		s_find_free_id(void)
 			return (id);
 		--id;
 	}
-	ERR("corewar: max player.");
+	ERROR(ERR_TOO_MANY_PLAYERS);
 	exit(EXIT_FAILURE);
 }
 
@@ -44,7 +44,7 @@ static void		s_check_file_without_id(char *arg)
 	file = file_read(arg);
 	if (file == NULL)
 	{
-		ERR("corewar: error read file.");
+		ERROR("%s", ft_strerror());
 		exit(EXIT_FAILURE);
 	}
 	file->id = s_find_free_id();
@@ -80,7 +80,7 @@ static void		s_check_dump(int *i, char *arg)
 	}
 	else
 	{
-		ERR("corewar: dump not valid.");
+		ERROR(ERR_DUMP_FORMAT, arg);
 		exit(EXIT_FAILURE);
 	}
 }

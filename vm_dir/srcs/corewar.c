@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 10:04:28 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/21 22:44:30 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/01 10:12:13 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 static void		s_basic_run(void)
 {
-	//ft_printf("\u231b  {yellow}Combat en cour ...{reset}");
 	while (sgt_corewar()->run)
 		cycle();
-	//ft_putchar('\r');
 	win();
 }
 

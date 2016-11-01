@@ -6,22 +6,24 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 03:45:35 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/29 01:01:03 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/01 10:05:48 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
+#include <errno.h>
+
 static void		s_error(int id, void *object)
 {
-	if (id == 0)
-		ft_dprintf(STDERR_FILENO, ERR_OPEN_FILE, (char *)object);
+	if (id == 0 && ft_strerror() != NULL)
+		ERROR("\"%s\": %s", (char *)object, ft_strerror());
 	else if (id == 1)
-		ft_dprintf(STDERR_FILENO, ERR_FILE_TOO_LARGE, (char *)object);
-	else if (id == 2)
-		ft_dprintf(STDERR_FILENO, ERR_FILE_NOT_VALID, (char *)object);
+		ERROR("\"%s\": %s", (char *)object, ft_strerr(EFBIG));
+	else if (id == 2 && ft_strerror() != NULL)
+		ERROR("\"%s\": %s", (char *)object, ft_strerror());
 	else
-		return ;
+		ERROR("\"%s\": %s", (char *)object, ERR_FILE_NOT_VALID);
 	exit(EXIT_FAILURE);
 }
 
