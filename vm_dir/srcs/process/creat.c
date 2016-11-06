@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 23:37:18 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/28 13:47:44 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/07 00:19:24 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_process		*process_creat(size_t index, int id, int color_id)
 	process->carry = 0;
 	process->op = op_tab(16);
 	process->op_cycle = 0;
+	process->in_action = false;
 	process->color_id = color_id;
 	return (process);
 }

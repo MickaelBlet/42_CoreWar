@@ -6,94 +6,70 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/13 12:18:18 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/28 12:16:05 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/07 00:17:25 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
-static void		s_func(t_process *process)
+static void		s_func(t_process *process, int type[4], int arg[4], int i_type)
 {
-	int		type[4];
-	int		val[4];
-	int		index_type;
-
-	ft_bzero(type, sizeof(int) * 4);
-	ft_bzero(val, sizeof(int) * 4);
-	index_type = 1;
-	val[0] = get_value_from_type((process->pc + index_type) % MEM_SIZE,
-			process->op.type_args[0], process->op.has_idx);
-	type[0] = T_DIR;
-	if (process->op.has_idx == 1)
+	if (check_type_args(process->op, type, arg) == true)
 	{
-		index_type += 2;
-		val[0] = (short)val[0];
+		verbose_op(process, type, arg);
+		func_tab(process->op.op_code - 1)(process, type, arg);
 	}
-	else
-	{
-		index_type += 4;
-	}
-	verbose_op(process, type, val);
-	func_tab(process->op.op_code - 1)(process, type, val);
 	if (process->op.op_code != 9 || process->carry == 0)
-		verbose_move(process, index_type);
-	process->pc = (process->pc + index_type) % MEM_SIZE;
-	process->op = op_tab(16);
+		verbose_move(process, i_type);
+	process->pc = (process->pc + i_type) % MEM_SIZE;
+	process->in_action = false;
 }
 
-static void		s_func_pcode(t_process *process)
+static void		s_op_action(t_process *process, t_op op)
 {
 	int		type[4];
-	int		val[4];
+	int		arg[4];
 	int		i;
-	int		index_type;
+	int		i_type;
 
-	ft_bzero(type, sizeof(int) * 4);
-	ft_bzero(val, sizeof(int) * 4);
-	byte_code_to_type(&type,
-			sgt_corewar()->ram[(process->pc + 1) % MEM_SIZE].data);
+	ft_bzero(type, sizeof(type));
+	ft_bzero(arg, sizeof(arg));
+	type[0] = T_DIR;
+	i_type = (op.has_pcode) ? 2 : 1;
+	if (op.has_pcode)
+		byte_code_to_type(&type, get_reg_value(process->pc + 1));
 	i = 0;
-	index_type = 2;
-	while (i < process->op.nb_args)
+	while (i < op.nb_args)
 	{
-		val[i] = get_value_from_type(process->pc + index_type,
-				type[i], process->op.has_idx);
-		index_type = (type[i] == T_REG) ? index_type + 1 : index_type;
-		if ((type[i] == T_DIR && process->op.has_idx == 1))
-			index_type += 2;
-		else if (type[i] == T_DIR)
-			index_type += 4;
-		else if (type[i] == T_IND)
-			index_type += 2;
+		arg[i] = get_value_from_type(process->pc + i_type,
+				type[i], op.has_idx);
+		i_type += (type[i] == T_REG) ? 1 : 0;
+		i_type += (type[i] == T_IND) ? 2 : 0;
+		i_type += (type[i] == T_DIR && op.has_idx) ? 2 : 0;
+		i_type += (type[i] == T_DIR && !op.has_idx) ? 4 : 0;
 		++i;
 	}
-	if (check_type_args(process->op, type, val) == true)
-	{
-		verbose_op(process, type, val);
-		func_tab(process->op.op_code - 1)(process, type, val);
-	}
-	verbose_move(process, index_type);
-	process->pc = (process->pc + index_type) % MEM_SIZE;
-	process->op = op_tab(16);
+	s_func(process, type, arg, i_type);
 }
 
 static t_bool	s_new_op(t_process *process)
 {
 	int		op;
 
-	if (process->op_cycle == 0 && process->op.name != 0)
+	if (process->op_cycle == 0 && process->in_action == true)
 		return (false);
-	if (process->op_cycle > 0 && process->op.name != 0)
+	if (process->op_cycle > 0 && process->in_action == true)
 		return (true);
 	op = sgt_corewar()->ram[process->pc].data - 1;
 	if (op_tab(op).op_code != 0)
 	{
 		process->op = op_tab(op);
 		process->op_cycle = op_tab(op).nb_cycles - 1;
+		process->in_action = true;
 		return (true);
 	}
-	process->op = op_tab(16);
 	process->pc = (process->pc + 1) % MEM_SIZE;
+	process->in_action = false;
 	return (true);
 }
 
@@ -105,8 +81,5 @@ void			process_action(t_process *process)
 		process->op_cycle -= 1;
 	if (s_new_op(process) == true)
 		return ;
-	if (process->op.has_pcode)
-		return (s_func_pcode(process));
-	else
-		s_func(process);
+	s_op_action(process, process->op);
 }

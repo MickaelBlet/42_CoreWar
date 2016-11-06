@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/24 11:10:35 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 18:08:33 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/07 00:26:52 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,15 @@ void			vm_mlx_draw_pause(void)
 	if (sgt_mlx()->pause == false || sgt_corewar()->run == false || b == false)
 		return ;
 	s_fill_transparent_rect(sgt_mlx()->img_memory,
-			(int[2]){(VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 3) / 2 - 90,
-			MEM_SIZE / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT / 2 - 100},
+			(int[2]){(VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 3) /
+			2 - 90,
+			MEM_SIZE / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT /
+			2 - 100},
 			(int[2]){80, 200});
 	s_fill_transparent_rect(sgt_mlx()->img_memory,
-			(int[2]){(VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 3) / 2 + 10,
-			MEM_SIZE / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT / 2 - 100},
+			(int[2]){(VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH + 3) /
+			2 + 10,
+			MEM_SIZE / VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_HEIGHT /
+			2 - 100},
 			(int[2]){80, 200});
 }

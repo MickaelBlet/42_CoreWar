@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/11/01 10:21:06 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/07 00:00:07 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ typedef void			(*t_func_op)(t_process *process, int type[4],
 ** MAIN
 */
 void					corewar(int argc, char **argv);
-void					usage(void);
 
 /*
 ** SGT
@@ -136,6 +135,7 @@ t_corewar				*sgt_corewar(void);
 ** OPTION
 */
 void					option(int argc, char **argv);
+void					usage(void);
 
 /*
 ** FILE

@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/16 12:58:22 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 17:37:19 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/07 00:28:23 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		s_index(int pc, int x, int y)
 
 	x = sgt_mlx()->mouse.x + 10 - VM_INFO_WIDTH;
 	y = sgt_mlx()->mouse.y + 10;
-	if (sgt_mlx()->mouse.x > \
+	if (sgt_mlx()->mouse.x >
 			VM_INFO_WIDTH + VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH -
 			VM_TOOLTIP_MINI_WIDTH)
 		x -= VM_TOOLTIP_MINI_WIDTH + 20;
@@ -79,7 +79,7 @@ void			vm_mlx_draw_tooltip(int pc)
 		return ;
 	x = sgt_mlx()->mouse.x + 10 - VM_INFO_WIDTH;
 	y = sgt_mlx()->mouse.y + 10;
-	if (sgt_mlx()->mouse.x > \
+	if (sgt_mlx()->mouse.x >
 			VM_INFO_WIDTH + VM_MEMORY_NB_BYTE_LINE * VM_MEMORY_BYTE_WIDTH -
 			VM_TOOLTIP_WIDTH)
 		x -= VM_TOOLTIP_WIDTH + 20;

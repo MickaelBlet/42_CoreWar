@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 23:37:54 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/28 13:37:12 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/07 00:19:29 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ t_process		*process_fork(t_process *process, size_t index)
 	new->carry = process->carry;
 	new->op = op_tab(16);
 	new->op_cycle = process->op_cycle;
+	new->in_action = false;
 	return (new);
 }
