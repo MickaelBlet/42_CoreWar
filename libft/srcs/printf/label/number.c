@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 04:48:27 by mblet             #+#    #+#             */
-/*   Updated: 2016/03/29 10:32:39 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/08 00:00:53 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		s_alt(t_printf *t)
 {
 	if (t->flags.alt && t->flags.base == 16)
 	{
-		add_char(t, L'0');
+		add_char(t, '0');
 		add_char(t, t->flags.spec);
 	}
 	if (t->flags.number.word != 0 && t->flags.alt
@@ -48,7 +48,7 @@ static void		s_flags(t_printf *t)
 	}
 }
 
-static void		s_if_flags(t_printf *t)
+static void		s_if_flags(t_printf *t, unsigned int len)
 {
 	if (t->flags.is_negative && t->flags.base == 10)
 		t->flags.width -= 1;
@@ -58,16 +58,15 @@ static void		s_if_flags(t_printf *t)
 		t->flags.width -= 1;
 	if (t->flags.alt && t->flags.base == 16)
 		t->flags.width -= 2;
-	if (t->flags.prec <= (int)ft_strlen(t->work_buffer)
-		&& t->flags.alt && t->flags.base == 8)
+	if (t->flags.prec <= (int)len
+			&& t->flags.alt && t->flags.base == 8)
 		t->flags.width -= 1;
 }
 
-static void		s_not_left(t_printf *t)
+static void		s_not_left(t_printf *t, unsigned int len)
 {
-	t->flags.width -= ft_strlen(t->work_buffer)
-		+ t->flags.prec;
-	s_if_flags(t);
+	t->flags.width -= len + t->flags.prec;
+	s_if_flags(t, len);
 	if (t->flags.pad == ' ')
 	{
 		fill_character(t, ' ');
@@ -77,13 +76,14 @@ static void		s_not_left(t_printf *t)
 	s_alt(t);
 	t->flags.width += t->flags.prec;
 	fill_character(t, '0');
-	add_string(t, t->work_buffer);
+	add_string(t, t->work_buffer, len);
 }
 
 void			number(t_printf *t)
 {
-	if (t->flags.prec < 0
-			&& ft_tolower(t->flags.spec) != 'f')
+	unsigned int	len;
+
+	if (t->flags.prec < 0 && ft_tolower(t->flags.spec) != 'f')
 		t->flags.prec = 1;
 	else if (ft_tolower(t->flags.spec) != 'f')
 		t->flags.pad = ' ';
@@ -96,14 +96,13 @@ void			number(t_printf *t)
 	}
 	else
 		number_type(t);
+	len = ft_strlen(t->work_buffer);
 	if (ft_tolower(t->flags.spec) == 'f' && t->flags.alt
 		&& t->flags.prec == 0)
-		t->work_buffer = concat2(t->work_buffer,
-				ft_strlen(t->work_buffer), ".", 1);
-	t->flags.prec = ft_max(0, t->flags.prec -
-			ft_strlen(t->work_buffer));
+		t->work_buffer = concat2(t->work_buffer, len, ".", 1);
+	t->flags.prec = ft_max(0, t->flags.prec - len);
 	if (t->flags.left == false)
-		s_not_left(t);
+		s_not_left(t, len);
 	else
-		number_left(t);
+		number_left(t, len);
 }

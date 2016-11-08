@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/21 23:50:42 by mblet             #+#    #+#             */
-/*   Updated: 2016/03/29 10:31:42 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/08 01:02:23 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,49 +18,51 @@
 #include "printf/printf.h"
 #include "printf/strwlen_print.h"
 
-static void		s_trunc(char **s, int length)
+#include <stdlib.h>
+
+static unsigned int		s_trunc(char **s, int length)
 {
-	int		size;
-	int		index;
-	char	*string;
+	int				index;
+	int				size;
+	char			*string;
 
 	size = (length < 0) ? -length : length;
-	string = ft_strnew(size);
-	if (*s == NULL)
-		return ;
+	string = (char *)malloc((size + 1) * sizeof(char));
+	if (*s == NULL || string == NULL)
+		return (0);
 	index = 0;
 	while ((*s)[index] && index < size)
 	{
 		string[index] = (*s)[index];
 		++index;
 	}
+	string[index] = '\0';
 	ft_strdel(s);
 	*s = string;
+	return (index);
 }
 
-void			to_string(t_printf *t, char *s)
+void					to_string(t_printf *t, char *s)
 {
 	size_t	len;
 
-	len = ft_strlen(s);
 	if (t->flags.prec != -1)
-	{
-		s_trunc(&s, t->flags.prec);
+		len = s_trunc(&s, t->flags.prec);
+	else
 		len = ft_strlen(s);
-	}
 	if ((t->flags.width -= len) < 0)
 	{
-		add_string(t, s);
+		add_string(t, s, len);
 		return ;
 	}
 	if (t->flags.left == false)
 		fill_character(t, t->flags.pad);
-	add_string(t, s);
+	add_string(t, s, len);
 	if (t->flags.left)
 		fill_character(t, t->flags.pad);
 }
 
-void			to_char(t_printf *t, char c)
+void					to_char(t_printf *t, char c)
 {
 	if ((t->flags.width -= 1) < 0)
 		return (add_char(t, c));
@@ -71,7 +73,7 @@ void			to_char(t_printf *t, char c)
 		fill_character(t, t->flags.pad);
 }
 
-void			to_wchar(t_printf *t, wchar_t c)
+void					to_wchar(t_printf *t, wchar_t c)
 {
 	if ((t->flags.width -= 1) < 0)
 		return (add_wchar(t, c));

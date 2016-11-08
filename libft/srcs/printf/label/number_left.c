@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 05:21:32 by mblet             #+#    #+#             */
-/*   Updated: 2016/03/29 10:34:50 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/07 23:57:04 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,13 @@ static void		s_flags(t_printf *t)
 	}
 }
 
-void			number_left(t_printf *t)
+void			number_left(t_printf *t, unsigned int len)
 {
 	int		temp;
 
 	s_flags(t);
 	s_alt(t);
-	t->flags.width -= ft_strlen(t->work_buffer)
-		+ t->flags.prec;
+	t->flags.width -= len + t->flags.prec;
 	if (t->flags.prec > 0)
 	{
 		temp = t->flags.width;
@@ -72,6 +71,6 @@ void			number_left(t_printf *t)
 		fill_character(t, '0');
 		t->flags.width = temp;
 	}
-	add_string(t, t->work_buffer);
+	add_string(t, t->work_buffer, len);
 	fill_character(t, ' ');
 }

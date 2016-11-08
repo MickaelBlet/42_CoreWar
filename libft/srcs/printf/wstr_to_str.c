@@ -6,12 +6,14 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 00:20:23 by mblet             #+#    #+#             */
-/*   Updated: 2016/05/24 17:00:47 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/08 01:06:38 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "printf/printf.h"
+
+#include <stdlib.h>
 
 static size_t	s_strwlen(const wchar_t *s)
 {
@@ -83,7 +85,7 @@ char			*wstr_to_str(t_printf *t, wchar_t *s)
 	size_t	j;
 	char	*tmp;
 
-	if ((tmp = ft_strnew(s_strwlen(s))) == NULL)
+	if ((tmp = (char *)malloc((s_strwlen(s) + 1) * sizeof(char))) == NULL)
 		return (NULL);
 	i = 0;
 	j = 0;
@@ -92,10 +94,12 @@ char			*wstr_to_str(t_printf *t, wchar_t *s)
 		if (j + s_wlen(s[i]) > (unsigned long)t->flags.prec)
 		{
 			t->flags.prec = -1;
+			tmp[j] = '\0';
 			return (tmp);
 		}
 		j = s_add_wchar_in_str(&tmp, s[i], j);
 		++i;
 	}
+	tmp[j] = '\0';
 	return (tmp);
 }

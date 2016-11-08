@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/21 21:40:01 by mblet             #+#    #+#             */
-/*   Updated: 2016/03/29 10:35:06 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/08 00:30:39 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static t_bool	s_modifiers_1(t_printf *t, char **s)
 {
-	if (ft_strnstr(*s, "hh", 2))
+	if ((*s)[0] == 'h' && (*s)[1] == 'h')
 	{
 		++s;
 		t->flags.is_short = false;
@@ -29,7 +29,7 @@ static t_bool	s_modifiers_1(t_printf *t, char **s)
 		t->flags.is_short = true;
 		return (true);
 	}
-	if (ft_strnstr(*s, "ll", 2))
+	if ((*s)[0] == 'l' && (*s)[1] == 'l')
 	{
 		++(*s);
 		t->flags.is_long_double = true;
