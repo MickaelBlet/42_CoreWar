@@ -6,13 +6,13 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 09:52:12 by mblet             #+#    #+#             */
-/*   Updated: 2016/02/18 19:58:54 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/10 16:00:18 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
-char	*concat2(char *s1, int len1, char *s2, int len2)
+char	*printf_concat2(char *s1, int len1, char *s2, int len2)
 {
 	char	*tmp;
 
@@ -24,7 +24,7 @@ char	*concat2(char *s1, int len1, char *s2, int len2)
 	return (tmp);
 }
 
-char	*concat(char *s1, int *len1, char *s2, int len2)
+char	*printf_concat(char *s1, int *len1, char *s2, int len2)
 {
 	char	*tmp;
 

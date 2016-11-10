@@ -6,12 +6,11 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 05:05:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/11/10 01:12:04 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/10 16:23:05 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "printf/printf.h"
+#include "printf.h"
 
 #include <stdlib.h>
 
@@ -78,7 +77,7 @@ static void		s_float_check(t_printf *t)
 	}
 }
 
-void			number_type(t_printf *t)
+void			printf_number_type(t_printf *t)
 {
 	if (t->flags.spec == 'f' || t->flags.spec == 'F')
 		s_float_check(t);

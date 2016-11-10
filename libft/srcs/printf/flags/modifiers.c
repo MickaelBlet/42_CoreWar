@@ -6,12 +6,11 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/21 21:40:01 by mblet             #+#    #+#             */
-/*   Updated: 2016/11/08 00:30:39 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/10 15:27:28 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "printf/printf.h"
+#include "printf.h"
 
 #include <inttypes.h>
 
@@ -71,7 +70,7 @@ static t_bool	s_modifiers_2(t_printf *t, char **s)
 	return (false);
 }
 
-t_bool			modifiers(t_printf *t, char **s)
+t_bool			printf_modifiers(t_printf *t, char **s)
 {
 	if (s_modifiers_1(t, s))
 		return (true);

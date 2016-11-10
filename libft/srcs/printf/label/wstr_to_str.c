@@ -6,12 +6,11 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/18 00:20:23 by mblet             #+#    #+#             */
-/*   Updated: 2016/11/08 01:06:38 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/10 16:31:33 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "printf/printf.h"
+#include "printf.h"
 
 #include <stdlib.h>
 
@@ -79,7 +78,7 @@ static size_t	s_add_wchar_in_str(char **s, wchar_t wc, size_t j)
 	return (j);
 }
 
-char			*wstr_to_str(t_printf *t, wchar_t *s)
+char			*printf_wstr_to_str(t_printf *t, wchar_t *s)
 {
 	size_t	i;
 	size_t	j;

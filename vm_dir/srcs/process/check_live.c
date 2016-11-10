@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 00:14:23 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/26 21:22:03 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/10 02:35:30 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,10 @@ static t_bool	s_del(t_listd **list, t_process *process)
 
 void			process_check_live(void)
 {
-	size_t		i;
 	t_listd		*list;
 	t_process	*process;
 
 	list = sgt_corewar()->process;
-	i = ft_lstd_size(list);
 	while (list)
 	{
 		process = list->data;

@@ -6,13 +6,11 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 10:05:20 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/26 23:55:23 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/10 16:02:26 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "printf/color/concat.h"
-#include "printf/color/replace_color.h"
+#include "printf.h"
 
 static void		s_replace4(t_replace_color co)
 {
@@ -30,11 +28,11 @@ static void		s_replace4(t_replace_color co)
 					spl_replace[j], ft_strlen(spl_replace[j])))
 		{
 			c[1] = '4' + j;
-			*(co.tmp) = concat(*(co.tmp), (co.len),
+			*(co.tmp) = printf_concat(*(co.tmp), (co.len),
 					co.t->buffer + *(co.save), *(co.i) - *(co.save));
-			*(co.tmp) = concat(*(co.tmp), (co.len), "\033[", 2);
-			*(co.tmp) = concat(*(co.tmp), (co.len), c, 2);
-			*(co.tmp) = concat(*(co.tmp), (co.len), "m", 1);
+			*(co.tmp) = printf_concat(*(co.tmp), (co.len), "\033[", 2);
+			*(co.tmp) = printf_concat(*(co.tmp), (co.len), c, 2);
+			*(co.tmp) = printf_concat(*(co.tmp), (co.len), "m", 1);
 			*(co.save) = *(co.i) + ft_strlen(spl_replace[j]);
 		}
 		*(co.i) = (*(co.save) > *(co.i)) ? *(co.save) - 1 : *(co.i);
@@ -59,11 +57,11 @@ static void		s_replace3(t_replace_color co)
 					spl_replace[j], ft_strlen(spl_replace[j])))
 		{
 			c[1] = '0' + j;
-			*(co.tmp) = concat(*(co.tmp), (co.len),
+			*(co.tmp) = printf_concat(*(co.tmp), (co.len),
 					co.t->buffer + *(co.save), *(co.i) - *(co.save));
-			*(co.tmp) = concat(*(co.tmp), (co.len), "\033[", 2);
-			*(co.tmp) = concat(*(co.tmp), (co.len), c, 2);
-			*(co.tmp) = concat(*(co.tmp), (co.len), "m", 1);
+			*(co.tmp) = printf_concat(*(co.tmp), (co.len), "\033[", 2);
+			*(co.tmp) = printf_concat(*(co.tmp), (co.len), c, 2);
+			*(co.tmp) = printf_concat(*(co.tmp), (co.len), "m", 1);
 			*(co.save) = *(co.i) + ft_strlen(spl_replace[j]);
 		}
 		*(co.i) = (*(co.save) > *(co.i)) ? *(co.save) - 1 : *(co.i);
@@ -88,11 +86,11 @@ static void		s_replace2(t_replace_color co)
 					spl_replace[j], ft_strlen(spl_replace[j])))
 		{
 			c[1] = '6' + j;
-			*(co.tmp) = concat(*(co.tmp), (co.len),
+			*(co.tmp) = printf_concat(*(co.tmp), (co.len),
 					co.t->buffer + *(co.save), *(co.i) - *(co.save));
-			*(co.tmp) = concat(*(co.tmp), (co.len), "\033[", 2);
-			*(co.tmp) = concat(*(co.tmp), (co.len), c, 2);
-			*(co.tmp) = concat(*(co.tmp), (co.len), "m", 1);
+			*(co.tmp) = printf_concat(*(co.tmp), (co.len), "\033[", 2);
+			*(co.tmp) = printf_concat(*(co.tmp), (co.len), c, 2);
+			*(co.tmp) = printf_concat(*(co.tmp), (co.len), "m", 1);
 			*(co.save) = *(co.i) + ft_strlen(spl_replace[j]);
 		}
 		*(co.i) = (*(co.save) > *(co.i)) ? *(co.save) - 1 : *(co.i);
@@ -117,11 +115,11 @@ static void		s_replace1(t_replace_color co)
 					spl_replace[j], ft_strlen(spl_replace[j])))
 		{
 			c[1] = '0' + j;
-			*(co.tmp) = concat(*(co.tmp), (co.len),
+			*(co.tmp) = printf_concat(*(co.tmp), (co.len),
 					co.t->buffer + *(co.save), *(co.i) - *(co.save));
-			*(co.tmp) = concat(*(co.tmp), (co.len), "\033[", 2);
-			*(co.tmp) = concat(*(co.tmp), (co.len), c, 2);
-			*(co.tmp) = concat(*(co.tmp), (co.len), "m", 1);
+			*(co.tmp) = printf_concat(*(co.tmp), (co.len), "\033[", 2);
+			*(co.tmp) = printf_concat(*(co.tmp), (co.len), c, 2);
+			*(co.tmp) = printf_concat(*(co.tmp), (co.len), "m", 1);
 			*(co.save) = *(co.i) + ft_strlen(spl_replace[j]);
 		}
 		*(co.i) = (*(co.save) > *(co.i)) ? *(co.save) - 1 : *(co.i);
@@ -130,7 +128,7 @@ static void		s_replace1(t_replace_color co)
 	ft_strtable_clear(&spl_replace);
 }
 
-void			color_basic(t_replace_color co)
+void			printf_color_basic(t_replace_color co)
 {
 	s_replace1(co);
 	s_replace2(co);

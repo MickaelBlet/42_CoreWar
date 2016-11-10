@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 11:00:17 by mblet             #+#    #+#              #
-#    Updated: 2016/11/10 01:12:06 by mblet            ###   ########.fr        #
+#    Updated: 2016/11/10 19:07:37 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,12 +71,6 @@ SRCBASE		=	\
 				printf/add/add_string.c										\
 				printf/add/add_wchar.c										\
 				printf/add/fill_character.c									\
-				printf/arg_get/get_char.c									\
-				printf/arg_get/get_double.c									\
-				printf/arg_get/get_int.c									\
-				printf/arg_get/get_long.c									\
-				printf/arg_get/get_string.c									\
-				printf/arg_get/get_void.c									\
 				printf/color/color_basic.c									\
 				printf/color/color_fg_bg.c									\
 				printf/color/color_format.c									\
@@ -84,29 +78,25 @@ SRCBASE		=	\
 				printf/color/replace_color.c								\
 				printf/conversion/b.c										\
 				printf/conversion/big_d.c									\
-				printf/conversion/big_o.c									\
-				printf/conversion/big_x.c									\
 				printf/conversion/c.c										\
 				printf/conversion/f.c										\
 				printf/conversion/i.c										\
 				printf/conversion/o.c										\
 				printf/conversion/p.c										\
 				printf/conversion/s.c										\
-				printf/conversion/to_string.c								\
 				printf/conversion/u.c										\
 				printf/conversion/x.c										\
-				printf/flags.c												\
-				printf/ft_asprintf.c										\
-				printf/ft_printf.c											\
+				printf/flags/flags.c										\
+				printf/flags/modifiers.c									\
+				printf/format.c												\
+				printf/function_conversion.c								\
 				printf/init/ini_printf.c									\
-				printf/label/form_interger.c								\
-				printf/label/form_percent.c									\
 				printf/label/number.c										\
 				printf/label/number2.c										\
 				printf/label/number_left.c									\
-				printf/modifiers.c											\
-				printf/strwlen_print.c										\
-				printf/wstr_to_str.c										\
+				printf/label/string.c										\
+				printf/label/wstr_to_str.c									\
+				printf/printf.c												\
 				string/ahtoi.c												\
 				string/aisf.c												\
 				string/aish.c												\
@@ -232,16 +222,16 @@ $(OBJDIR)%.o : $(SRCDIR)%.c | $(OBJDIR)
 clean:
 	if [[ `rm -R $(OBJDIR) &> /dev/null 2>&1; echo $$?` == "0" ]]; then		\
 		echo -en "\r\033[38;5;124m📕  CLEAN  $(NAMEBASE)\033[0m\033[K";		\
-	else																	\
+		else																	\
 		printf "\r";														\
-	fi
+		fi
 
 fclean:		clean
 	if [[ `rm $(NAME) &> /dev/null 2>&1; echo $$?` == "0" ]]; then			\
 		echo -en "\r\033[38;5;124m📕  FCLEAN $(NAMEBASE)\033[0m\033[K";		\
-	else																	\
+		else																	\
 		printf "\r";														\
-	fi
+		fi
 
 re:			fclean all
 

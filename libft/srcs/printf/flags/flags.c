@@ -6,13 +6,11 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/21 20:50:52 by mblet             #+#    #+#             */
-/*   Updated: 2016/03/29 10:26:12 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/10 16:34:01 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "printf/printf.h"
-#include "printf/arg_get/get_int.h"
+#include "printf.h"
 
 static t_bool	s_flags_1(t_printf *t, char **s)
 {
@@ -44,7 +42,7 @@ static t_bool	s_flags_2(t_printf *t, char **s)
 {
 	if (**s == '*')
 	{
-		t->flags.width = arg_get_int(t);
+		t->flags.width = VA_ARG(t->args, int);
 		if (t->flags.width < 0)
 		{
 			t->flags.width = -t->flags.width;
@@ -71,7 +69,7 @@ static t_bool	s_flags_3(t_printf *t, char **s)
 		++(*s);
 		if (**s == '*')
 		{
-			t->flags.prec = arg_get_int(t);
+			t->flags.prec = VA_ARG(t->args, int);
 			if (t->flags.prec < 0)
 				t->flags.prec = -1;
 			return (true);
@@ -112,7 +110,7 @@ static t_bool	s_flags_4(t_printf *t, char **s)
 	return (false);
 }
 
-t_bool			flags(t_printf *t, char **s)
+t_bool			printf_flags(t_printf *t, char **s)
 {
 	if (s_flags_1(t, s))
 		return (true);

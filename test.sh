@@ -6,16 +6,16 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/23 12:09:53 by mblet             #+#    #+#              #
-#    Updated: 2016/11/10 01:18:45 by mblet            ###   ########.fr        #
+#    Updated: 2016/11/10 02:36:21 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 dump=-1
 
-champion1="./champions/new_line.cor"
-champion2="./champions/new_line.cor"
-champion3="./champions/new_line.cor"
-champion4="./champions/new_line.cor"
+champion1="./champions/examples/helltrain.cor"
+champion2="./champions/examples/helltrain.cor"
+champion3="./champions/examples/helltrain.cor"
+champion4="./champions/examples/helltrain.cor"
 
 #./corewar -g $champion1 $champion2 $champion3 $champion4
 

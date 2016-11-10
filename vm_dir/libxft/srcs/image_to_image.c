@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/15 17:26:23 by mblet             #+#    #+#             */
-/*   Updated: 2016/06/13 15:46:51 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/10 02:05:21 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ static void		s_image_to_image(t_libx_img *dst, t_libx_img *src, int data[4])
 	}
 }
 
-void			libx_image_to_image(t_libx_img *dst, t_libx_img *src,
-		...)
+void			libx_image_to_image(t_libx_img *dst, t_libx_img *src, ...)
 {
 	va_list		args;
 	int			data[6];

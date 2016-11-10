@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 05:52:47 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/29 13:44:04 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/10 02:30:55 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,17 @@ typedef enum		e_bool
 int					ft_get_next_line(int const fd, char **line);
 
 /*
+** INFINITE
+*/
+void				ft_putistr(char *s, ...);
+void				ft_putistr_fd(int fd, char *s, ...);
+void				ft_putiendl(char *s, ...);
+void				ft_putiendl_fd(int fd, char *s, ...);
+char				*ft_strijoin(char *s, ...);
+char				*ft_strijoind(char *s, ...);
+void				ft_stridel(char **s, ...);
+
+/*
 ** TABLE
 */
 size_t				ft_table_size(void **tbl);
@@ -168,17 +179,6 @@ void				ft_strtable_del_at_ptr(char ***atbl, void *ptr);
 void				ft_strtable_clear(char ***atbl);
 void				ft_strtable_map(char **tbl, void (*map)());
 void				ft_strtable_rmap(char **tbl, void (*map)());
-
-/*
-** INFINITE
-*/
-void				ft_putistr(char *s, ...);
-void				ft_putistr_fd(int fd, char *s, ...);
-void				ft_putiendl(char *s, ...);
-void				ft_putiendl_fd(int fd, char *s, ...);
-char				*ft_strijoin(char *s, ...);
-char				*ft_strijoind(char *s, ...);
-void				ft_stridel(char **s, ...);
 
 /*
 ** LIST

@@ -6,18 +6,75 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/21 22:59:37 by mblet             #+#    #+#             */
-/*   Updated: 2016/03/29 10:17:20 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/10 19:06:11 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf/add/add_char.h"
-#include "printf/printf.h"
+#include "printf.h"
 
-void	fill_character(t_printf *t, char c)
+#include <stdlib.h>
+
+static void		s_new_buffer(t_printf *t, long c)
 {
+	char	*tmp;
+
+	t->buffer_size = t->len + sizeof(long) + BUFF_SIZE + 1;
+	if ((tmp = (char *)malloc((t->buffer_size) * sizeof(char))) == NULL)
+		return ;
+	if (t->buffer)
+	{
+		ft_memcpy(tmp, t->buffer, t->len);
+		*((long *)(tmp + t->len)) = c;
+		t->len += sizeof(long);
+	}
+	else
+	{
+		*((long *)(tmp)) = c;
+		t->len += sizeof(long);
+	}
+	ft_strdel(&t->buffer);
+	t->buffer = (char *)tmp;
+}
+
+static void		s_printf_fill_speed(t_printf *t, long c)
+{
+	if ((t->len + sizeof(long)) > t->buffer_size)
+		return (s_new_buffer(t, c));
+	if (t->buffer)
+	{
+		*((long *)(t->buffer + t->len)) = c;
+		t->len += sizeof(long);
+	}
+	else
+	{
+		s_new_buffer(t, c);
+	}
+}
+
+void			printf_fill_character(t_printf *t, char c)
+{
+	if (t->flags.width >= (int)sizeof(long))
+	{
+		if (c == ' ')
+		{
+			while (t->flags.width >= (int)sizeof(long))
+			{
+				s_printf_fill_speed(t, 0x2020202020202020);
+				t->flags.width -= sizeof(long);
+			}
+		}
+		else
+		{
+			while (t->flags.width >= (int)sizeof(long))
+			{
+				s_printf_fill_speed(t, 0x3030303030303030);
+				t->flags.width -= sizeof(long);
+			}
+		}
+	}
 	while (t->flags.width > 0)
 	{
-		add_char(t, c);
+		printf_add_char(t, c);
 		--t->flags.width;
 	}
 }
