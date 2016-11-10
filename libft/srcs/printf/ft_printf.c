@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/17 12:29:09 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/29 09:48:25 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/09 01:24:28 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_bool	s_check_conversion(t_printf *t, char **s)
 	{
 		if (**s == flags[i])
 			break ;
-		i++;
+		++i;
 	}
 	if (flags[i] == '\0')
 		return (false);

@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/15 11:17:57 by mblet             #+#    #+#             */
-/*   Updated: 2016/11/07 00:52:38 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/10 01:27:15 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static t_bool	s_img_init(void)
 
 static t_bool	s_win_init(void)
 {
-	sgt_mlx()->win = ft_mlx_new_window(sgt_mlx()->mlx, 100, 0,
+	sgt_mlx()->win = ft_mlx_new_window(sgt_mlx()->mlx, 0, 0,
 			VM_WIN_WIDTH, VM_WIN_HEIGHT, "mlx - corewar");
 	if (sgt_mlx()->win == NULL)
 		return (false);
