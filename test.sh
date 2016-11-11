@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/23 12:09:53 by mblet             #+#    #+#              #
-#    Updated: 2016/11/10 02:36:21 by mblet            ###   ########.fr        #
+#    Updated: 2016/11/10 19:14:39 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ zaz_corewar/corewar \
 	$champion1 $champion2 $champion3 $champion4 > "/tmp/test_dump_zaz.test" &
 
 ./corewar \
-	--lives --cycles --deaths --moves --ops \
+	-g --lives --cycles --deaths --moves --ops \
 	-dump $dump \
 	$champion1 $champion2 $champion3 $champion4 > "/tmp/test_dump_me.test"
 
