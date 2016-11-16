@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 23:51:22 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/28 03:49:30 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/16 15:05:54 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void			file_write(void)
 		&& sgt_asm()->labels == NULL)
 		return ((void)ERROR("%s: %s", sgt_asm()->file_name, "bad file"));
 	if (sgt_asm()->index_cor > CHAMP_MAX_SIZE)
-		return ((void)ERROR("%s: %s", sgt_asm()->file_name,
-					"champion size"));
+		return ((void)ERROR("%s: %s", sgt_asm()->file_name, "champion size"));
 	new = NULL;
 	s_set_new_name(&new, sgt_asm()->file_name);
 	if ((fd = open(new, O_WRONLY | O_CREAT | O_TRUNC, 0644)) == -1)

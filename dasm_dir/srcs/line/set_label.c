@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/28 23:22:52 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/29 12:07:41 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/16 15:07:18 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_bool	s_set_to_index(int index)
 			line->has_label = true;
 			return (true);
 		}
-		list = list ->next;
+		list = list->next;
 	}
 	return (false);
 }
@@ -55,6 +55,6 @@ void			line_set_label(void)
 				line->arg[i].label = false;
 			++i;
 		}
-		list = list ->next;
+		list = list->next;
 	}
 }

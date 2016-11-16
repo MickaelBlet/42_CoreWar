@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/07 09:22:24 by mblet             #+#    #+#              #
-#    Updated: 2016/11/10 02:46:46 by mblet            ###   ########.fr        #
+#    Updated: 2016/11/16 15:03:14 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,8 +79,8 @@ SRCBASE		=	\
 				op/sub.c													\
 				op/xor.c													\
 				op/zjmp.c													\
-				option.c													\
 				op_tab.c													\
+				option.c													\
 				player/creat.c												\
 				process/action.c											\
 				process/check_live.c										\
