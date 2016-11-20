@@ -6,11 +6,33 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 00:03:31 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/26 01:48:59 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/20 19:02:52 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+static void		s_sug_type(t_arg arg, t_op op, int index)
+{
+	char	str[256];
+
+	if (op.type_args[index] & T_REG && op.type_args[index] & T_IND
+			&& op.type_args[index] & T_DIR)
+		ft_sprintf(str, "%s", "T_REG | T_IND | T_DIR");
+	else if (op.type_args[index] & T_REG && op.type_args[index] & T_DIR)
+		ft_sprintf(str, "%s", "T_REG | T_DIR");
+	else if (op.type_args[index] & T_REG && op.type_args[index] & T_IND)
+		ft_sprintf(str, "%s", "T_REG | T_IND");
+	else if (op.type_args[index] & T_DIR && op.type_args[index] & T_IND)
+		ft_sprintf(str, "%s", "T_DIR | T_IND");
+	else if (op.type_args[index] & T_REG)
+		ft_sprintf(str, "%s", "T_REG");
+	else if (op.type_args[index] & T_IND)
+		ft_sprintf(str, "%s", "T_IND");
+	else if (op.type_args[index] & T_DIR)
+		ft_sprintf(str, "%s", "T_DIR");
+	error_print_sug(arg, ERR_OP_BAD_TYPE, str);
+}
 
 static void		s_check_types(t_line *line)
 {
@@ -22,7 +44,7 @@ static void		s_check_types(t_line *line)
 		if (line->args[i].type == 0)
 			error_print(line->args[i], ERR_OP_BAD_ARG);
 		else if (!(line->op.type_args[i] & line->args[i].type))
-			error_print(line->args[i], ERR_OP_BAD_TYPE);
+			s_sug_type(line->args[i], line->op, i);
 		else
 			op_arg_to_cor(line, &line->args[i]);
 		++i;
