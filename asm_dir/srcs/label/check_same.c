@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 03:00:39 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/25 16:21:26 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/29 15:18:32 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_bool	label_check_same(char *name)
 	while (list != NULL)
 	{
 		label = list->data;
-		if (ft_strequ(label->data, name))
+		if (label != NULL && ft_strequ(label->data, name))
 			return (false);
 		list = list->next;
 	}

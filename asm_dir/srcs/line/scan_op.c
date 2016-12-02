@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/26 00:03:31 by mblet             #+#    #+#             */
-/*   Updated: 2016/11/20 19:02:52 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/29 19:00:28 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void		s_sug_type(t_arg arg, t_op op, int index)
 	char	str[256];
 
 	if (op.type_args[index] & T_REG && op.type_args[index] & T_IND
-			&& op.type_args[index] & T_DIR)
+		&& op.type_args[index] & T_DIR)
 		ft_sprintf(str, "%s", "T_REG | T_IND | T_DIR");
 	else if (op.type_args[index] & T_REG && op.type_args[index] & T_DIR)
 		ft_sprintf(str, "%s", "T_REG | T_DIR");
@@ -57,8 +57,14 @@ void			line_scan_op(t_line *line)
 	if (line->nb_args == 0)
 		return ;
 	else if (line->nb_args < line->op.nb_args)
-		return (error_print(line->args[line->nb_args - 1], ERR_OP_TOO_FEW));
+	{
+		error_print(line->args[line->nb_args - 1], ERR_OP_TOO_FEW);
+		return ;
+	}
 	else if (line->nb_args > line->op.nb_args)
-		return (error_print(line->args[line->nb_args - 1], ERR_OP_TOO_MANY));
+	{
+		error_print(line->args[line->nb_args - 1], ERR_OP_TOO_MANY);
+		return ;
+	}
 	s_check_types(line);
 }

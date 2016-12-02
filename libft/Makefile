@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/02/03 11:00:17 by mblet             #+#    #+#              #
-#    Updated: 2016/11/10 19:07:37 by mblet            ###   ########.fr        #
+#    Updated: 2016/11/29 19:59:39 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,64 @@ OBJDIR		=	objs/
 INCDIR		=	includes/
 
 SRCBASE		=	\
+				_bonus/lstadd.c												\
+				_bonus/lstdel.c												\
+				_bonus/lstdelone.c											\
+				_bonus/lstiter.c											\
+				_bonus/lstmap.c												\
+				_bonus/lstnew.c												\
+				_part1/atoi.c												\
+				_part1/bzero.c												\
+				_part1/isalnum.c											\
+				_part1/isalpha.c											\
+				_part1/isascii.c											\
+				_part1/isdigit.c											\
+				_part1/isprint.c											\
+				_part1/memccpy.c											\
+				_part1/memchr.c												\
+				_part1/memcmp.c												\
+				_part1/memcpy.c												\
+				_part1/memmove.c											\
+				_part1/memset.c												\
+				_part1/strcat.c												\
+				_part1/strchr.c												\
+				_part1/strcmp.c												\
+				_part1/strcpy.c												\
+				_part1/strdup.c												\
+				_part1/strlcat.c											\
+				_part1/strlen.c												\
+				_part1/strncat.c											\
+				_part1/strncmp.c											\
+				_part1/strncpy.c											\
+				_part1/strnstr.c											\
+				_part1/strrchr.c											\
+				_part1/strstr.c												\
+				_part1/tolower.c											\
+				_part1/toupper.c											\
+				_part2/itoa.c												\
+				_part2/memalloc.c											\
+				_part2/memdel.c												\
+				_part2/putchar.c											\
+				_part2/putchar_fd.c											\
+				_part2/putendl.c											\
+				_part2/putendl_fd.c											\
+				_part2/putnbr.c												\
+				_part2/putnbr_fd.c											\
+				_part2/putstr.c												\
+				_part2/putstr_fd.c											\
+				_part2/strclr.c												\
+				_part2/strdel.c												\
+				_part2/strequ.c												\
+				_part2/striter.c											\
+				_part2/striteri.c											\
+				_part2/strjoin.c											\
+				_part2/strmap.c												\
+				_part2/strmapi.c											\
+				_part2/strnequ.c											\
+				_part2/strnew.c												\
+				_part2/strsplit.c											\
+				_part2/strsub.c												\
+				_part2/strtrim.c											\
 				errno/ini_strerror.c										\
 				errno/strerror.c											\
 				get_next_line.c												\
@@ -134,65 +192,7 @@ SRCBASE		=	\
 				table/table_push_cond.c										\
 				table/table_push_front.c									\
 				table/table_rmap.c											\
-				table/table_size.c											\
-				_bonus/lstadd.c												\
-				_bonus/lstdel.c												\
-				_bonus/lstdelone.c											\
-				_bonus/lstiter.c											\
-				_bonus/lstmap.c												\
-				_bonus/lstnew.c												\
-				_part1/atoi.c												\
-				_part1/bzero.c												\
-				_part1/isalnum.c											\
-				_part1/isalpha.c											\
-				_part1/isascii.c											\
-				_part1/isdigit.c											\
-				_part1/isprint.c											\
-				_part1/memccpy.c											\
-				_part1/memchr.c												\
-				_part1/memcmp.c												\
-				_part1/memcpy.c												\
-				_part1/memmove.c											\
-				_part1/memset.c												\
-				_part1/strcat.c												\
-				_part1/strchr.c												\
-				_part1/strcmp.c												\
-				_part1/strcpy.c												\
-				_part1/strdup.c												\
-				_part1/strlcat.c											\
-				_part1/strlen.c												\
-				_part1/strncat.c											\
-				_part1/strncmp.c											\
-				_part1/strncpy.c											\
-				_part1/strnstr.c											\
-				_part1/strrchr.c											\
-				_part1/strstr.c												\
-				_part1/tolower.c											\
-				_part1/toupper.c											\
-				_part2/itoa.c												\
-				_part2/memalloc.c											\
-				_part2/memdel.c												\
-				_part2/putchar.c											\
-				_part2/putchar_fd.c											\
-				_part2/putendl.c											\
-				_part2/putendl_fd.c											\
-				_part2/putnbr.c												\
-				_part2/putnbr_fd.c											\
-				_part2/putstr.c												\
-				_part2/putstr_fd.c											\
-				_part2/strclr.c												\
-				_part2/strdel.c												\
-				_part2/strequ.c												\
-				_part2/striter.c											\
-				_part2/striteri.c											\
-				_part2/strjoin.c											\
-				_part2/strmap.c												\
-				_part2/strmapi.c											\
-				_part2/strnequ.c											\
-				_part2/strnew.c												\
-				_part2/strsplit.c											\
-				_part2/strsub.c												\
-				_part2/strtrim.c
+				table/table_size.c
 
 SRCS		=	$(addprefix $(SRCDIR), $(SRCBASE))
 

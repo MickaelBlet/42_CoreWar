@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/24 01:05:15 by mblet             #+#    #+#             */
-/*   Updated: 2016/10/24 01:17:24 by mblet            ###   ########.fr       */
+/*   Updated: 2016/11/25 10:20:51 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void	usage(void)
 	ft_printf("%-10s Show cycles\n", "--cycles");
 	ft_printf("%-10s Show operations (Param are NOT litteral ...)\n", "--ops");
 	ft_printf("%-10s Show deaths\n", "--deaths");
-	ft_printf("%--10s Show PV movements (Except for jumps)\n", "--move");
+	ft_printf("%-10s Show PV movements (Except for jumps)\n", "--moves");
 	exit(EXIT_FAILURE);
 }
