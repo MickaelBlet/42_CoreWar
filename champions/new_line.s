@@ -85,9 +85,6 @@ proc1:
 
 ini_fork:
 	live	%0xface
-	fork	%:ini_fork
-	xor		r16, r16, r16
-	fork	%:ini
 	zjmp	%:ini_fork
 
 proc2:

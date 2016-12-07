@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 09:22:40 by mblet             #+#    #+#             */
-/*   Updated: 2016/11/21 09:19:12 by mblet            ###   ########.fr       */
+/*   Updated: 2016/12/06 09:41:14 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -339,6 +339,7 @@ void					vm_press_key_add(t_vm_mlx *mlx);
 void					vm_press_key_0(t_vm_mlx *mlx);
 void					vm_press_key_9(t_vm_mlx *mlx);
 void					vm_press_key_space(t_vm_mlx *mlx);
+void					vm_press_key_suppr(t_vm_mlx *mlx);
 
 /*
 ** MOUSE

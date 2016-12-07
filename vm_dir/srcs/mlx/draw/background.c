@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/15 12:37:20 by mblet             #+#    #+#             */
-/*   Updated: 2016/11/10 01:59:06 by mblet            ###   ########.fr       */
+/*   Updated: 2016/12/06 10:19:14 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void		s_info_keys(t_vm_mlx *mlx)
 			(int[2]){VM_INFO_WIDTH - 20, 110}, 0xBBBBBB);
 	LIBX_STRING_TO_IMAGE(sgt_mlx()->img_info, sgt_mlx()->img_font,
 			"{space} : Run / Pause                {esc}   : Exit\n"
-			"{s}     : Step by Step\n"
+			"{s}     : Step by Step               {suppr} : Reset\n"
 			"{+/=}   : Add 50 cycles / second\n"
 			"{_/-}   : Sub 50 cycles / second\n"
 			"{(/9}   : Add 10 cycles / second\n"

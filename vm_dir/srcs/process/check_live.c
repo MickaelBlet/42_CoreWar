@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/17 00:14:23 by mblet             #+#    #+#             */
-/*   Updated: 2016/11/10 02:35:30 by mblet            ###   ########.fr       */
+/*   Updated: 2016/12/06 09:38:07 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_bool	s_del(t_listd **list, t_process *process)
 	{
 		verbose_death(process);
 		pthread_mutex_lock(&sgt_corewar()->mutex_process);
-		ft_lstd_pop_front(&sgt_corewar()->process, NULL);
+		ft_lstd_pop_front(&sgt_corewar()->process, &free);
 		pthread_mutex_unlock(&sgt_corewar()->mutex_process);
 		*list = sgt_corewar()->process;
 		return (true);
@@ -30,7 +30,7 @@ static t_bool	s_del(t_listd **list, t_process *process)
 	{
 		verbose_death(process);
 		pthread_mutex_lock(&sgt_corewar()->mutex_process);
-		ft_lstd_del(list, NULL);
+		ft_lstd_del(list, &free);
 		pthread_mutex_unlock(&sgt_corewar()->mutex_process);
 		return (true);
 	}

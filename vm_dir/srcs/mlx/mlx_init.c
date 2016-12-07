@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/15 11:17:57 by mblet             #+#    #+#             */
-/*   Updated: 2016/11/30 12:27:43 by mblet            ###   ########.fr       */
+/*   Updated: 2016/12/06 10:50:51 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 static void		s_color_init(void)
 {
 	sgt_mlx()->color[0] = 0x505050;
-	sgt_mlx()->color[1] = 0xA00000;
+	sgt_mlx()->color[1] = 0xA000A0;
 	sgt_mlx()->color[2] = 0x00A000;
 	sgt_mlx()->color[3] = 0xA0A000;
-	sgt_mlx()->color[4] = 0x0000A0;
-	sgt_mlx()->color[5] = 0xA000A0;
-	sgt_mlx()->color[6] = 0x00A0A0;
+	sgt_mlx()->color[4] = 0x00A0A0;
+	sgt_mlx()->color[6] = 0x0000A0;
+	sgt_mlx()->color[5] = 0xA00000;
 	sgt_mlx()->color[7] = 0xA00000 - 0x300000;
 	sgt_mlx()->color[8] = 0x00A000 - 0x003000;
 	sgt_mlx()->color[9] = 0xA0A000 - 0x303000;
@@ -46,6 +46,7 @@ static t_bool	s_hook_init(void)
 	libx_func_key(LIBX_KEY_9, LIBX_KEY_PRESS, &vm_press_key_9);
 	libx_func_key(LIBX_KEY_0, LIBX_KEY_PRESS, &vm_press_key_0);
 	libx_func_key(LIBX_KEY_SPACE, LIBX_KEY_PRESS, &vm_press_key_space);
+	libx_func_key(LIBX_KEY_SUPPR, LIBX_KEY_PRESS, &vm_press_key_suppr);
 	mlx = sgt_mlx();
 	mlx_expose_hook(mlx->win, &vm_mlx_loop_hook, mlx);
 	mlx_loop_hook(mlx->mlx, &vm_mlx_loop_hook, mlx);

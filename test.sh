@@ -6,7 +6,7 @@
 #    By: mblet <mblet@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/10/23 12:09:53 by mblet             #+#    #+#              #
-#    Updated: 2016/12/02 10:59:43 by mblet            ###   ########.fr        #
+#    Updated: 2016/12/06 10:55:15 by mblet            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 #!/bin/sh
@@ -16,7 +16,7 @@ dump=-1
 champion1="./champions/new_line.cor"
 champion2="./champions/examples/helltrain.cor"
 #champion3="./champions/examples/zork.cor"
-#champion4="./champions/examples/turtle.cor"
+champion4="./champions/examples/turtle.cor"
 
 #./corewar -g $champion1 $champion2 $champion3 $champion4
 
