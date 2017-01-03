@@ -1,8 +1,8 @@
 # Newline random champion by mblet
 # 2016(c)
 
-.name		"NEWLINE"
-.comment	"Jump jUmp juMp jumP"
+.name		""
+.comment	""
 
 start:
 	sti		r1, %:fork1, %1

@@ -6,7 +6,7 @@
 /*   By: mblet <mblet@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/18 03:45:35 by mblet             #+#    #+#             */
-/*   Updated: 2016/11/01 10:05:48 by mblet            ###   ########.fr       */
+/*   Updated: 2017/01/03 19:22:22 by mblet            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static void		s_read(t_file *file, int fd, char *file_name)
 	file->header = file_get_header(file->data);
 	if (file->header->magic != COREWAR_EXEC_MAGIC)
 		s_error(2, file_name);
+	if (file->header->prog_size > CHAMP_MAX_SIZE)
+		s_error(3, file_name);
 }
 
 t_file			*file_read(char *file_name)
